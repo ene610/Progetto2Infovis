@@ -1,16 +1,16 @@
 {"crews": [
     {
 	"name": "Straw Hat Pirates",
-	"flag": "flag_mugiwara.png",
+	"flag": "../flags/flag-straw-hat.png",
 	"members": [
-		[{"captain": "Monkey D. Luffy"},{"id":1}],
-		[{"member": "Zoro"},{"id":2}],
-		[{"member": "Sanji"},{"id":3}]
+		{"captain": "Monkey D. Luffy", "img": "", "id":1},
+		{"member1": "Zoro", "img": "", "id":2},
+		{"member2": "Sanji", "img": "", "id":3}
 		]
     },
     {
 	"name": "Red Hair Pirates",
-	"flag": "flag_shanks.png",
+	"flag": "../flags/flag-shanks.png",
 	"members": [
 		[{"captain": "Shanks"},{"id":4}],
 		[{"member": "Benn Beckman"},{"id":5}],
@@ -19,7 +19,7 @@
     },
     {
 	"name": "Buggy Pirates",
-	"flag": "flag_buggy.png",
+	"flag": "../flags/flag-buggy.png",
 	"members": [
 		[{"captain": "Buggy"},{"id":7}],
 		[{"member": "Cabaji"},{"id":8}],
@@ -28,7 +28,7 @@
     },
     {
 	"name": "Baroque Works",
-	"flag": "flag_baroque.png",
+	"flag": "../flags/flag-baroque.png",
 	"members": [
 		[{"captain": "Crocodile"},{"id":10}],
 		[{"member": "Mr. 1"},{"id":11}],
@@ -37,7 +37,7 @@
     },
     {
 	"name": "Whitebeard Pirates",
-	"flag": "flag_shirohige.png",
+	"flag": "../flags/flag-whitebeard.png",
 	"members": [
 		[{"captain": "Whitebeard"},{"id":13}],
 		[{"member": "Marco"},{"id":14}],
@@ -46,7 +46,7 @@
     },
     {
 	"name": "Blackbeard Pirates",
-	"flag": "flag_kurohige.png",
+	"flag": "../flags/flag-blackbeard.png",
 	"members": [
 		[{"captain": "Blackbeard"},{"id":16}],
 		[{"member": "Jesus Burgess"},{"id":17}],
@@ -55,7 +55,7 @@
     },
     {
 	"name": "Donquixote Pirates",
-	"flag": "flag_donquixote.png",
+	"flag": "../flags/flag-donquixote.png",
 	"members": [
 		[{"captain": "Donquixote Doflamingo"},{"id":19}],
 		[{"member": "Pica"},{"id":20}],
@@ -64,7 +64,7 @@
     },
     {
 	"name": "Marine",
-	"flag": "flag_marine.png",
+	"flag": "../flags/flag-marine.png",
 	"members": [
 		[{"captain": "Akainu"},{"id":22}],
 		[{"member": "Aokiji"},{"id":23}],
@@ -73,7 +73,7 @@
     },
     {
 	"name": "Thriller Bark Pirates",
-	"flag": "flag_thrillerbark.png",
+	"flag": "../flags/flag-thriller-bark.png",
 	"members": [
 		[{"captain": "Gecko Moria"},{"id":25}],
 		[{"member": "Absalom"},{"id":26}],
@@ -82,7 +82,7 @@
     },
     {
 	"name": "Firetank Pirates",
-	"flag": "flag_firetank.png",
+	"flag": "../flags/flag-firetank.png",
 	"members": [
 		[{"captain": "Capone Bege"},{"id":28}],
 		[{"member": "Vito"},{"id":29}],
@@ -91,14 +91,14 @@
     },
     {
 	"name": "Hawkins Pirates",
-	"flag": "flag_hawkins.png",
+	"flag": "../flags/flag-hawkins.png",
 	"members": [
 		[{"captain": "Basil Hawkins"},{"id":31}]
 		]
     },
     {
 	"name": "Kid Pirates",
-	"flag": "flag_kid.png",
+	"flag": "../flags/flag-kid.png",
 	"members": [
 		[{"captain": "Eustass Kid"},{"id":32}],
 		[{"member": "Killer"},{"id":33}],
@@ -107,14 +107,14 @@
     },
     {
 	"name": "Drake Pirates",
-	"flag": "flag_drake.png",
+	"flag": "../flags/flag-drake.png",
 	"members": [
 		[{"captain": "X Drake"},{"id":35}]
 		]
     },
     {
 	"name": "Heart Pirates",
-	"flag": "flag_heart.png",
+	"flag": "../flags/flag-heart.png",
 	"members": [
 		[{"captain": "Trafalgar D. Law"},{"id":36}],
 		[{"member": "Bepo"},{"id":37}],
@@ -123,7 +123,7 @@
     },
     {
 	"name": "Kuja Pirates",
-	"flag": "flag_kuja.png",
+	"flag": "../flags/flag-kuja.png",
 	"members": [
 		[{"captain": "Boa Hancock"},{"id":39}],
 		[{"member": "Boa Sandersonia"},{"id":40}],
@@ -132,7 +132,7 @@
     },
     {
 	"name": "Impel Down",
-	"flag": "flag_impeldown.png",
+	"flag": "../flags/flag-impel-down.png",
 	"members": [
 		[{"captain": "Magellan"},{"id":42}],
 		[{"member": "Hannyabal"},{"id":43}],
@@ -141,7 +141,7 @@
     },
     {
 	"name": "Big Mom Pirates",
-	"flag": "flag_bigmom.png",
+	"flag": "../flags/flag-big-mom.png",
 	"members": [
 		[{"captain": "Charlotte Linlin (Big Mom)"},{"id":45}],
 		[{"member": "Charlotte Katakuri"},{"id":46}],
@@ -150,7 +150,7 @@
     },
     {
 	"name": "Beasts Pirates",
-	"flag": "flag_kaido.png",
+	"flag": "../flags/flag-kaido.png",
 	"members": [
 		[{"captain": "Kaido"},{"id":48}],
 		[{"member": "King"},{"id":49}],
@@ -159,7 +159,7 @@
     },
     {
 	"name": "Punk Hazard",
-	"flag": "flag_punkhazard.png",
+	"flag": "../flags/flag-punk-hazard.png",
 	"members": [
 		[{"captain": "Caesar Clown"},{"id":51}],
 		[{"member": "Monet"},{"id":52}]
@@ -168,7 +168,7 @@
     },
     {
 	"name": "Beautiful Pirates",
-	"flag": "flag_beautiful.png",
+	"flag": "../flags/flag-beautiful.png",
 	"members": [
 		[{"captain": "Cavendish"},{"id":53}],
 		[{"member": "Suleiman"},{"id":54}]
@@ -177,7 +177,7 @@
     },
     {
 	"name": "Barto Club Pirates",
-	"flag": "flag_bartolomeo.png",
+	"flag": "../flags/flag-bartolomeo.png",
 	"members": [
 		[{"captain": "Bartolomeo"},{"id":55}],
 		[{"member": "Gambia"},{"id":56}]
@@ -186,7 +186,7 @@
     },
     {
 	"name": "Germa 66",
-	"flag": "flag_germa66.png",
+	"flag": "../flags/flag-germa66.png",
 	"members": [
 		[{"captain": "Vinsmoke Judge"},{"id":57}],
 		[{"member": "Vinsmoke Ichiji"},{"id":58}],
@@ -195,7 +195,7 @@
     },
     {
 	"name": "CP9",
-	"flag": "flag_sekai.png",
+	"flag": "../flags/flag-cp9.png",
 	"members": [
 		[{"captain": "Spandam"},{"id":60}],
 		[{"member": "Lucci"},{"id":61}],
@@ -212,7 +212,7 @@
 	{"source": 1, "target": 6, "value": 4},
 	{"source": 1, "target": 7, "value": 3},
 	{"source": 1, "target": 10, "value": 3},
-	{"source": 1, "target": 12, "value": 4},
+	{"source": 1, "target": 12, "value": 4}
 
 ]
 }
