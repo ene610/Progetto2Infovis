@@ -26,9 +26,10 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBodyReuse().strength(-100))
+    .force("charge", d3.forceManyBodyReuse().strength(-75).theta(0.3))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(10));
+    .force('collision', d3.forceCollide().radius(12))
+    ;
 
 d3.json("data/miserables.json", function(error, graph) {
   if (error) throw error;
@@ -45,7 +46,7 @@ d3.json("data/miserables.json", function(error, graph) {
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
-      .attr("r", 5)
+      .attr("r", 10)
       .attr("fill", function(d) { return color(d.group); })
       .call(d3.drag()
           .on("start", dragstarted)
@@ -76,18 +77,25 @@ d3.json("data/miserables.json", function(error, graph) {
 });
 
 function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  //if (!d3.event.active) simulation.alpha(0.001).alphaTarget(0.001).restart();
+  console.log("dragSta");
   d.fx = d.x;
   d.fy = d.y;
+  
+  console.log("dragStaFIN");
+  
 }
 
 function dragged(d) {
+  simulation.alphaTarget(0.1).restart();
+  console.log("dragged");
   d.fx = d3.event.x;
   d.fy = d3.event.y;
 }
 
 function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
+  if (!d3.event.active) simulation.alpha(0.5).alphaTarget(0);
+  console.log(d);
   d.fx = null;
   d.fy = null;
 }
