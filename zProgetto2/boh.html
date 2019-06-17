@@ -89,6 +89,13 @@ function update() {
 
   node.select("circle")
       .style("fill", color);
+ 
+nodeEnter.append("image")
+.attr("xlink:href", "img.png")
+.attr("width", function(d) { return (Math.sqrt(d.size*0) + 15) * 2 || 30 * 2;})
+.attr("height", function(d) { return (Math.sqrt(d.size*0) + 15) * 2 || 30 * 2;})
+.attr("x",function(d) { return -(Math.sqrt(d.size*0) + 15) || -30 ;})
+.attr("y",function(d) { return -(Math.sqrt(d.size*0) + 15)  || -30 ;});
 }
 
 function tick() {
