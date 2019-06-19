@@ -6,17 +6,17 @@
       "members": [
         {
           "captain": "Monkey D. Luffy",
-          "img": "",
+          "img": "../char-image/rufy.png",
           "id": 1
         },
         {
           "member1": "Zoro",
-          "img": "",
+          "img": "../char-image/zoro.png",
           "id": 2
         },
         {
           "member2": "Sanji",
-          "img": "",
+          "img": "../char-image/sanji.png",
           "id": 3
         }
       ]
@@ -27,17 +27,17 @@
       "members": [
         {
           "captain": "Shanks",
-          "img": "",
+          "img": "../char-image/shanks.png",
           "id": 4
         },
         {
           "member": "Benn Beckman",
-          "img": "",
+          "img": "../char-image/beckman.png",
           "id": 5
         },
         {
           "member": "Lucky Roux",
-          "img": "",
+          "img": "../char-image/lucky-roux.png",
           "id": 6
         }
       ]
@@ -48,17 +48,17 @@
       "members": [
         {
           "captain": "Buggy",
-          "img": "",
+          "img": "../char-image/buggy.png",
           "id": 7
         },
         {
           "member": "Cabaji",
-          "img": "",
+          "img": "../char-image/cabaji.png",
           "id": 8
         },
         {
           "member": "Mohji",
-          "img": "",
+          "img": "../char-image/moji.png",
           "id": 9
         }
       ]
@@ -69,17 +69,17 @@
       "members": [
         {
           "captain": "Crocodile",
-          "img": "",
+          "img": "../char-image/crocodile.png",
           "id": 10
         },
         {
           "member": "Mr. 1",
-          "img": "",
+          "img": "../char-image/mr1.png",
           "id": 11
         },
         {
           "member": "Mr. 2",
-          "img": "",
+          "img": "../char-image/mr2.png",
           "id": 12
         }
       ]
@@ -90,17 +90,17 @@
       "members": [
         {
           "captain": "Whitebeard",
-          "img": "",
+          "img": "../char-image/whitebeard.png",
           "id": 13
         },
         {
           "member": "Marco",
-          "img": "",
+          "img": "../char-image/marco.png",
           "id": 14
         },
         {
           "member": "Portgas D. Ace",
-          "img": "",
+          "img": "../char-image/ace.png",
           "id": 15
         }
       ]
@@ -111,17 +111,17 @@
       "members": [
         {
           "captain": "Blackbeard",
-          "img": "",
+          "img": "../char-image/blackbeard.png",
           "id": 16
         },
         {
           "member": "Jesus Burgess",
-          "img": "",
+          "img": "../char-image/burgess.png",
           "id": 17
         },
         {
           "member": "Shiryu",
-          "img": "",
+          "img": "../char-image/shiryu.png",
           "id": 18
         }
       ]
@@ -132,17 +132,17 @@
       "members": [
         {
           "captain": "Donquixote Doflamingo",
-          "img": "",
+          "img": "../char-image/doflamingo.png",
           "id": 19
         },
         {
           "member": "Pica",
-          "img": "",
+          "img": "../char-image/pica.png",
           "id": 20
         },
         {
           "member": "Diamante",
-          "img": "",
+          "img": "../char-image/diamante.png",
           "id": 21
         }
       ]
@@ -153,17 +153,17 @@
       "members": [
         {
           "captain": "Akainu",
-          "img": "",
+          "img": "../char-image/akainu.png",
           "id": 22
         },
         {
           "member": "Aokiji",
-          "img": "",
+          "img": "../char-image/aokiji.png",
           "id": 23
         },
         {
           "member": "Kizaru",
-          "img": "",
+          "img": "../char-image/kizaru.png",
           "id": 24
         }
       ]
@@ -174,17 +174,17 @@
       "members": [
         {
           "captain": "Gecko Moria",
-          "img": "moria.png",
+          "img": "../char-image/moria.png",
           "id": 25
         },
         {
           "member": "Absalom",
-          "img": "absalom.png",
+          "img": "../char-image/absalom.png",
           "id": 26
         },
         {
           "member": "Perona",
-          "img": "",
+          "img": "../char-image/perona.png",
           "id": 27
         }
       ]
@@ -195,17 +195,17 @@
       "members": [
         {
           "captain": "Capone Bege",
-          "img": "",
+          "img": "../char-image/capone-bege.png",
           "id": 28
         },
         {
           "member": "Vito",
-          "img": "",
+          "img": "vito.png",
           "id": 29
         },
         {
           "member": "Gotti",
-          "img": "",
+          "img": "../char-image/gotti.png",
           "id": 30
         }
       ]
@@ -216,7 +216,7 @@
       "members": [
         {
           "captain": "Basil Hawkins",
-          "img": "",
+          "img": "../char-image/basil-hawkins.png",
           "id": 31
         }
       ]
@@ -227,17 +227,17 @@
       "members": [
         {
           "captain": "Eustass Kid",
-          "img": "",
+          "img": "../char-image/kid.png",
           "id": 32
         },
         {
           "member": "Killer",
-          "img": "",
+          "img": "../char-image/killer.png",
           "id": 33
         },
         {
           "member": "Heat",
-          "img": "",
+          "img": "../char-image/heat.png",
           "id": 34
         }
       ]
@@ -248,7 +248,7 @@
       "members": [
         {
           "captain": "X Drake",
-          "img": "",
+          "img": "../char-image/drake.png",
           "id": 35
         }
       ]
@@ -259,17 +259,17 @@
       "members": [
         {
           "captain": "Trafalgar D. Law",
-          "img": "",
+          "img": "../char-image/trafalgar-law.png",
           "id": 36
         },
         {
           "member": "Bepo",
-          "img": "",
+          "img": "../char-image/bepo.png",
           "id": 37
         },
         {
           "member": "Jean Bart",
-          "img": "",
+          "img": "../char-image/jeanbart.png",
           "id": 38
         }
       ]
@@ -280,17 +280,17 @@
       "members": [
         {
           "captain": "Boa Hancock",
-          "img": "",
+          "img": "../char-image/boa-hancock.png",
           "id": 39
         },
         {
           "member": "Boa Sandersonia",
-          "img": "",
+          "img": "../char-image/boa-sandersonia.png",
           "id": 40
         },
         {
           "member": "Boa Marigold",
-          "img": "",
+          "img": "../char-image/boa-marigold.png",
           "id": 41
         }
       ]
@@ -301,17 +301,17 @@
       "members": [
         {
           "captain": "Magellan",
-          "img": "",
+          "img": "../char-image/magellan.png",
           "id": 42
         },
         {
           "member": "Hannyabal",
-          "img": "",
+          "img": "../char-image/hannyabal.png",
           "id": 43
         },
         {
           "member": "Sadie",
-          "img": "",
+          "img": "../char-image/sadie.png",
           "id": 44
         }
       ]
@@ -322,17 +322,17 @@
       "members": [
         {
           "captain": "Charlotte Linlin (Big Mom)",
-          "img": "",
+          "img": "../char-image/big-mom.png",
           "id": 45
         },
         {
           "member": "Charlotte Katakuri",
-          "img": "",
+          "img": "../char-image/katakuri.png",
           "id": 46
         },
         {
           "member": "Charlotte Cracker",
-          "img": "",
+          "img": "../char-image/cracker.png",
           "id": 47
         }
       ]
@@ -343,17 +343,17 @@
       "members": [
         {
           "captain": "Kaido",
-          "img": "",
+          "img": "../char-image/kaido.png",
           "id": 48
         },
         {
           "member": "King",
-          "img": "",
+          "img": "../char-image/king.png",
           "id": 49
         },
         {
           "member": "Queen",
-          "img": "",
+          "img": "../char-image/queen.png",
           "id": 50
         }
       ]
@@ -364,12 +364,12 @@
       "members": [
         {
           "captain": "Caesar Clown",
-          "img": "",
+          "img": "../char-image/caesar.png",
           "id": 51
         },
         {
           "member": "Monet",
-          "img": "",
+          "img": "../char-image/monet.png",
           "id": 52
         }
       ]
@@ -380,12 +380,12 @@
       "members": [
         {
           "captain": "Cavendish",
-          "img": "",
+          "img": "../char-image/cavendish.png",
           "id": 53
         },
         {
           "member": "Suleiman",
-          "img": "",
+          "img": "../char-image/suleiman.png",
           "id": 54
         }
       ]
@@ -396,12 +396,12 @@
       "members": [
         {
           "captain": "Bartolomeo",
-          "img": "",
+          "img": "../char-image/bartolomeo.png",
           "id": 55
         },
         {
           "member": "Gambia",
-          "img": "",
+          "img": "../char-image/gambia.png",
           "id": 56
         }
       ]
@@ -412,17 +412,17 @@
       "members": [
         {
           "captain": "Vinsmoke Judge",
-          "img": "",
+          "img": "../char-image/vinsmoke-judge.png",
           "id": 57
         },
         {
           "member": "Vinsmoke Ichiji",
-          "img": "",
+          "img": "../char-image/vinsmoke-ichiji.png",
           "id": 58
         },
         {
           "member": "Vinsmoke Niji",
-          "img": "",
+          "img": "../char-image/vinsmoke-niji.png",
           "id": 59
         }
       ]
@@ -433,17 +433,17 @@
       "members": [
         {
           "captain": "Spandam",
-          "img": "",
+          "img": "../char-image/spandam.png",
           "id": 60
         },
         {
           "member": "Lucci",
-          "img": "",
+          "img": "../char-image/lucci.png",
           "id": 61
         },
         {
           "member": "Kaku",
-          "img": "",
+          "img": "../char-image/kaku.png",
           "id": 62
         }
       ]
