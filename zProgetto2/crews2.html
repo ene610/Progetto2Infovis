@@ -3,17 +3,17 @@
 <style>
 
 .links line {
-  stroke: #999;
+  stroke: rgb(0, 0, 0);
   stroke-opacity: 0.6;
 }
 
 .nodes circle {
-  stroke: #fff;
+  stroke: rgb(0, 0, 0);
   stroke-width: 1.5px;
 }
 
 </style>
-<svg width="1500" height="800"></svg>
+<svg width="1800" height="800"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="d3-force-reuse.js"></script>
 <script>
@@ -22,19 +22,40 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
+var crewRadius = 40
+var charRadius = 25
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBodyReuse().strength(-75).theta(0.3))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(300))
+    .force("charge", d3.forceManyBody().strength(-40).theta(0.3))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(12))
+    .force('collision', d3.forceCollide().radius(15))
     ;
 
 d3.json("data/crews.json", function(error, graph) {
   if (error) throw error;
 
   var nodes = flatten(graph)
+
+  var defs = svg.append("defs");
+
+//console.log(nodes)
+
+function functionImage(data) {
+    //console.log("DATA: " + data)
+    defs.append('pattern')
+    .attr("id", data.id)
+    .attr("width", 1)
+    .attr("height", 1)
+    .append("svg:image")
+    .attr("xlink:href", function() { console.log(data.img);  return data.img })
+    .attr("width", function() { console.log(data.name); if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
+    .attr("height", function() { if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
+
+
+    return "url(#"+ data.id+")"
+}
 
   var link = svg.append("g")
     .attr("class", "links")
@@ -48,25 +69,27 @@ d3.json("data/crews.json", function(error, graph) {
     .selectAll("circle")
     .data(nodes)
     .enter().append("circle")
-      .attr("r",  function(d) { if(d.flag == undefined)  return 15; else return 30; })
-      .attr("fill", function(d) { return color(d.group); })
+    .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
+     // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
+      .attr("id", "node")
+      .attr("fill", function(d) {return functionImage(d);})
+      .attr("stroke", "black")
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended))
           
 
-  node.append("title")
-      .text(function(d) { return d.id; });
+ /* node.append("title")
+      .text(function(d) { return d.id; });*/
 
-      svg.append("g").attr("class", "nodes").selectAll("circle")
-      .data(nodes).enter().append("image")
+  /*    svg.selectAll("#node").append("image")
   .attr("xlink:href", function(d) { console.log("IMMAGINE"); if(d.flag != undefined) return d.flag; else return d.img })
-  .attr("width", function(d) { if(d.flag == undefined) return  15 * 2 || 30 * 2;})
+  .attr("width", function(d) { console.log("aaa");if(d.flag == undefined) return  15 * 2 || 30 * 2;})
   .attr("height", function(d) { if(d.flag == undefined) return  15 * 2 || 30 * 2;})
   .attr("x",function(d) {if(d.flag == undefined) return  15 || -30 ;})
   .attr("y",function(d) { if(d.flag == undefined) return  15 || -30 ;});
-
+*/
   simulation
       .nodes(nodes)
       .on("tick", ticked);
@@ -116,16 +139,16 @@ function flatten(root) {
   var length = root.crews.length
 
   function recurse(node) {
-    console.log(node)
+    //console.log(node)
     if (node.members) node.members.forEach(recurse);
     if (!node.id) node.id = ++i;
+    if(node.name!= undefined) console.log(node.name + " " + node.id);
     nodes.push(node);
   }
     for(var j = 0; j<length;j++) {
-        console.log(root.crews)
+        //console.log(root.crews)
         recurse(root.crews[j]);
 }
-console.log("RETURN")
   return nodes;
 }
 

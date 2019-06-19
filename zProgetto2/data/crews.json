@@ -2,7 +2,7 @@
   "crews": [
     {
       "name": "Straw Hat Pirates",
-      "flag": "../flags/flag-straw-hat.png",
+      "img": "../flags/flag-straw-hat.png",
       "members": [
         {
           "captain": "Monkey D. Luffy",
@@ -20,7 +20,7 @@
     },
     {
       "name": "Red Hair Pirates",
-      "flag": "../flags/flag-shanks.png",
+      "img": "../flags/flag-shanks.png",
       "members": [
         {
           "captain": "Shanks",
@@ -38,7 +38,7 @@
     },
     {
       "name": "Buggy Pirates",
-      "flag": "../flags/flag-buggy.png",
+      "img": "../flags/flag-buggy.png",
       "members": [
         {
           "captain": "Buggy",
@@ -56,7 +56,7 @@
     },
     {
       "name": "Baroque Works",
-      "flag": "../flags/flag-baroque.png",
+      "img": "../flags/flag-baroque.png",
       "members": [
         {
           "captain": "Crocodile",
@@ -74,7 +74,7 @@
     },
     {
       "name": "Whitebeard Pirates",
-      "flag": "../flags/flag-whitebeard.png",
+      "img": "../flags/flag-whitebeard.png",
       "members": [
         {
           "captain": "Whitebeard",
@@ -92,7 +92,7 @@
     },
     {
       "name": "Blackbeard Pirates",
-      "flag": "../flags/flag-blackbeard.png",
+      "img": "../flags/flag-blackbeard.png",
       "members": [
         {
           "captain": "Blackbeard",
@@ -110,7 +110,7 @@
     },
     {
       "name": "Donquixote Pirates",
-      "flag": "../flags/flag-donquixote.png",
+      "img": "../flags/flag-donquixote.png",
       "members": [
         {
           "captain": "Donquixote Doflamingo",
@@ -128,7 +128,7 @@
     },
     {
       "name": "Marine",
-      "flag": "../flags/flag-marine.png",
+      "img": "../flags/flag-marine.png",
       "members": [
         {
           "captain": "Akainu",
@@ -146,7 +146,7 @@
     },
     {
       "name": "Thriller Bark Pirates",
-      "flag": "../flags/flag-thriller-bark.png",
+      "img": "../flags/flag-thriller-bark.png",
       "members": [
         {
           "captain": "Gecko Moria",
@@ -164,7 +164,7 @@
     },
     {
       "name": "Firetank Pirates",
-      "flag": "../flags/flag-firetank.png",
+      "img": "../flags/flag-firetank.png",
       "members": [
         {
           "captain": "Capone Bege",
@@ -182,7 +182,7 @@
     },
     {
       "name": "Hawkins Pirates",
-      "flag": "../flags/flag-hawkins.png",
+      "img": "../flags/flag-hawkins.png",
       "members": [
         {
           "captain": "Basil Hawkins",
@@ -192,12 +192,11 @@
     },
     {
       "name": "Kid Pirates",
-      "flag": "../flags/flag-kid.png",
+      "img": "../flags/flag-kid.png",
       "members": [
         {
           "captain": "Eustass Kid",
-          "img": "../char-image/kid.png",
-          "id": 32
+          "img": "../char-image/kid.png"
         },
         {
           "member": "Killer",
@@ -211,7 +210,7 @@
     },
     {
       "name": "Drake Pirates",
-      "flag": "../flags/flag-drake.png",
+      "img": "../flags/flag-drake.png",
       "members": [
         {
           "captain": "X Drake",
@@ -221,7 +220,7 @@
     },
     {
       "name": "Heart Pirates",
-      "flag": "../flags/flag-heart.png",
+      "img": "../flags/flag-heart.png",
       "members": [
         {
           "captain": "Trafalgar D. Law",
@@ -239,7 +238,7 @@
     },
     {
       "name": "Kuja Pirates",
-      "flag": "../flags/flag-kuja.png",
+      "img": "../flags/flag-kuja.png",
       "members": [
         {
           "captain": "Boa Hancock",
@@ -257,7 +256,7 @@
     },
     {
       "name": "Impel Down",
-      "flag": "../flags/flag-impel-down.png",
+      "img": "../flags/flag-impel-down.png",
       "members": [
         {
           "captain": "Magellan",
@@ -275,7 +274,7 @@
     },
     {
       "name": "Big Mom Pirates",
-      "flag": "../flags/flag-big-mom.png",
+      "img": "../flags/flag-big-mom.png",
       "members": [
         {
           "captain": "Charlotte Linlin (Big Mom)",
@@ -293,7 +292,7 @@
     },
     {
       "name": "Beasts Pirates",
-      "flag": "../flags/flag-kaido.png",
+      "img": "../flags/flag-kaido.png",
       "members": [
         {
           "captain": "Kaido",
@@ -311,7 +310,7 @@
     },
     {
       "name": "Punk Hazard",
-      "flag": "../flags/flag-punk-hazard.png",
+      "img": "../flags/flag-punk-hazard.png",
       "members": [
         {
           "captain": "Caesar Clown",
@@ -325,7 +324,7 @@
     },
     {
       "name": "Beautiful Pirates",
-      "flag": "../flags/flag-beautiful.png",
+      "img": "../flags/flag-beautiful.png",
       "members": [
         {
           "captain": "Cavendish",
@@ -339,7 +338,7 @@
     },
     {
       "name": "Barto Club Pirates",
-      "flag": "../flags/flag-bartolomeo.png",
+      "img": "../flags/flag-bartolomeo.png",
       "members": [
         {
           "captain": "Bartolomeo",
@@ -353,7 +352,7 @@
     },
     {
       "name": "Germa 66",
-      "flag": "../flags/flag-germa66.png",
+      "img": "../flags/flag-germa66.png",
       "members": [
         {
           "captain": "Vinsmoke Judge",
@@ -371,7 +370,7 @@
     },
     {
       "name": "CP9",
-      "flag": "../flags/flag-cp9.png",
+      "img": "../flags/flag-cp9.png",
       "members": [
         {
           "captain": "Spandam",
@@ -390,44 +389,52 @@
   ],
   "links": [
     {
-      "source": 1,
-      "target": 2,
-      "value": 6
+      "source": 4,
+      "target": 8,
+      "value": 6,
+      "saga": 1
     },
     {
-      "source": 1,
-      "target": 3,
-      "value": 6
+      "source": 4,
+      "target": 12,
+      "value": 6,
+      "saga": 1
+    },
+    {
+      "source": 4,
+      "target": 16,
+      "value": 4,
+      "saga": 2
     },
     {
       "source": 1,
       "target": 4,
-      "value": 4
-    },
-    {
-      "source": 1,
-      "target": 5,
-      "value": 4
+      "value": 4,
+      "saga": 1
     },
     {
       "source": 1,
       "target": 6,
-      "value": 4
+      "value": 4,
+      "saga": 1
     },
     {
       "source": 1,
       "target": 7,
-      "value": 3
+      "value": 3,
+      "saga": 1
     },
     {
       "source": 1,
       "target": 10,
-      "value": 3
+      "value": 3,
+      "saga": 1
     },
     {
       "source": 1,
       "target": 12,
-      "value": 4
+      "value": 4,
+      "saga": 1
     }
   ]
 }
