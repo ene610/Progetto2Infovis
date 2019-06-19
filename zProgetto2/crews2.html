@@ -35,7 +35,6 @@ d3.json("data/crews.json", function(error, graph) {
   if (error) throw error;
 
   var nodes = flatten(graph)
-  console.log(nodes)
 
   var link = svg.append("g")
     .attr("class", "links")
@@ -44,15 +43,13 @@ d3.json("data/crews.json", function(error, graph) {
     .enter().append("line")
     .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-  node = node.data(nodes, function(d) { return d.id; });
-  
   var node = svg.append("g")
       .attr("class", "nodes")
     .selectAll("circle")
-    .data(graph.crews)
+    .data(nodes)
     .enter().append("circle")
-      .attr("r", function(d) { if(d.flag != undefined)  return 15; else return 30; })
-      //.attr("fill", function(d) { return color(d.group); })
+      .attr("r",  function(d) { if(d.flag != undefined)  return 15; else return 30; })
+      .attr("fill", function(d) { return color(d.group); })
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
@@ -120,4 +117,5 @@ for(var j = 0; j<root.crews.length;j++) {
 }
   return nodes;
 }
+
 </script>
