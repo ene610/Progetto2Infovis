@@ -392,49 +392,155 @@
       "source": 4,
       "target": 8,
       "value": 6,
-      "saga": 1
+      "saga": 1,
+      "color": "green"
     },
     {
       "source": 4,
       "target": 12,
       "value": 6,
-      "saga": 1
+      "saga": 1,
+      "color": "red"
     },
     {
       "source": 4,
       "target": 16,
       "value": 4,
-      "saga": 2
+      "saga": 2,
+      "color": "red"
     },
     {
-      "source": 1,
-      "target": 4,
+      "source": 4,
+      "target": 20,
       "value": 4,
-      "saga": 1
+      "saga": 7,
+      "color": "green"
     },
     {
-      "source": 1,
-      "target": 6,
+      "source": 4,
+      "target": 24,
       "value": 4,
-      "saga": 1
+      "saga": 3,
+      "color": "red"
     },
     {
-      "source": 1,
-      "target": 7,
+      "source": 4,
+      "target": 28,
       "value": 3,
-      "saga": 1
+      "saga": 9,
+      "color":"red"
     },
     {
-      "source": 1,
-      "target": 10,
+      "source": 4,
+      "target": 32,
       "value": 3,
-      "saga": 1
+      "saga": 1,
+      "color":"red"
     },
     {
-      "source": 1,
-      "target": 12,
+      "source": 4,
+      "target": 36,
       "value": 4,
-      "saga": 1
+      "saga": 4,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 40,
+      "value": 4,
+      "saga": 10,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 42,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 46,
+      "value": 4,
+      "saga": 11,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 48,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 52,
+      "value": 4,
+      "saga": 8,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 56,
+      "value": 4,
+      "saga": 6,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 60,
+      "value": 4,
+      "saga": 6,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 64,
+      "value": 4,
+      "saga": 10,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 68,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 71,
+      "value": 4,
+      "saga": 8,
+      "color":"red"
+    },
+    {
+      "source": 4,
+      "target": 74,
+      "value": 4,
+      "saga": 9,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 77,
+      "value": 4,
+      "saga": 9,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 81,
+      "value": 4,
+      "saga": 10,
+      "color":"green"
+    },
+    {
+      "source": 4,
+      "target": 85,
+      "value": 4,
+      "saga": 3,
+      "color":"red"
     }
   ]
 }

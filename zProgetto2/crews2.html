@@ -3,7 +3,6 @@
 <style>
 
 .links line {
-  stroke: rgb(0, 0, 0);
   stroke-opacity: 0.6;
 }
 
@@ -30,7 +29,7 @@ var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(300))
     .force("charge", d3.forceManyBody().strength(-40).theta(0.3))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(15))
+    .force('collision', d3.forceCollide().radius(crewRadius + 5))
     ;
 
 d3.json("data/crews.json", function(error, graph) {
@@ -49,20 +48,22 @@ function functionImage(data) {
     .attr("width", 1)
     .attr("height", 1)
     .append("svg:image")
-    .attr("xlink:href", function() { console.log(data.img);  return data.img })
-    .attr("width", function() { console.log(data.name); if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
+    .attr("xlink:href", function() { return data.img })
+    .attr("width", function() {if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
     .attr("height", function() { if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
-
 
     return "url(#"+ data.id+")"
 }
 
+  var i = 0;
+
   var link = svg.append("g")
-    .attr("class", "links")
+    .attr("class", "links") 
     .selectAll("line")
     .data(graph.links)
     .enter().append("line")
-    .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+    .attr("stroke-width", 4)
+    .attr("stroke", function(d) {return d.color});
 
   var node = svg.append("g")
       .attr("class", "nodes")
@@ -78,18 +79,10 @@ function functionImage(data) {
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended))
-          
 
- /* node.append("title")
-      .text(function(d) { return d.id; });*/
+  node.append("title")
+      .text(function(d) { return d.name || d.captain || d.member; })
 
-  /*    svg.selectAll("#node").append("image")
-  .attr("xlink:href", function(d) { console.log("IMMAGINE"); if(d.flag != undefined) return d.flag; else return d.img })
-  .attr("width", function(d) { console.log("aaa");if(d.flag == undefined) return  15 * 2 || 30 * 2;})
-  .attr("height", function(d) { if(d.flag == undefined) return  15 * 2 || 30 * 2;})
-  .attr("x",function(d) {if(d.flag == undefined) return  15 || -30 ;})
-  .attr("y",function(d) { if(d.flag == undefined) return  15 || -30 ;});
-*/
   simulation
       .nodes(nodes)
       .on("tick", ticked);
