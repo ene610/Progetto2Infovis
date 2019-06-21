@@ -389,6 +389,7 @@
   ],
   "links": [
     {
+      "name": "strawHat - redHair",
       "source": 4,
       "target": 8,
       "value": 6,
@@ -396,6 +397,7 @@
       "color": "green"
     },
     {
+      "name": "strawHat - buggy",
       "source": 4,
       "target": 12,
       "value": 6,
@@ -403,6 +405,15 @@
       "color": "red"
     },
     {
+      "name": "strawHat - buggy",
+      "source": 4,
+      "target": 12,
+      "value": 6,
+      "saga": 6,
+      "color": "green"
+    },
+    {
+      "name": "strawHat - baroque",
       "source": 4,
       "target": 16,
       "value": 4,
@@ -410,6 +421,7 @@
       "color": "red"
     },
     {
+      "name": "strawHat - whitebeard",
       "source": 4,
       "target": 20,
       "value": 4,
@@ -417,6 +429,7 @@
       "color": "green"
     },
     {
+      "name": "strawHat - blackbeard",
       "source": 4,
       "target": 24,
       "value": 4,
@@ -424,6 +437,7 @@
       "color": "red"
     },
     {
+      "name": "strawHat - doflamingo",
       "source": 4,
       "target": 28,
       "value": 3,
@@ -431,6 +445,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - marine",
       "source": 4,
       "target": 32,
       "value": 3,
@@ -438,6 +453,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - thrillerBark",
       "source": 4,
       "target": 36,
       "value": 4,
@@ -445,6 +461,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - firetank",
       "source": 4,
       "target": 40,
       "value": 4,
@@ -452,6 +469,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - hawkins",
       "source": 4,
       "target": 42,
       "value": 4,
@@ -459,6 +477,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - kid",
       "source": 4,
       "target": 46,
       "value": 4,
@@ -466,6 +485,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - drake",
       "source": 4,
       "target": 48,
       "value": 4,
@@ -473,6 +493,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - heart",
       "source": 4,
       "target": 52,
       "value": 4,
@@ -480,6 +501,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - kuja",
       "source": 4,
       "target": 56,
       "value": 4,
@@ -487,6 +509,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - impelDown",
       "source": 4,
       "target": 60,
       "value": 4,
@@ -494,6 +517,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - bigMom",
       "source": 4,
       "target": 64,
       "value": 4,
@@ -501,6 +525,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - kaido",
       "source": 4,
       "target": 68,
       "value": 4,
@@ -508,6 +533,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - punkHazard",
       "source": 4,
       "target": 71,
       "value": 4,
@@ -515,6 +541,7 @@
       "color":"red"
     },
     {
+      "name": "strawHat - beautiful",
       "source": 4,
       "target": 74,
       "value": 4,
@@ -522,6 +549,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - barto",
       "source": 4,
       "target": 77,
       "value": 4,
@@ -529,6 +557,7 @@
       "color":"green"
     },
     {
+      "name": "strawHat - germa66",
       "source": 4,
       "target": 81,
       "value": 4,
@@ -536,11 +565,356 @@
       "color":"green"
     },
     {
+      "name": "strawHat - cp9",
       "source": 4,
       "target": 85,
       "value": 4,
       "saga": 3,
       "color":"red"
+    },
+    {
+      "name": "redHair - whitebeard",
+      "source": 8,
+      "target": 20,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "redHair - whitebeard",
+      "source": 8,
+      "target": 20,
+      "value": 4,
+      "saga": 5,
+      "color":"green"
+    },
+    {
+      "name": "redHair - blackbeard",
+      "source": 8,
+      "target": 24,
+      "value": 4,
+      "saga": 7,
+      "color":"red"
+    },
+    {
+      "name": "redHair - marine",
+      "source": 8,
+      "target": 32,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "redHair - bigMom",
+      "source": 8,
+      "target": 64,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "redHair - kaido",
+      "source": 8,
+      "target": 68,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "buggy - whitebeard",
+      "source": 12,
+      "target": 20,
+      "value": 4,
+      "saga": 7,
+      "color":"green"
+    },
+    {
+      "name": "buggy - marine",
+      "source": 12,
+      "target": 32,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "buggy - impelDown",
+      "source": 12,
+      "target": 60,
+      "value": 4,
+      "saga": 6,
+      "color":"red"
+    },
+    {
+      "name": "baroque - marine",
+      "source": 16,
+      "target": 32,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "baroque - marine",
+      "source": 16,
+      "target": 32,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "whitebeard - blackbeard",
+      "source": 20,
+      "target": 24,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "whitebeard - blackbeard",
+      "source": 20,
+      "target": 24,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "whitebeard - marine",
+      "source": 20,
+      "target": 32,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "whitebeard - bigMom",
+      "source": 20,
+      "target": 64,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "whitebeard - kaido",
+      "source": 20,
+      "target": 68,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "blackbeard - marine",
+      "source": 24,
+      "target": 32,
+      "value": 4,
+      "saga": 3,
+      "color":"green"
+    },
+    {
+      "name": "blackbeard - marine",
+      "source": 24,
+      "target": 32,
+      "value": 4,
+      "saga": 7,
+      "color":"red"
+    },
+    {
+      "name": "blackbeard - impelDown",
+      "source": 24,
+      "target": 60,
+      "value": 4,
+      "saga": 6,
+      "color":"red"
+    },
+    {
+      "name": "blackbeard - bigMom",
+      "source": 24,
+      "target": 64,
+      "value": 4,
+      "saga": 8,
+      "color":"red"
+    },
+    {
+      "name": "blackbeard - kaido",
+      "source": 24,
+      "target": 68,
+      "value": 4,
+      "saga": 8,
+      "color":"red"
+    },
+    {
+      "name": "doflamingo - marine",
+      "source": 28,
+      "target": 32,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "doflamingo - marine",
+      "source": 28,
+      "target": 32,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "doflamingo - heart",
+      "source": 28,
+      "target": 52,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "doflamingo - bigMom",
+      "source": 28,
+      "target": 64,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "doflamingo - kaido",
+      "source": 28,
+      "target": 68,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "doflamingo - punkHazard",
+      "source": 28,
+      "target": 71,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "doflamingo - beautiful",
+      "source": 28,
+      "target": 74,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "doflamingo - barto",
+      "source": 28,
+      "target": 77,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "marine - thrillerBark",
+      "source": 32,
+      "target": 36,
+      "value": 4,
+      "saga": 1,
+      "color":"green"
+    },
+    {
+      "name": "marine - firetank",
+      "source": 32,
+      "target": 40,
+      "value": 4,
+      "saga": 5,
+      "color":"red"
+    },
+    {
+      "name": "marine - hawkins",
+      "source": 32,
+      "target": 42,
+      "value": 4,
+      "saga": 5,
+      "color":"red"
+    },
+    {
+      "name": "marine - kid",
+      "source": 32,
+      "target": 46,
+      "value": 4,
+      "saga": 5,
+      "color":"red"
+    },
+    {
+      "name": "marine - drake",
+      "source": 32,
+      "target": 48,
+      "value": 4,
+      "saga": 5,
+      "color":"red"
+    },
+    {
+      "name": "marine - heart",
+      "source": 32,
+      "target": 52,
+      "value": 4,
+      "saga": 5,
+      "color":"red"
+    },
+    {
+      "name": "marine - kuja",
+      "source": 32,
+      "target": 56,
+      "value": 4,
+      "saga": 6,
+      "color":"green"
+    },
+    {
+      "name": "marine - impelDown",
+      "source": 32,
+      "target": 60,
+      "value": 4,
+      "saga": 6,
+      "color":"green"
+    },
+    {
+      "name": "marine - bigMom",
+      "source": 32,
+      "target": 64,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "marine - kaido",
+      "source": 32,
+      "target": 68,
+      "value": 4,
+      "saga": 1,
+      "color":"red"
+    },
+    {
+      "name": "marine - beautiful",
+      "source": 32,
+      "target": 74,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "marine - barto",
+      "source": 32,
+      "target": 77,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "marine - germa66",
+      "source": 32,
+      "target": 81,
+      "value": 4,
+      "saga": 10,
+      "color":"red"
+    },
+    {
+      "name": "marine - cp9",
+      "source": 32,
+      "target": 85,
+      "value": 4,
+      "saga": 3,
+      "color":"green"
     }
   ]
 }

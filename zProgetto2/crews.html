@@ -21,12 +21,12 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var crewRadius = 40
-var charRadius = 25
+var crewRadius = 30
+var charRadius = 15
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(300))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(500))
     .force("charge", d3.forceManyBody().strength(-40).theta(0.3))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(crewRadius + 5))
