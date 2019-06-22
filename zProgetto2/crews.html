@@ -28,10 +28,10 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 //cambiate un paio di forze , messa una forza radiale
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(300))
-    .force("charge", d3.forceManyBody().strength(-50).distanceMax(400))
+    .force("charge", d3.forceManyBody().strength(-50).distanceMax(600))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(crewRadius + 15))
-    .force("radial",d3.forceRadial(200, width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(crewRadius + 40))
+    .force("radial",d3.forceRadial(100, width / 2, height / 2))
     
     ;
 
@@ -96,6 +96,9 @@ function functionImage(data) {
 
   node.append("title")
       .text(function(d) { return d.name || d.captain || d.member; })
+
+  link.append("title")
+      .text(function(d) { return d.name; })
 
   simulation
       .nodes(nodes)

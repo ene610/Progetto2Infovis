@@ -717,6 +717,14 @@
       "color":"red"
     },
     {
+      "name": "blackbeard - thrillerBark",
+      "source": 24,
+      "target": 36,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
       "name": "blackbeard - impelDown",
       "source": 24,
       "target": 60,
@@ -914,6 +922,94 @@
       "target": 85,
       "value": 4,
       "saga": 3,
+      "color":"green"
+    },
+    {
+      "name": "firetank - bigMom",
+      "source": 40,
+      "target": 64,
+      "value": 4,
+      "saga": 8,
+      "color":"green"
+    },
+    {
+      "name": "firetank - bigMom",
+      "source": 40,
+      "target": 64,
+      "value": 4,
+      "saga": 10,
+      "color":"red"
+    },
+    {
+      "name": "hawkins - kaido",
+      "source": 42,
+      "target": 68,
+      "value": 4,
+      "saga": 9,
+      "color":"green"
+    },
+    {
+      "name": "hawkins - heart",
+      "source": 42,
+      "target": 52,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
+      "name": "kid - kaido",
+      "source": 46,
+      "target": 68,
+      "value": 4,
+      "saga": 9,
+      "color":"red"
+    },
+    {
+      "name": "drake - kaido",
+      "source": 48,
+      "target": 68,
+      "value": 4,
+      "saga": 11,
+      "color":"green"
+    },
+    {
+      "name": "heart - kaido",
+      "source": 52,
+      "target": 68,
+      "value": 4,
+      "saga": 11,
+      "color":"red"
+    },
+    {
+      "name": "heart - punkHazard",
+      "source": 52,
+      "target": 71,
+      "value": 4,
+      "saga": 8,
+      "color":"red"
+    },
+    {
+      "name": "bigMom - germa66",
+      "source": 64,
+      "target": 81,
+      "value": 4,
+      "saga": 10,
+      "color":"red"
+    },
+    {
+      "name": "bigMom - kaido",
+      "source": 64,
+      "target": 81,
+      "value": 4,
+      "saga": 2,
+      "color":"red"
+    },
+    {
+      "name": "beautiful - barto",
+      "source": 74,
+      "target": 77,
+      "value": 4,
+      "saga": 9,
       "color":"green"
     }
   ]
