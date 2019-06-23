@@ -34,7 +34,8 @@ var simulation = d3.forceSimulation()
     .force("radial",d3.forceRadial(100, width / 2, height / 2))
     
     ;
-
+    var nodi
+    var legami
 
 d3.json("data/crews.json", function(error, graph) {
   if (error) throw error;
@@ -48,7 +49,7 @@ d3.json("data/crews.json", function(error, graph) {
   //console.log(arrayPiratesCrews[1])
   pirates = arrayPiratesCrews[0]
   crews = arrayPiratesCrews[1]
-  
+  relazioni = graph.links
   console.log(pirates[0].img)
   var defs = svg.append("defs");
 
@@ -78,21 +79,36 @@ function functionImage(data) {
     .attr("stroke-width", 4)
     .attr("stroke", function(d) {return d.color});
 
+  legami = link
+
   var node = svg.append("g")
       .attr("class", "nodes")
     .selectAll("circle")
     .data(crews)//cambiato da nodes a crews
     .enter().append("circle")
-    .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
-     // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
+      .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
+      // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
       .attr("id", "node")
       .attr("fill", function(d) {return functionImage(d);})
-      
+      //.style("fill", function(data) { return data.img.slice(1) })
       .attr("stroke", "black")
-      .call(d3.drag()
+      //funzioni per migliorare visualizzazione con zoom
+      .on('mouseover',function() {
+        nodeSelected = d3.select(this)
+        //console.log(nodeSelected.data()[0])
+        selectNode(nodeSelected.data()[0])
+      })
+      .on('mouseout',function() {
+        node.attr("r",crewRadius)
+        link.attr("stroke-width",4)
+      })
+      .call(d3.drag() //questi si possono levare
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended))
+          
+
+  nodi=node
 
   node.append("title")
       .text(function(d) { return d.name || d.captain || d.member; })
@@ -101,7 +117,7 @@ function functionImage(data) {
       .text(function(d) { return d.name; })
 
   simulation
-      .nodes(nodes)
+      .nodes(crews)//se cambiato in crew il grafo non va a scatti ma peggiora
       .on("tick", ticked);
 
   simulation.force("link")
@@ -113,7 +129,7 @@ function functionImage(data) {
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
-
+    
     //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
     node
         .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
@@ -123,26 +139,27 @@ function functionImage(data) {
 
 function dragstarted(d) {
   //if (!d3.event.active) simulation.alpha(0.001).alphaTarget(0.001).restart();
+  selectNode(d)
   console.log("dragSta");
-  d.fx = d.x;
-  d.fy = d.y;
+  //d.fx = d.x;
+  //d.fy = d.y;
   
-  console.log("dragStaFIN");
+  //console.log("dragStaFIN");
   
 }
 
 function dragged(d) {
-  simulation.alphaTarget(0.1).restart();
-  console.log("dragged");
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
+  //simulation.alphaTarget(0.1).restart();
+  //console.log("dragged");
+  //d.fx = d3.event.x;
+  //d.fy = d3.event.y;
 }
 
 function dragended(d) {
-  if (!d3.event.active) simulation.alpha(0.5).alphaTarget(0);
-  console.log(d);
-  d.fx = null;
-  d.fy = null;
+  //if (!d3.event.active) simulation.alpha(0.5).alphaTarget(0);
+  //console.log(d);
+  //d.fx = null;
+  //d.fy = null;
 }
 
 function flatten(root) {
@@ -174,6 +191,52 @@ function piratesNodes(nodes){
       crews.push(nodes[i])
   }
   return [pirates , crews]  
+}
+//funzione che prende i vicini di un nodo
+function getNeighbors(node) {
+  return relazioni.reduce((neighbors, link) => {
+    if (link.target.id === node.id) {
+      neighbors.push(link.source.id)
+    } else if (link.source.id === node.id) {
+      neighbors.push(link.target.id)
+    }
+
+    return neighbors
+  }, [node.id])
+}
+
+function isNeighborLink(node, link) {
+  return link.target.id === node.id || link.source.id === node.id
+}
+
+
+//funzioni che forse saranno utili
+
+function getNodeColor(node, neighbors) {
+  if (neighbors.indexOf(node.id)>=0) {
+    return 30
+  }
+  return 0
+}
+/*
+function getTextColor(node, neighbors) {
+  return neighbors.indexOf(node.id) ? 'green' : 'black'
+}
+*/
+function getLinkColor(node, link) {
+  return isNeighborLink(node, link) ? 10 : 0
+}
+
+
+
+function selectNode(selectedNode) {
+  const neighbors = getNeighbors(selectedNode)
+  
+  //console.log(legami)
+  nodi.attr('r', node => getNodeColor(node, neighbors))
+  legami.attr('stroke-width',link => getLinkColor(selectedNode,link))
+
+  
 }
 
 
