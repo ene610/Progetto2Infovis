@@ -36,6 +36,7 @@ var simulation = d3.forceSimulation()
     ;
     var nodi
     var legami
+    var labels
 
 d3.json("data/crews.json", function(error, graph) {
   if (error) throw error;
@@ -101,6 +102,7 @@ function functionImage(data) {
       .on('mouseout',function() {
         node.attr("r",crewRadius)
         link.attr("stroke-width",4)
+        label.attr("opacity", 0)
       })
       .call(d3.drag() //questi si possono levare
           .on("start", dragstarted)
@@ -109,6 +111,18 @@ function functionImage(data) {
           
 
   nodi=node
+
+  var label = svg.append("g").attr("class", "nodes").selectAll("circle")
+    .data(crews)//cambiato da nodes a crews
+    .enter().append("svg:text")
+    .text(function(d) { return d.name})
+    .style("text-anchor", "middle")
+    .style("fill", "black")
+    .style("font-family", "Arial")
+    .style("font-size", 20)
+    .attr("opacity", 0);
+
+  labels = label
 
   node.append("title")
       .text(function(d) { return d.name || d.captain || d.member; })
@@ -134,6 +148,10 @@ function functionImage(data) {
     node
         .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
         .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y)); });
+
+    label
+        .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
+        .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
   }
 });
 
@@ -214,7 +232,14 @@ function isNeighborLink(node, link) {
 
 function getNodeColor(node, neighbors) {
   if (neighbors.indexOf(node.id)>=0) {
-    return 30
+    return crewRadius
+  }
+  return 0
+}
+
+function getLabels(node, neighbors) {
+  if (neighbors.indexOf(node.id)>=0) {
+    return 1
   }
   return 0
 }
@@ -235,7 +260,7 @@ function selectNode(selectedNode) {
   //console.log(legami)
   nodi.attr('r', node => getNodeColor(node, neighbors))
   legami.attr('stroke-width',link => getLinkColor(selectedNode,link))
-
+  labels.attr('opacity', node => getLabels(node, neighbors))
   
 }
 
