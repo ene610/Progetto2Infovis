@@ -1012,5 +1012,18 @@
       "saga": 9,
       "color":"green"
     }
+  ],
+  "saghe": [
+    {"name":"Eastern sea", "num": 1},
+    {"name":"Alabasta", "num": 2},
+    {"name":"Enies Lobby", "num": 3},
+    {"name":"Thriller Bark", "num": 4},
+    {"name":"Sabaody", "num": 5},
+    {"name":"Impel Down", "num": 6},
+    {"name":"Marineford", "num": 7},
+    {"name":"Punk Hazard", "num": 8},
+    {"name":"Dressrosa", "num": 9},
+    {"name":"Whole Cake Island", "num": 10},
+    {"name":"Wano", "num": 11}
   ]
 }

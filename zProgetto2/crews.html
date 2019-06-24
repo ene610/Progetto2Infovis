@@ -19,7 +19,10 @@
 
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
-    height = +svg.attr("height");
+    height = +svg.attr("height")
+    svg.style("position", "absolute")
+    svg.style("left", "150px")
+    svg.style("top", "50px");;
 
 var crewRadius = 25
 var charRadius = 15
@@ -146,6 +149,24 @@ function functionImage(data) {
 
   labels = label
 
+  var buttonMenu = d3.select("body").data(graph.saghe);
+
+  for(var j = 0; j < graph.saghe.length; j++) {
+    var buttons = buttonMenu.append("button")
+    .text(graph.saghe[j].name)
+    .attr("id", graph.saghe[j].num)
+    .style("height", "40px")
+    .style("width", "100px")
+    .style("position", "absolute")
+    .style("left", (j + 1) * 120 + "px")
+    .style("top", "20px")
+    .on("click", function() {
+      selectedSaga = this.id
+      selectLinks(selectedSaga)
+  })
+
+}
+
   node.append("title")
       .text(function(d) { return d.name || d.captain || d.member; })
 
@@ -178,7 +199,29 @@ function functionImage(data) {
         .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
         .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
   }
-  //node._groups[0][9].attr("cy", 5)
+
+  function selectNodesSaga(saga){
+    var linksVisited = new Map()
+    for(var j = 0; j<relazioni.length; j++){
+      if(relazioni[j].saga <= saga) {
+        linksVisited.set(relazioni[j].name, relazioni[j].saga)
+    }}
+    return linksVisited;
+  }
+
+  function getLinks(link, linksVisited){
+    var stroke = 0;
+    for (var key of linksVisited.keys()) {
+      if(key == link.name && link.saga == linksVisited.get(key)) 
+        stroke = 3;
+      }
+    return stroke;
+  }
+
+  function selectLinks(selectedSaga) {
+    var linksVisited = selectNodesSaga(selectedSaga)
+    legami.attr('stroke-width', link => getLinks(link, linksVisited))
+  }
 });
 
 
