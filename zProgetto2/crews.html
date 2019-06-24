@@ -12,7 +12,7 @@
 }
 
 </style>
-<svg width="1800" height="800"></svg>
+<svg width="1200" height="800"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="d3-force-reuse.js"></script>
 <script>
@@ -21,17 +21,24 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var crewRadius = 30
+var crewRadius = 25
 var charRadius = 15
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
+/*var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
+    .force("charge", d3.forceManyBody().strength(-50).distanceMax(800))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(crewRadius +20))
+    .force("radial",d3.forceRadial(100, width / 2, height / 2))*/
+
 //cambiate un paio di forze , messa una forza radiale
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(300))
-    .force("charge", d3.forceManyBody().strength(-50).distanceMax(600))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(50))
+    .force("charge", d3.forceManyBody().strength(-50).distanceMax(800))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(crewRadius + 40))
-    .force("radial",d3.forceRadial(100, width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(crewRadius +30))
+    .force("radial",d3.forceRadial(20, 0, height / 2))
     
     ;
     var nodi
@@ -43,6 +50,18 @@ d3.json("data/crews.json", function(error, graph) {
 
   
   var nodes = flatten(graph)
+  
+  var linkNodes = [];
+ var j = 0
+  graph.links.forEach(function(link) {
+    console.log(nodes[link.source-1])
+    //if(j % 2 == 0) {
+      linkNodes.push({
+        source: nodes[link.source-1],
+        target: nodes[link.target-1]
+    }); 
+  //}; j = j+1;
+});
 
   //AGGIUNTO divide ciurme e pirati almeno cosi le forze dei nodi pirata non concorrono alla visualizzazione
   arrayPiratesCrews = piratesNodes(nodes)
@@ -53,7 +72,7 @@ d3.json("data/crews.json", function(error, graph) {
   relazioni = graph.links
   console.log(pirates[0].img)
   var defs = svg.append("defs");
-
+  crews
 //console.log(nodes)
 
 function functionImage(data) {
@@ -104,11 +123,13 @@ function functionImage(data) {
         link.attr("stroke-width",4)
         label.attr("opacity", 0)
       })
-      .call(d3.drag() //questi si possono levare
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended))
           
+  var linkNode = svg.selectAll(".link-node")
+      .data(linkNodes)
+    .enter().append("circle")
+      .attr("class", "link-node")
+      .attr("r", crewRadius - 20)
+      .style("fill", "#ccc");
 
   nodi=node
 
@@ -131,7 +152,7 @@ function functionImage(data) {
       .text(function(d) { return d.name; })
 
   simulation
-      .nodes(crews)//se cambiato in crew il grafo non va a scatti ma peggiora
+      .nodes(crews.concat(linkNodes))//se cambiato in crew il grafo non va a scatti ma peggiora
       .on("tick", ticked);
 
   simulation.force("link")
@@ -146,39 +167,19 @@ function functionImage(data) {
     
     //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
     node
-        .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
-        .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y)); });
+        .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius , d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius , d.y)); });
+    
+    linkNode.attr("cx", function(d) { return d.x = (d.source.x + d.target.x) * 0.5; })
+        .attr("cy", function(d) { return d.y = (d.source.y + d.target.y) * 0.5; });
 
     label
         .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
         .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
   }
+  //node._groups[0][9].attr("cy", 5)
 });
 
-function dragstarted(d) {
-  //if (!d3.event.active) simulation.alpha(0.001).alphaTarget(0.001).restart();
-  selectNode(d)
-  console.log("dragSta");
-  //d.fx = d.x;
-  //d.fy = d.y;
-  
-  //console.log("dragStaFIN");
-  
-}
-
-function dragged(d) {
-  //simulation.alphaTarget(0.1).restart();
-  //console.log("dragged");
-  //d.fx = d3.event.x;
-  //d.fy = d3.event.y;
-}
-
-function dragended(d) {
-  //if (!d3.event.active) simulation.alpha(0.5).alphaTarget(0);
-  //console.log(d);
-  //d.fx = null;
-  //d.fy = null;
-}
 
 function flatten(root) {
   var nodes = [], i = 0;
@@ -249,7 +250,7 @@ function getTextColor(node, neighbors) {
 }
 */
 function getLinkColor(node, link) {
-  return isNeighborLink(node, link) ? 10 : 0
+  return isNeighborLink(node, link) ? 5 : 0
 }
 
 
