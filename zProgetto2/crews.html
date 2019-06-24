@@ -76,7 +76,6 @@ d3.json("data/crews.json", function(error, graph) {
   console.log(pirates[0].img)
   var defs = svg.append("defs");
   crews
-//console.log(nodes)
 
 function functionImage(data) {
     console.log("DATA: " + data.img)
@@ -104,6 +103,7 @@ function functionImage(data) {
     .attr("stroke", function(d) {return d.color});
 
   legami = link
+  var selectedSaga = 1;
 
   var node = svg.append("g")
       .attr("class", "nodes")
@@ -119,12 +119,10 @@ function functionImage(data) {
       //funzioni per migliorare visualizzazione con zoom
       .on('mouseover',function() {
         nodeSelected = d3.select(this)
-        //console.log(nodeSelected.data()[0])
-        selectNode(nodeSelected.data()[0])
+        selectNode(nodeSelected.data()[0], selectedSaga)
       })
       .on('mouseout',function() {
-        node.attr("r",crewRadius)
-        link.attr("stroke-width",4)
+        selectLinks(selectedSaga)
         label.attr("opacity", 0)
       })
           
@@ -198,13 +196,19 @@ function functionImage(data) {
     label
         .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
         .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
+    
+    selectLinks(selectedSaga)
   }
+
+  var nodesVisited = [];
 
   function selectNodesSaga(saga){
     var linksVisited = new Map()
     for(var j = 0; j<relazioni.length; j++){
       if(relazioni[j].saga <= saga) {
         linksVisited.set(relazioni[j].name, relazioni[j].saga)
+        nodesVisited.push(relazioni[j].source);
+        nodesVisited.push(relazioni[j].target);
     }}
     return linksVisited;
   }
@@ -218,12 +222,21 @@ function functionImage(data) {
     return stroke;
   }
 
+  function getNodes(node, nodesVisited){
+    var radius = 0;
+    for (var nd of nodesVisited) {
+      if(node == nd) 
+        radius = crewRadius;
+      }
+    return radius;
+  }
+
   function selectLinks(selectedSaga) {
     var linksVisited = selectNodesSaga(selectedSaga)
     legami.attr('stroke-width', link => getLinks(link, linksVisited))
+    nodi.attr('r', node => getNodes(node, nodesVisited))
+    nodesVisited = []
   }
-});
-
 
 function flatten(root) {
   var nodes = [], i = 0;
@@ -237,7 +250,6 @@ function flatten(root) {
     nodes.push(node);
   }
     for(var j = 0; j<length;j++) {
-        //console.log(root.crews)
         recurse(root.crews[j]);
 }
   return nodes;
@@ -255,12 +267,13 @@ function piratesNodes(nodes){
   }
   return [pirates , crews]  
 }
+
 //funzione che prende i vicini di un nodo
-function getNeighbors(node) {
+function getNeighbors(node, selectedSaga) {
   return relazioni.reduce((neighbors, link) => {
-    if (link.target.id === node.id) {
+    if (link.target.id === node.id && link.saga <= selectedSaga) {
       neighbors.push(link.source.id)
-    } else if (link.source.id === node.id) {
+    } else if (link.source.id === node.id && link.saga <= selectedSaga) {
       neighbors.push(link.target.id)
     }
 
@@ -293,21 +306,31 @@ function getTextColor(node, neighbors) {
   return neighbors.indexOf(node.id) ? 'green' : 'black'
 }
 */
-function getLinkColor(node, link) {
-  return isNeighborLink(node, link) ? 3 : 0
+function getLinkColor(links, link) {
+  var stroke = 0;
+  for(var key of links.keys()) {
+    if(key == link.name && links.get(key) == link.color) {
+      stroke = 3;
+    }}
+  return stroke;
 }
 
+function selectNodeLinks(selectedNode, selectedSaga){
+  var linksVisited = new Map()
+    for(var j = 0; j<relazioni.length; j++){
+      if(relazioni[j].saga <= selectedSaga && (relazioni[j].source == selectedNode || relazioni[j].target == selectedNode)) {
+        linksVisited.set(relazioni[j].name, relazioni[j].color);
+    }}
+    return linksVisited;
+  }
 
-
-function selectNode(selectedNode) {
-  const neighbors = getNeighbors(selectedNode)
-  
-  //console.log(legami)
+function selectNode(selectedNode, selectedSaga) {
+  const neighbors = getNeighbors(selectedNode, selectedSaga)
+  var linksNode = selectNodeLinks(selectedNode, selectedSaga)
   nodi.attr('r', node => getNodeColor(node, neighbors))
-  legami.attr('stroke-width',link => getLinkColor(selectedNode,link))
+  legami.attr('stroke-width', link => getLinkColor(linksNode, link))
   labels.attr('opacity', node => getLabels(node, neighbors))
-  
 }
 
-
+});
 </script>
