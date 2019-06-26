@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: rgb(0, 0, 0);
+  stroke-width: 1.5px;
+}
+
+</style>
+<svg width="1200" height="800"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="d3-force-reuse.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height")
+    svg.style("position", "absolute")
+    svg.style("left", "150px")
+    svg.style("top", "50px");;
+
+var crewRadius = 25
+var charRadius = 15
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+/*var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
+    .force("charge", d3.forceManyBody().strength(-50).distanceMax(800))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(crewRadius +20))
+    .force("radial",d3.forceRadial(100, width / 2, height / 2))*/
+
+//cambiate un paio di forze , messa una forza radiale
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
+    .force("charge", d3.forceManyBody().strength(-200).distanceMax(100))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(crewRadius+20))
+    //.force("radial",d3.forceRadial(10, width / 2, height / 2))
+    
+    ;
+    var nodi
+    var legami
+    var labels
+
+d3.json("data/crews.json", function(error, graph) {
+  if (error) throw error;
+
+  
+  var nodes = flatten(graph)
+  
+  var linkNodes = [];
+ var j = 0
+  graph.links.forEach(function(link) {
+    console.log(nodes[link.source-1])
+    //if(j % 2 == 0) {
+      linkNodes.push({
+        source: nodes[link.source-1],
+        target: nodes[link.target-1]
+    }); 
+  //}; j = j+1;
+});
+
+  //AGGIUNTO divide ciurme e pirati almeno cosi le forze dei nodi pirata non concorrono alla visualizzazione
+  arrayPiratesCrews = piratesNodes(nodes)
+  //console.log(arrayPiratesCrews[0])
+  //console.log(arrayPiratesCrews[1])
+  pirates = arrayPiratesCrews[0]
+  crews = arrayPiratesCrews[1]
+  relazioni = graph.links
+  console.log(pirates)
+  var defs = svg.append("defs");
+  
+//console.log(nodes)
+
+function functionImage(data) {
+    console.log("DATA: " + data.img)
+    defs.append('pattern')
+    .attr("id", data.id)
+    .attr("width", 1)
+    .attr("height", 1)
+    .append("svg:image")
+    .attr("id","image")//se vuoi riprendere le img d3.selectAll("image")
+    .attr("xlink:href", function() { return data.img.slice(1) })//cosi mi funziona tutto 
+    .attr("width", function() {if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
+    .attr("height", function() { if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
+
+    return "url(#"+ data.id+")"
+}
+
+  var i = 0;
+
+  var link = svg.append("g")
+    .attr("class", "links") 
+    .selectAll("line")
+    .data(graph.piratesRelation)
+    .enter().append("line")
+    .attr("stroke-width", 4)
+    .attr("stroke", function(d) {return d.color});
+
+  legami = link
+
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(pirates)//cambiato da nodes a crews
+    .enter().append("circle")
+      .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
+      // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
+      .attr("id", "node")
+      .attr("fill", function(d) {return functionImage(d);})
+      //.style("fill", function(data) { return data.img.slice(1) })
+      .attr("stroke", "black")
+      //funzioni per migliorare visualizzazione con zoom
+      .on('mouseover',function() {
+        nodeSelected = d3.select(this)
+        //console.log(nodeSelected.data()[0])
+        selectNode(nodeSelected.data()[0])
+      })
+      .on('mouseout',function() {
+        node.attr("r",crewRadius)
+        link.attr("stroke-width",4)
+        label.attr("opacity", 0)
+      })
+          
+  var linkNode = svg.selectAll(".link-node")
+      .data(linkNodes)
+    .enter().append("circle")
+      .attr("class", "link-node")
+      .attr("r", crewRadius - 20)
+      .style("fill", "#ccc");
+
+  nodi=node
+
+  var label = svg.append("g").attr("class", "nodes").selectAll("circle")
+    .data(pirates)//cambiato da nodes a crews
+    .enter().append("svg:text")
+    .text(function(d) { return d.name})
+    .style("text-anchor", "middle")
+    .style("fill", "black")
+    .style("font-family", "Arial")
+    .style("font-size", 20)
+    .attr("opacity", 0);
+
+  labels = label
+
+  var buttonMenu = d3.select("body").data(graph.saghe);
+
+  for(var j = 0; j < graph.saghe.length; j++) {
+    var buttons = buttonMenu.append("button")
+    .text(graph.saghe[j].name)
+    .attr("id", graph.saghe[j].num)
+    .style("height", "40px")
+    .style("width", "100px")
+    .style("position", "absolute")
+    .style("left", (j + 1) * 120 + "px")
+    .style("top", "20px")
+    .on("click", function() {
+      selectedSaga = this.id
+      selectLinks(selectedSaga)
+  })
+
+}
+
+  node.append("title")
+      .text(function(d) { return d.name || d.captain || d.member; })
+
+  link.append("title")
+      .text(function(d) { return d.name; })
+
+  simulation
+      .nodes(pirates.concat(linkNodes))
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x ; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    
+    //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
+    node
+        .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius , d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius , d.y)); });
+    
+    linkNode.attr("cx", function(d) { return d.x = (d.source.x + d.target.x) * 0.5; })
+        .attr("cy", function(d) { return d.y = (d.source.y + d.target.y) * 0.5; });
+
+    label
+        .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
+        .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
+  }
+
+  function selectNodesSaga(saga){
+    var linksVisited = new Map()
+    for(var j = 0; j<relazioni.length; j++){
+      if(relazioni[j].saga <= saga) {
+        linksVisited.set(relazioni[j].name, relazioni[j].saga)
+    }}
+    return linksVisited;
+  }
+
+  function getLinks(link, linksVisited){
+    var stroke = 0;
+    for (var key of linksVisited.keys()) {
+      if(key == link.name && link.saga == linksVisited.get(key)) 
+        stroke = 3;
+      }
+    return stroke;
+  }
+
+  function selectLinks(selectedSaga) {
+    var linksVisited = selectNodesSaga(selectedSaga)
+    legami.attr('stroke-width', link => getLinks(link, linksVisited))
+  }
+});
+
+
+function flatten(root) {
+  var nodes = [], i = 0;
+  var length = root.crews.length
+
+  function recurse(node) {
+    //console.log(node)
+    if (node.members) node.members.forEach(recurse);
+    if (!node.id) node.id = ++i;
+    if(node.name!= undefined) console.log(node.name + " " + node.id);
+    nodes.push(node);
+  }
+    for(var j = 0; j<length;j++) {
+        //console.log(root.crews)
+        recurse(root.crews[j]);
+}
+  return nodes;
+}
+
+//funzione che dato un insieme di nodi restituisce i nodi che sono membri della ciurma
+function piratesNodes(nodes){
+  crews = []
+  pirates =[]
+  for(i=0;i<nodes.length;i++){
+    if(nodes[i].name===undefined)
+      pirates.push(nodes[i])
+    else
+      crews.push(nodes[i])
+  }
+  return [pirates , crews]  
+}
+//funzione che prende i vicini di un nodo
+function getNeighbors(node) {
+  return relazioni.reduce((neighbors, link) => {
+    if (link.target.id === node.id) {
+      neighbors.push(link.source.id)
+    } else if (link.source.id === node.id) {
+      neighbors.push(link.target.id)
+    }
+
+    return neighbors
+  }, [node.id])
+}
+
+function isNeighborLink(node, link) {
+  return link.target.id === node.id || link.source.id === node.id
+}
+
+
+//funzioni che forse saranno utili
+
+function getNodeColor(node, neighbors) {
+  if (neighbors.indexOf(node.id)>=0) {
+    return crewRadius
+  }
+  return 0
+}
+
+function getLabels(node, neighbors) {
+  if (neighbors.indexOf(node.id)>=0) {
+    return 1
+  }
+  return 0
+}
+/*
+function getTextColor(node, neighbors) {
+  return neighbors.indexOf(node.id) ? 'green' : 'black'
+}
+*/
+function getLinkColor(node, link) {
+  return isNeighborLink(node, link) ? 3 : 0
+}
+
+
+
+function selectNode(selectedNode) {
+  const neighbors = getNeighbors(selectedNode)
+  
+  //console.log(legami)
+  nodi.attr('r', node => getNodeColor(node, neighbors))
+  legami.attr('stroke-width',link => getLinkColor(selectedNode,link))
+  labels.attr('opacity', node => getLabels(node, neighbors))
+  
+}
+
+
+</script>

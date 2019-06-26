@@ -1,0 +1,89 @@
+{
+  "nodes":[
+     
+    {"name":"Monkey D. Luffy","group":1,"saga":1},
+    {"name":"Sanji","group":1,"saga":1},
+    {"name":"Roronoa Zoro","group":1,"saga":1},
+
+    {"name":"Shanks","group":2,"saga":1},
+
+    {"name":"Sakazuki","group":3,"saga":1},
+
+    {"name":"Buggy","group":4,"saga":1},
+
+    {"name":"Monkey D. Dragon","group":5,"saga":1},
+
+    {"name":"Marshall D. Teach","group":6,"saga":1},
+
+    {"name":"Donquixote Doflamingo","group":7,"saga":1},
+
+    {"name":"Crocodile","group":8,"saga":1},
+
+    {"name":"Rob Lucci","group":9,"saga":1},
+
+    {"name":"Gecko Moria","group":10,"saga":1},
+
+    {"name":"Eustass Kid","group":11,"saga":1},
+
+    {"name":"Capone Bege","group":12,"saga":1},
+
+    {"name":"Basil Hawkins","group":13,"saga":1},
+
+    {"name":"X Drake","group":14,"saga":1},
+
+    {"name":"Hannyabal","group":15,"saga":1},
+
+    {"name":"Boa Hancock","group":16,"saga":1},
+
+    {"name":"Magellan","group":17,"saga":1},
+
+    {"name":"Edward Newgate","group":18,"saga":1},
+
+    {"name":"Charlotte Linlin","group":19,"saga":1},
+
+    {"name":"Kaido","group":20,"saga":1},
+
+    {"name":"Caesar Clown","group":21,"saga":1},
+
+    {"name":"Aaa","group":22,"saga":1},
+    {"name":"Aaaa","group":22,"saga":1},
+    {"name":"Aaaaa","group":22,"saga":1},
+    {"name":"Aaaaaa","group":22,"saga":1},
+    {"name":"Aaaaaaa","group":22,"saga":1},
+    {"name":"Aaaaaaaa","group":22,"saga":1}
+
+    
+    
+  ],
+  "links":[
+    
+    {"source":0,"target":1,"value":30},
+    {"source":0,"target":2,"value":30},
+    {"source":0,"target":3,"value":30},
+    {"source":0,"target":4,"value":30},
+    {"source":0,"target":5,"value":30},
+    {"source":0,"target":6,"value":30},
+    {"source":0,"target":7,"value":30},
+    {"source":0,"target":8,"value":30},
+    {"source":0,"target":9,"value":30},
+    {"source":0,"target":10,"value":30},
+    {"source":0,"target":11,"value":30},
+    {"source":0,"target":12,"value":30},
+    {"source":0,"target":13,"value":30},
+    {"source":0,"target":14,"value":30},
+    {"source":0,"target":15,"value":30},
+    {"source":0,"target":16,"value":30},
+    {"source":0,"target":17,"value":30},
+    {"source":0,"target":18,"value":30},
+    {"source":0,"target":19,"value":30},
+    {"source":0,"target":20,"value":30},
+    {"source":0,"target":21,"value":30},
+    {"source":0,"target":23,"value":30},
+    {"source":22,"target":23,"value":30},
+    {"source":23,"target":24,"value":30},
+    {"source":24,"target":25,"value":30},
+    {"source":25,"target":26,"value":30},
+    {"source":26,"target":27,"value":30},
+    {"source":27,"target":28,"value":30}
+  ]
+}
