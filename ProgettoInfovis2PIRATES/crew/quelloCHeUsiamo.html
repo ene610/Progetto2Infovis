@@ -11,11 +11,7 @@ svg {
 body {
   font: 10px sans-serif;
 }
-circle.node {
-  fill: lightsteelblue;
-  stroke: #555;
-  stroke-width: 3px;
-}
+
 circle.leaf {
   stroke: #fff;
   stroke-width: 1.5px;
@@ -33,12 +29,15 @@ line.link {
   </head>
   <body>
     <script type="text/javascript">
+    
 var width = 960,     // svg width
     height = 600,     // svg height
     dr = 4,      // default point radius
     off = 15,    // cluster hull offset
     expand = {}, // expanded clusters
     data, net, force, hullg, hull, linkg, link, nodeg, node;
+
+var nameToIndex ;
 
 var curve = d3.svg.line()
     .interpolate("cardinal-closed")
@@ -47,6 +46,7 @@ var curve = d3.svg.line()
 var fill = d3.scale.category20();
 
 function noop() { return false; }
+
 
 function nodeid(n) {
   return n.size ? "_g_"+n.group : n.name;
@@ -59,6 +59,34 @@ function linkid(l) {
 }
 
 function getGroup(n) { return n.group; }
+
+function nodesInSaga(nodes,saga){
+  i=0
+  nameToIndex = {}
+  nodesSaga = [];
+  nodes.forEach(node => {
+      if(node.saga <= saga){
+        nodesSaga.push(node)
+        nameToIndex[node.name] = i
+        i++
+      }
+  });
+  return nodesSaga;
+}
+
+function linkInSaga(links,saga){
+  linksSaga = [];
+  links.forEach(link => {
+      if(link.saga <= saga){
+        link.source = nameToIndex[link.source]
+        link.target =  nameToIndex[link.target]
+        console.log(link)
+        linksSaga.push(link)
+        //console.log(nameToIndex[link.target])
+      }
+  });
+  return linksSaga;
+}
 
 // constructs the network to visualize
 function network(data, prev, index, expand) {
@@ -124,13 +152,16 @@ function network(data, prev, index, expand) {
 
   // determine links
   for (k=0; k<data.links.length; ++k) {
+    console.log(data.links.length,k)  
     var e = data.links[k],
         u = index(e.source),
         v = index(e.target);
   if (u != v) {
+    
     gm[u].link_count++;
     gm[v].link_count++;
   }
+  
     u = expand[u] ? nm[e.source.name] : nm[u];
     v = expand[v] ? nm[e.target.name] : nm[v];
     var i = (u<v ? u+"|"+v : v+"|"+u),
@@ -180,6 +211,13 @@ var vis = body.append("svg")
 
 d3.json("data/miserables.json", function(json) {
   data = json;
+  console.log(data)
+  saga = 1
+  nodi = nodesInSaga(data.nodes,saga)
+  linki = linkInSaga(data.links,saga) 
+  data = {"links":linki,"nodes":nodi}
+  console.log(data.links)
+
   for (var i=0; i<data.links.length; ++i) {
     o = data.links[i];
     o.source = data.nodes[o.source];
@@ -198,9 +236,28 @@ d3.json("data/miserables.json", function(json) {
       .attr("opacity", 1);
 });
 
+var defs = vis.append("defs");
+console.log("defs",defs)
+
+function functionImage(data) {
+    //GRAZIE DAVIDE PER QUESTO MIRACOLO DELL'INFORMATICA
+    console.log("DATA: " + data.img)
+    defs.append('pattern')
+    .attr("id", "imgPng")
+    .attr("width", 1)
+    .attr("height", 1)
+    .append("svg:image")
+    .attr("id","image")//se vuoi riprendere le img d3.selectAll("image")
+    .attr("xlink:href", function() { return "./img.png" })
+    .attr("width", function() {return  16;})
+    .attr("height", function() {return  16;})
+
+    return "url(#imgPng)"
+}
+
 function init() {
   if (force) force.stop();
-
+  console.log(nameToIndex)
   net = network(data, net, getGroup, expand);
 
   force = d3.layout.force()
@@ -257,6 +314,16 @@ console.log("hull click", d, arguments, this, expand[d.group]);
       .attr("y2", function(d) { return d.target.y; })
       .style("stroke-width", function(d) { return d.size || 1; });
 
+
+      
+      var images = nodeg.append("image")
+        .attr("id","image")
+        .attr("xlink:href",  function(d) { return "./img.png";})
+        .attr("x", function(d) { return -25;})
+        .attr("y", function(d) { return -25;})
+        .attr("height", 50)
+        .attr("width", 50);
+
   node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
   node.exit().remove();
   node.enter().append("circle")
@@ -265,12 +332,15 @@ console.log("hull click", d, arguments, this, expand[d.group]);
       .attr("r", function(d) { return d.size ? d.size + dr : dr+1; })
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
-      .style("fill", function(d) { return fill(d.group); })
+      .style("fill", function(d) {return functionImage(d); })
       .on("click", function(d) {
-console.log("node click", d, arguments, this, expand[d.group]);
+        console.log("node click", d, arguments, this, expand[d.group]);
         expand[d.group] = !expand[d.group];
-    init();
+        init();
       });
+      
+
+        console.log(d3.selectAll("circle"))
 
   node.call(force.drag);
 

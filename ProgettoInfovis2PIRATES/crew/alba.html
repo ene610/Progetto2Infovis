@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+
+
+
+
+<head>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div id="viz"></div>
+<script type="text/javascript">
+    var dataset = [],
+    i = 0;
+
+    for(i=0; i<5; i++){
+        dataset.push(Math.round(Math.random()*100));
+    }        
+
+    var sampleSVG = d3.select("#viz")
+        .append("svg")
+        .attr("width", 400)
+        .attr("height", 400);    
+
+    sampleSVG.selectAll("circle")
+    .data(dataset)
+    .enter().append("circle")
+    .style("stroke", "gray")
+    .style("fill", "url(/)")
+    .attr("r", 40)
+    .attr("cx", 150)
+    .attr("cy", 120);
+
+  </script>
+ </html>
