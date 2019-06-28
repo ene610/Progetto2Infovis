@@ -35,6 +35,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
     .force('collision', d3.forceCollide().radius(crewRadius +20))
     .force("radial",d3.forceRadial(100, width / 2, height / 2))*/
 
+
 //cambiate un paio di forze , messa una forza radiale
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
@@ -57,7 +58,7 @@ d3.json("data/crews.json", function(error, graph) {
   var linkNodes = [];
  var j = 0
   graph.links.forEach(function(link) {
-    console.log(nodes[link.source-1])
+    //console.log(nodes[link.source-1])
     //if(j % 2 == 0) {
       linkNodes.push({
         source: nodes[link.source-1],
@@ -73,12 +74,53 @@ d3.json("data/crews.json", function(error, graph) {
   pirates = arrayPiratesCrews[0]
   crews = arrayPiratesCrews[1]
   relazioni = graph.links
-  console.log(pirates[0].img)
   var defs = svg.append("defs");
   crews
+  var link
+  var node
+  var linkNode
+  var label 
+  var selectedSaga = 1;
+  var nodesVisited = [];
+  var expandedNodes = new Map()
 
-function functionImage(data) {
-    console.log("DATA: " + data.img)
+  function crewPiratesLinks() {
+  var crewPirateLinks = []
+  var i = 0;
+  for(var i = 0; i< nodes.length; i++){
+    if(nodes[i].members != undefined){
+     // console.log(nodes[i])
+      for(var member of nodes[i].members){
+        var link = {};
+        if(member.captain){
+          var captain = member
+          link.name = nodes[i].name + " - " + member.captain
+          link.source = nodes[i].id
+          link.target = captain.id
+        }
+        else{
+          link.name =  captain.captain + " - " + member.member;
+          link.source = captain.id
+          link.target = member.id
+        }
+       // console.log(link)
+        link.color = "green"
+        link.saga = 1
+        link.child = true
+        relazioni.push(link)
+  }
+  }}
+   // return crewPirateLinks
+  }
+
+  crewPiratesLinks()
+
+function update() {
+
+ simulation.restart()
+
+ function functionImage(data) {
+    //console.log("DATA: " + data.img)
     defs.append('pattern')
     .attr("id", data.id)
     .attr("width", 1)
@@ -92,24 +134,23 @@ function functionImage(data) {
     return "url(#"+ data.id+")"
 }
 
-  var i = 0;
-
-  var link = svg.append("g")
+  link = svg.append("g")
     .attr("class", "links") 
     .selectAll("line")
-    .data(graph.links)
+    .data(relazioni)
     .enter().append("line")
     .attr("stroke-width", 4)
     .attr("stroke", function(d) {return d.color});
 
   legami = link
-  var selectedSaga = 1;
 
-  var node = svg.append("g")
+
+//console.log(nodes)
+  node = svg.append("g")
       .attr("class", "nodes")
-    .selectAll("circle")
-    .data(crews)//cambiato da nodes a crews
-    .enter().append("circle")
+      .selectAll("circle")
+      .data(nodes)//cambiato da nodes a crews
+      .enter().append("circle")
       .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
       // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
       .attr("id", "node")
@@ -119,24 +160,31 @@ function functionImage(data) {
       //funzioni per migliorare visualizzazione con zoom
       .on('mouseover',function() {
         nodeSelected = d3.select(this)
-        selectNode(nodeSelected.data()[0], selectedSaga)
+        mouseOnNode(nodeSelected.data()[0], selectedSaga)
       })
       .on('mouseout',function() {
         selectLinks(selectedSaga)
         label.attr("opacity", 0)
-      })
+      }).on("click", function(d){
+          if(d.name != undefined)
+          expandedNodes.set(d.id,true)
+            for(var member of d.members)
+              expandedNodes.set(member.id, true);
+              console.log(expandedNodes);
+            //expand(this);   DA IMPLEMENTARE!
+            click})
           
-  var linkNode = svg.selectAll(".link-node")
+  /*linkNode = svg.selectAll(".link-node")
       .data(linkNodes)
     .enter().append("circle")
       .attr("class", "link-node")
       .attr("r", crewRadius - 20)
-      .style("fill", "#ccc");
+      .style("fill", "#ccc");*/
 
   nodi=node
 
-  var label = svg.append("g").attr("class", "nodes").selectAll("circle")
-    .data(crews)//cambiato da nodes a crews
+  label = svg.append("g").attr("class", "nodes").selectAll("circle")
+    .data(nodes)//cambiato da nodes a crews
     .enter().append("svg:text")
     .text(function(d) { return d.name})
     .style("text-anchor", "middle")
@@ -147,24 +195,6 @@ function functionImage(data) {
 
   labels = label
 
-  var buttonMenu = d3.select("body").data(graph.saghe);
-
-  for(var j = 0; j < graph.saghe.length; j++) {
-    var buttons = buttonMenu.append("button")
-    .text(graph.saghe[j].name)
-    .attr("id", graph.saghe[j].num)
-    .style("height", "40px")
-    .style("width", "100px")
-    .style("position", "absolute")
-    .style("left", (j + 1) * 120 + "px")
-    .style("top", "20px")
-    .on("click", function() {
-      selectedSaga = this.id
-      selectLinks(selectedSaga)
-  })
-
-}
-
   node.append("title")
       .text(function(d) { return d.name || d.captain || d.member; })
 
@@ -172,40 +202,23 @@ function functionImage(data) {
       .text(function(d) { return d.name; })
 
   simulation
-      .nodes(crews.concat(linkNodes))
+      .nodes(nodes)     // .nodes(nodes.concat(linkNodes))
       .on("tick", ticked);
 
   simulation.force("link")
       .links(graph.links);
+     
+  selectLinks(selectedSaga)
 
-  function ticked() {
-    link
-        .attr("x1", function(d) { return d.source.x ; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-    
-    //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
-    node
-        .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius , d.x)); })
-        .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius , d.y)); });
-    
-    linkNode.attr("cx", function(d) { return d.x = (d.source.x + d.target.x) * 0.5; })
-        .attr("cy", function(d) { return d.y = (d.source.y + d.target.y) * 0.5; });
 
-    label
-        .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
-        .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
-    
-    selectLinks(selectedSaga)
-  }
-
-  var nodesVisited = [];
 
   function selectNodesSaga(saga){
     var linksVisited = new Map()
+    //console.log("relazioni[j]: " + relazioni)
     for(var j = 0; j<relazioni.length; j++){
+     // console.log("relazioni[j]: " + relazioni)
       if(relazioni[j].saga <= saga) {
+        //console.log(relazioni[j].source)
         linksVisited.set(relazioni[j].name, relazioni[j].saga)
         nodesVisited.push(relazioni[j].source);
         nodesVisited.push(relazioni[j].target);
@@ -215,8 +228,9 @@ function functionImage(data) {
 
   function getLinks(link, linksVisited){
     var stroke = 0;
+    //console.log(link)
     for (var key of linksVisited.keys()) {
-      if(key == link.name && link.saga == linksVisited.get(key)) 
+      if(key == link.name && link.saga == linksVisited.get(key) && expandedNodes.get(link.target) == true) 
         stroke = 3;
       }
     return stroke;
@@ -224,49 +238,27 @@ function functionImage(data) {
 
   function getNodes(node, nodesVisited){
     var radius = 0;
+   // console.log(nodesVisited)
     for (var nd of nodesVisited) {
-      if(node == nd) 
+      if(node == nd && node.name != undefined) {
+        expandedNodes.set(node.name, true)
         radius = crewRadius;
       }
+      else if(node == nd && expandedNodes.get(node.id)) radius = charRadius;
+    }
     return radius;
   }
 
-  function selectLinks(selectedSaga) {
+  function selectLinks(selectedSaga) {    // AGGIUNGERE IN EXPANDEDNODE I NODI CIURMA
     var linksVisited = selectNodesSaga(selectedSaga)
     legami.attr('stroke-width', link => getLinks(link, linksVisited))
+    //console.log(nodi)
     nodi.attr('r', node => getNodes(node, nodesVisited))
+    nodi.filter(function(d) { console.log(expandedNodes.get(d.id));
+        return expandedNodes.get(d.id) == false;}).remove()
     nodesVisited = []
   }
 
-function flatten(root) {
-  var nodes = [], i = 0;
-  var length = root.crews.length
-
-  function recurse(node) {
-    //console.log(node)
-    if (node.members) node.members.forEach(recurse);
-    if (!node.id) node.id = ++i;
-    if(node.name!= undefined) console.log(node.name + " " + node.id);
-    nodes.push(node);
-  }
-    for(var j = 0; j<length;j++) {
-        recurse(root.crews[j]);
-}
-  return nodes;
-}
-
-//funzione che dato un insieme di nodi restituisce i nodi che sono membri della ciurma
-function piratesNodes(nodes){
-  crews = []
-  pirates =[]
-  for(i=0;i<nodes.length;i++){
-    if(nodes[i].name===undefined)
-      pirates.push(nodes[i])
-    else
-      crews.push(nodes[i])
-  }
-  return [pirates , crews]  
-}
 
 //funzione che prende i vicini di un nodo
 function getNeighbors(node, selectedSaga) {
@@ -287,8 +279,8 @@ function isNeighborLink(node, link) {
 
 
 //funzioni che forse saranno utili
-
 function getNodeColor(node, neighbors) {
+  //console.log(node)
   if (neighbors.indexOf(node.id)>=0) {
     return crewRadius
   }
@@ -324,13 +316,102 @@ function selectNodeLinks(selectedNode, selectedSaga){
     return linksVisited;
   }
 
-function selectNode(selectedNode, selectedSaga) {
+function mouseOnNode(selectedNode, selectedSaga) {
   const neighbors = getNeighbors(selectedNode, selectedSaga)
   var linksNode = selectNodeLinks(selectedNode, selectedSaga)
+  //console.log(nodi)
   nodi.attr('r', node => getNodeColor(node, neighbors))
   legami.attr('stroke-width', link => getLinkColor(linksNode, link))
   labels.attr('opacity', node => getLabels(node, neighbors))
 }
+
+}
+
+update()
+
+var buttonMenu = d3.select("body").data(graph.saghe);
+
+for(var j = 0; j < graph.saghe.length; j++) {
+  var buttons = buttonMenu.append("button")
+  .text(graph.saghe[j].name)
+  .attr("id", graph.saghe[j].num)
+  .style("height", "40px")
+  .style("width", "100px")
+  .style("position", "absolute")
+  .style("left", (j + 1) * 120 + "px")
+  .style("top", "20px")
+  .on("click", function() {
+    selectedSaga = this.id
+    selectLinks(selectedSaga)
+})
+
+}
+
+function flatten(root) {
+  var nodes = [], i = 0;
+  var length = root.crews.length
+
+  function recurse(node) {
+    //console.log(node)
+    if (node.members) node.members.forEach(recurse);
+    if (!node.id) node.id = ++i;
+    if(node.name!= undefined) console.log(node.name + " " + node.id);
+    nodes.push(node);
+  }
+    for(var j = 0; j<length;j++) {
+        recurse(root.crews[j]);
+}
+  return nodes;
+}
+
+//funzione che dato un insieme di nodi restituisce i nodi che sono membri della ciurma
+function piratesNodes(nodes){
+  crews = []
+  pirates =[]
+  for(i=0;i<nodes.length;i++){
+    if(nodes[i].name===undefined)
+      pirates.push(nodes[i])
+    else
+      crews.push(nodes[i])
+  }
+  return [pirates , crews]  
+}
+
+function click() { 
+  svg.selectAll("circle").data([]).exit().remove()
+  svg.selectAll("line").data([]).exit().remove()
+  svg.selectAll("link").data([]).exit().remove()
+  svg.selectAll("text").data([]).exit().remove()
+  //d3.selectAll("pattern").remove()
+  relazioni = graph.links
+  expandedNodes = {}
+  nodesVisited = [];
+  update()
+  }
+
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x ; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    
+    //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
+    node
+        .attr("cx", function(d) { if(d.name==undefined) var radius= charRadius; else var radius = crewRadius; 
+                                    return d.x = Math.max(radius, Math.min(width - radius , d.x)); })
+        .attr("cy", function(d) { if(d.name==undefined) var radius= charRadius; else var radius = crewRadius; 
+                                    return d.y = Math.max(radius, Math.min(height - radius , d.y)); });
+    
+   /* linkNode.attr("cx", function(d) { return d.x = (d.source.x + d.target.x) * 0.5; })
+        .attr("cy", function(d) { return d.y = (d.source.y + d.target.y) * 0.5; });*/
+
+    label
+        .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
+        .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
+    
+  }
 
 });
 </script>

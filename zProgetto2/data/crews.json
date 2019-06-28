@@ -9,11 +9,11 @@
           "img": "../char-image/rufy.png"
         },
         {
-          "member1": "Zoro",
+          "member": "Zoro",
           "img": "../char-image/zoro.png"
         },
         {
-          "member2": "Sanji",
+          "member": "Sanji",
           "img": "../char-image/sanji.png"
         }
       ]

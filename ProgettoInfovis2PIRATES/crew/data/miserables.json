@@ -1,50 +1,113 @@
 {
   "nodes":[
-     
-    {"name":"Monkey D. Luffy","group":1,"saga":1},
-    {"name":"Sanji","group":1,"saga":2},
-    {"name":"Roronoa Zoro","group":1,"saga":1},
+    {"name": "Straw Hat Pirates", "group":1,"saga":1, "img": "../flags/flag-straw-hat.png"},
+    {"name": "Red Hair Pirates","group":2,"saga":1, "img": "../flags/flag-shanks.png"},
+    {"name": "Buggy Pirates","group":3,"saga":1, "img": "../flags/flag-buggy.png"},
+    {"name": "Baroque Works", "group":4,"saga":2, "img": "../flags/flag-baroque.png"},
+    {"name": "Whitebeard Pirates","group":5,"saga":2,  "img": "../flags/flag-whitebeard.png"},
+    {"name": "Blackbeard Pirates","group":6,"saga":2, "img": "../flags/flag-blackbeard.png"},
+    {"name": "Donquixote Pirates", "group":7,"saga":7, "img": "../flags/flag-donquixote.png"},
+    {"name": "Marine","group":8,"saga":1, "img": "../flags/flag-marine.png"},
+    {"name": "Thriller Bark Pirates","group":9,"saga":4, "img": "../flags/flag-thriller-bark.png"},
+    {"name": "Firetank Pirates", "group":10,"saga":5, "img": "../flags/flag-firetank.png"},
+    {"name": "Hawkins Pirates","group":11,"saga":5, "img": "../flags/flag-hawkins.png"},
+    {"name": "Kid Pirates","group":12,"saga":5, "img": "../flags/flag-kid.png"},
+    {"name": "Drake Pirates", "group":13,"saga":5, "img": "../flags/flag-drake.png"},
+    {"name": "Heart Pirates","group":14,"saga":5, "img": "../flags/flag-heart.png"},
+    {"name": "Kuja Pirates","group":15,"saga":6, "img": "../flags/flag-kuja.png"},
+    {"name": "Impel Down", "group":16,"saga":6, "img": "../flags/flag-impel-down.png"},
+    {"name": "Big Mom Pirates","group":17,"saga":10, "img": "../flags/flag-big-mom.png"},
+    {"name": "Beasts Pirates","group":18,"saga":9, "img": "../flags/flag-kaido.png"},
+    {"name": "Punk Hazard", "group":19,"saga":8, "img": "../flags/flag-punk-hazard.png"},
+    {"name": "Beautiful Pirates","group":20,"saga":9, "img": "../flags/flag-beautiful.png"},
+    {"name": "Barto Club Pirates","group":21,"saga":9, "img": "../flags/flag-bartolomeo.png"},
+    {"name": "Germa 66", "group":22,"saga":10, "img": "../flags/flag-germa66.png"},
+    {"name": "CP9","group":23,"saga":3, "img": "../flags/flag-cp9.png"},
 
-    {"name":"Shanks","group":2,"saga":1},
+    {"name":"Monkey D. Luffy","group":1,"saga":1, "img": "../char-image/rufy.png"},
+    {"name":"Sanji","group":1,"saga":1, "img": "../char-image/zoro.png"},
+    {"name":"Roronoa Zoro","group":1,"saga":1,  "img": "../char-image/sanji.png"},
 
-    {"name":"Sakazuki","group":3,"saga":1},
+    {"name":"Shanks","group":2,"saga":1, "img": "../char-image/shanks.png"},
+    {"name":"Benn Beckman", "group":2,"saga":1, "img": "../char-image/beckman.png"},
+    {"name":"Lucky Roux", "group":2,"saga":1, "img": "../char-image/lucky-roux.png"},
 
-    {"name":"Buggy","group":4,"saga":1},
+    {"name":"Buggy", "group":3,"saga":1, "img": "../char-image/buggy.png"},
+    {"name":"Cabaji", "group":3,"saga":1, "img": "../char-image/cabaji.png"},
+    {"name":"Mohji","group":3,"saga":1, "img": "../char-image/moji.png"},
 
-    {"name":"Monkey D. Dragon","group":5,"saga":1},
+    {"name":"Crocodile", "group":4,"saga":2, "img": "../char-image/mr1.png"},
+    {"name":"Mr. 1", "group":4,"saga":2, "img": "../char-image/lucky-roux.png"},
+    {"name":"Mr. 2", "group":4,"saga":2, "img": "../char-image/mr2.png"},
 
-    {"name":"Marshall D. Teach","group":6,"saga":1},
+    {"name":"Whitebeard", "group":5,"saga":2, "img": "../char-image/whitebeard.png"},
+    {"name":"Marco", "group":5,"saga":2, "img": "../char-image/marco.png"},
+    {"name":"Portgas D. Ace", "group":5,"saga":2, "img": "../char-image/ace.png"},
 
-    {"name":"Donquixote Doflamingo","group":7,"saga":1},
+    {"name":"Blackbeard", "group":6,"saga":2, "img": "../char-image/blackbeard.png"},
+    {"name":"Jesus Burgess", "group":6,"saga":2, "img": "../char-image/burgess.png"},
+    {"name":"Shiryu", "group":6,"saga":2, "img": "../char-image/shiryu.png"},
 
-    {"name":"Crocodile","group":8,"saga":1},
+    {"name":"Donquixote Doflamingo", "group":7,"saga":7, "img": "../char-image/doflamingo.png"},
+    {"name":"Pica", "group":7,"saga":7, "img": "../char-image/pica.png"},
+    {"name":"Diamante", "group":7,"saga":7, "img": "../char-image/diamante.png"},
 
-    {"name":"Rob Lucci","group":9,"saga":1},
+    {"name":"Akainu", "group":8,"saga":1, "img": "../char-image/akainu.png"},
+    {"name":"Aokiji", "group":8,"saga":1, "img": "../char-image/aokiji.png"},
+    {"name":"Kizaru", "group":8,"saga":1, "img": "../char-image/kizaru.png"},
 
-    {"name":"Gecko Moria","group":10,"saga":1},
+    {"name":"Gecko Moria", "group":9,"saga":4, "img": "../char-image/moria.png"},
+    {"name":"Absalom", "group":9,"saga":4, "img": "../char-image/absalom.png"},
+    {"name":"Perona", "group":9,"saga":4, "img": "../char-image/perona.png"},
 
-    {"name":"Eustass Kid","group":11,"saga":1},
+    {"name":"Capone Bege", "group":10,"saga":5, "img": "../char-image/capone-bege.png"},
+    {"name":"Vito", "group":10,"saga":5, "img": "../char-image/vito.png"},
+    {"name":"Gotti", "group":10,"saga":5, "img": "../char-image/gotti.png"},
 
-    {"name":"Capone Bege","group":12,"saga":1},
+    {"name":"Basil Hawkins", "group":11,"saga":5, "img": "../char-image/basil-hawkins.png"},
 
-    {"name":"Basil Hawkins","group":13,"saga":1},
+    {"name":"Eustass Kid", "group":12,"saga":5, "img": "../char-image/kid.png"},
+    {"name":"Killer", "group":12,"saga":5, "img": "../char-image/killer.png"},
+    {"name":"Heat", "group":12,"saga":5, "img": "../char-image/heat.png"},
 
-    {"name":"X Drake","group":14,"saga":1},
+    {"name":"X Drake", "group":13,"saga":5, "img": "../char-image/drake.png"},
 
-    {"name":"Hannyabal","group":15,"saga":1},
+    {"name":"Trafalgar D. Law", "group":14,"saga":5, "img": "../char-image/trafalgar-law.png"},
+    {"name":"Bepo", "group":14,"saga":5, "img": "../char-image/bepo.png"},
+    {"name":"Jean Bart", "group":14,"saga":5, "img": "../char-image/jeanbart.png"},
 
-    {"name":"Boa Hancock","group":16,"saga":1},
+    {"name":"Boa Hancock", "group":15,"saga":6, "img": "../char-image/boa-hancock.png"},
+    {"name":"Boa Sandersonia", "group":15,"saga":6, "img": "../char-image/boa-sandersonia.png"},
+    {"name":"Boa Marigold", "group":15,"saga":6, "img": "../char-image/boa-marigold.png"},
 
-    {"name":"Magellan","group":17,"saga":1},
+    {"name":"Magellan", "group":16,"saga":6, "img": "../char-image/magellan.png"},
+    {"name":"Hannyabal", "group":16,"saga":6, "img": "../char-image/hannyabal.png"},
+    {"name":"Sadie", "group":16,"saga":6, "img": "../char-image/sadie.png"},
 
-    {"name":"Edward Newgate","group":18,"saga":1},
+    {"name":"Charlotte Linlin (Big Mom)", "group":17,"saga":10, "img": "../char-image/big-mom.png"},
+    {"name":"Charlotte Katakuri", "group":17,"saga":10, "img": "../char-image/katakuri.png"},
+    {"name":"Charlotte Cracker", "group":17,"saga":10, "img": "../char-image/cracker.png"},
 
-    {"name":"Charlotte Linlin","group":19,"saga":1},
+    {"name":"Kaido", "group":18,"saga":9, "img": "../char-image/kaido.png"},
+    {"name":"King", "group":18,"saga":9, "img": "../char-image/king.png"},
+    {"name":"Queen", "group":18,"saga":9, "img": "../char-image/queen.png"},
 
-    {"name":"Kaido","group":20,"saga":1},
+    {"name":"Caesar Clown", "group":19,"saga":8, "img": "../char-image/caesar.png"},
+    {"name":"Monet", "group":19,"saga":8, "img": "../char-image/monet.png"},
 
-    {"name":"Caesar Clown","group":21,"saga":1}
-  
+    {"name":"Cavendish", "group":20,"saga":9, "img": "../char-image/cavendish.png"},
+    {"name":"Suleiman", "group":20,"saga":9, "img": "../char-image/suleiman.png"},
+
+    {"name":"Bartolomeo", "group":21,"saga":9, "img": "../char-image/bartolomeo.png"},
+    {"name":"Gambia", "group":21,"saga":9, "img": "../char-image/gambia.png"},
+
+    {"name":"Vinsmoke Judge", "group":22,"saga":10, "img": "../char-image/vinsmoke-judge.png"},
+    {"name":"Vinsmoke Ichiji", "group":22,"saga":10, "img": "../char-image/vinsmoke-ichiji.png"},
+    {"name":"Vinsmoke Niji", "group":22,"saga":10, "img": "../char-image/vinsmoke-niji.png"},
+
+    {"name":"Spandam", "group":23,"saga":3, "img": "../char-image/spandam.png"},
+    {"name":"Lucci", "group":23,"saga":3, "img": "../char-image/lucci.png"},
+    {"name":"Kaku", "group":23,"saga":3, "img": "../char-image/kaku.png"}  
   ],
   "links":[
     {"source":"Monkey D. Luffy","target":"Sanji","value":30,"saga":2},
