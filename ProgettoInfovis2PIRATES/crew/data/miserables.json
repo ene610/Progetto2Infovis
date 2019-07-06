@@ -36,8 +36,8 @@
     {"name":"Cabaji", "group":3,"saga":1, "img": "../char-image/cabaji.png"},
     {"name":"Mohji","group":3,"saga":1, "img": "../char-image/moji.png"},
 
-    {"name":"Crocodile", "group":4,"saga":2, "img": "../char-image/mr1.png"},
-    {"name":"Mr. 1", "group":4,"saga":2, "img": "../char-image/lucky-roux.png"},
+    {"name":"Crocodile", "group":4,"saga":2, "img": "../char-image/crocodile.png"},
+    {"name":"Mr. 1", "group":4,"saga":2, "img": "../char-image/mr1.png"},
     {"name":"Mr. 2", "group":4,"saga":2, "img": "../char-image/mr2.png"},
 
     {"name":"Whitebeard", "group":5,"saga":2, "img": "../char-image/whitebeard.png"},
@@ -110,10 +110,56 @@
     {"name":"Kaku", "group":23,"saga":3, "img": "../char-image/kaku.png"}  
   ],
   "links":[
-    {"source":"Monkey D. Luffy","target":"Sanji","value":30,"saga":2},
-    {"source":"Monkey D. Luffy","target":"Roronoa Zoro","value":30,"saga":1},
-    {"source":"Monkey D. Luffy","target":"Shanks","value":30,"saga":1}
-    
+    {"source":"Monkey D. Luffy","target":"Sanji","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Roronoa Zoro","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Shanks","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Buggy","value":30,"saga":1, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Buggy","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Crocodile","value":30,"saga":2, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Mr. 2","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Whitebeard","value":30,"saga":7, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Blackbeard","value":30,"saga":6, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Donquixote Doflamingo","value":30,"saga":8, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Aokiji","value":30,"saga":3, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Kizaru","value":30,"saga":5, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Gecko Moria","value":30,"saga":4, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Capone Bege","value":30,"saga":10, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Basil Hawkins","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"x Drake","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Eustass Kid","value":30,"saga":11, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Boa Hancock","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Magellan","value":30,"saga":6, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Katakuri","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Cracker","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Queen","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Cavendish","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Suleiman","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Bartolomeo","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Spandam","value":30,"saga":3, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Lucci","value":30,"saga":3, "color": "red"},
+    {"source":"Sanji","target":"Roronoa Zoro","value":30,"saga":1, "color": "green"},
+    {"source":"Sanji","target":"Mr. 2","value":30,"saga":2, "color": "red"},
+    {"source":"Sanji","target":"Blackbeard","value":30,"saga":6, "color": "red"},
+    {"source":"Sanji","target":"Aokiji","value":30,"saga":3, "color": "red"},
+    {"source":"Sanji","target":"Kizaru","value":30,"saga":5, "color": "red"},
+    {"source":"Sanji","target":"Absalom","value":30,"saga":4, "color": "red"},
+    {"source":"Sanji","target":"X Drake","value":30,"saga":11, "color": "red"},
+    {"source":"Sanji","target":"Trafalgar D. Law","value":30,"saga":3, "color": "green"},
+    {"source":"Sanji","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Sanji","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Spandam","value":30,"saga":3, "color": "red"}
+
+
 
       ]
 }
