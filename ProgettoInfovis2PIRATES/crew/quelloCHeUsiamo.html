@@ -307,13 +307,19 @@ function getNodeColor(node, neighbors) {
 var hulls = []
 
 function getHullColor(hull) {
-  return hulls.includes(hull.group) ? hull.group : "white" 
+  var i = 0;
+  for (var h of hulls){
+    if(h == parseInt(hull.group))
+      i = i+1;
+  }
+  return i>1 ? hull.group : "white" 
 }
 
 function getLinkColor(node, link) {
-  hulls.push(link.source.group);
-  hulls.push(link.target.group);
-
+  if(isNeighborLink(node, link)){
+    hulls.push(link.source.group);
+    hulls.push(link.target.group);
+  }
   return isNeighborLink(node, link) ? 4 : 0
 }
 
@@ -326,6 +332,7 @@ function selectNode(selectedNode) {
   const neighbors = getNeighbors(selectedNode, hulls)
   node.attr('r', node => getNodeColor(node, neighbors))
   link.style('stroke-width', link => getLinkColor(selectedNode,link))
+  //console.log(hulls)
   console.log(hulls)
   hull.style("fill", hull => getHullColor(hull))
   hulls = []
