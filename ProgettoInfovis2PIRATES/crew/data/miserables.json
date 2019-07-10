@@ -208,7 +208,15 @@
     {"source":"Crocodile","target":"Magellan","value":30,"saga":6, "color": "red"},
     {"source":"Mr. 1","target":"Mr. 2","value":30,"saga":2, "color": "green"},
     {"source":"Mr. 1","target":"Magellan","value":30,"saga":6, "color": "red"},
-    {"source":"Crocodile","target":"Magellan","value":30,"saga":6, "color": "red"}
+    {"source":"Whitebeard","target":"Marco","value":30,"saga":2, "color": "green"},
+    {"source":"Whitebeard","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
+    {"source":"Whitebeard","target":"Blackbeard","value":30,"saga":2, "color": "red"},
+    {"source":"Whitebeard","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Aokiji","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Kizaru","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Gecko Moria","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Whitebeard","target":"Kaido","value":30,"saga":9, "color": "red"}
 
 
 
