@@ -259,6 +259,7 @@ function piratesNodes(nodes){
 //funzione che prende i vicini di un nodo
 function getNeighbors(node) {
   return relazioni.reduce((neighbors, link) => {
+    console.log(link)
     if (link.target.id === node.id) {
       neighbors.push(link.source.id)
     } else if (link.source.id === node.id) {

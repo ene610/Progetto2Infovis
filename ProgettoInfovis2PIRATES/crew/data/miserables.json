@@ -65,12 +65,14 @@
     {"name":"Gotti", "group":10,"saga":5, "img": "../char-image/gotti.png"},
 
     {"name":"Basil Hawkins", "group":11,"saga":5, "img": "../char-image/basil-hawkins.png"},
+    {"name":"Faust", "group":11,"saga":5, "img": "../char-image/faust.png"},
 
     {"name":"Eustass Kid", "group":12,"saga":5, "img": "../char-image/kid.png"},
     {"name":"Killer", "group":12,"saga":5, "img": "../char-image/killer.png"},
     {"name":"Heat", "group":12,"saga":5, "img": "../char-image/heat.png"},
 
     {"name":"X Drake", "group":13,"saga":5, "img": "../char-image/drake.png"},
+    {"name":"???", "group":13,"saga":5, "img": "../char-image/DrakeMember.png"},
 
     {"name":"Trafalgar D. Law", "group":14,"saga":5, "img": "../char-image/trafalgar-law.png"},
     {"name":"Bepo", "group":14,"saga":5, "img": "../char-image/bepo.png"},
@@ -127,7 +129,7 @@
     {"source":"Monkey D. Luffy","target":"Gecko Moria","value":30,"saga":4, "color": "red"},
     {"source":"Monkey D. Luffy","target":"Capone Bege","value":30,"saga":10, "color": "green"},
     {"source":"Monkey D. Luffy","target":"Basil Hawkins","value":30,"saga":11, "color": "red"},
-    {"source":"Monkey D. Luffy","target":"x Drake","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"X Drake","value":30,"saga":11, "color": "red"},
     {"source":"Monkey D. Luffy","target":"Eustass Kid","value":30,"saga":11, "color": "green"},
     {"source":"Monkey D. Luffy","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
     {"source":"Monkey D. Luffy","target":"Boa Hancock","value":30,"saga":6, "color": "green"},
@@ -157,9 +159,8 @@
     {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
-    {"source":"Sanji","target":"Spandam","value":30,"saga":3, "color": "red"}
-
-
+    {"source":"Sanji","target":"Spandam","value":30,"saga":3, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Buggy","value":30,"saga":1, "color": "red"}
 
       ]
 }

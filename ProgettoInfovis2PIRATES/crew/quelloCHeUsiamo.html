@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Clustered Network</title>
-    <script src="http://d3js.org/d3.v2.js"></script>
+    <script src="http://d3js.org/d3.v3.js"></script>
 
     <style type="text/css">
 svg {
@@ -60,7 +60,7 @@ function linkid(l) {
   return u<v ? u+"|"+v : v+"|"+u;
 }
 
-function getGroup(n) { return n.group; }
+function getGroup(n) {return n.group; }
 
 function nodesInSaga(nodes,saga){
   i=0
@@ -101,10 +101,10 @@ function network(data, prev, index, expand) {
       nodes = [], // output nodes
       links = [], // output links
       expandedCrew = [];
-
   // process previous nodes for reuse or centroid calculation
   if (prev) {
     prev.nodes.forEach(function(n) {
+
       var i = index(n), o;
       if (n.size > 0) {
         gn[i] = n;
@@ -117,10 +117,11 @@ function network(data, prev, index, expand) {
       }
     });
   }
+  var crew;
   for (var k=0; k<data.nodes.length; ++k) {
     var n = data.nodes[k],
-        i = index(n),
-        l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[]});
+        i = index(n)
+    var l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[], name: n.name});
     if (expand[i] && !n.img.includes("flag")) {
       // the node should be directly visible
       nm[n.name] = nodes.length;
@@ -157,7 +158,7 @@ function network(data, prev, index, expand) {
 
   // always count group size as we also use it to tweak the force graph strengths/distances
     l.size += 1;
-  n.group_data = l;
+    n.group_data = l;
   }
 
   for (i in gm) { gm[i].link_count = 0; }
@@ -165,8 +166,8 @@ function network(data, prev, index, expand) {
   // determine links
   for (k=0; k<data.links.length; ++k) {
     //console.log(data.links.length,k)  
-    var e = data.links[k],
-        u = index(e.source),
+    var e = data.links[k]
+    var    u = index(e.source),
         v = index(e.target);
   if (u != v) {
     
@@ -187,13 +188,16 @@ function network(data, prev, index, expand) {
 
 function convexHulls(nodes, index, offset) {
   var hulls = {};
-
+  var names = {}
+  //console.log(nodes)
   // create point sets
   for (var k=0; k<nodes.length; ++k) {
     var n = nodes[k];
     if (n.size) continue;
     var i = index(n),
         l = hulls[i] || (hulls[i] = []);
+    //console.log(n)
+    names[i] = crews[n.group]
     l.push([n.x-offset, n.y-offset]);
     l.push([n.x-offset, n.y+offset]);
     l.push([n.x+offset, n.y-offset]);
@@ -203,7 +207,8 @@ function convexHulls(nodes, index, offset) {
   // create convex hulls
   var hullset = [];
   for (i in hulls) {
-    hullset.push({group: i, path: d3.geom.hull(hulls[i])});
+    //console.log(names)
+    hullset.push({group: i, path: d3.geom.hull(hulls[i]), name: names[i]});
   }
 
   return hullset;
@@ -216,7 +221,7 @@ function drawCluster(d) {
 // --------------------------------------------------------
 
 var body = d3.select("body");
-
+var crews = []
 var vis = body.append("svg")
    .attr("width", width)
    .attr("height", height);
@@ -224,10 +229,20 @@ var vis = body.append("svg")
 d3.json("data/miserables.json", function(json) {
   data = json;
   //console.log(data)
-  saga = 2
+  saga = 5
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
+  crews = getCrews(data.nodes)
   data = {"links":linki,"nodes":nodi}
+
+  function getCrews(data) {
+    var crews = []
+    for(x of data){
+      if(x.img.includes("flag"))
+        crews[x.group] = x.name;
+    }
+    return crews;
+  }
   //console.log(data.links)
 
   for (var i=0; i<data.links.length; ++i) {
@@ -253,7 +268,7 @@ var defs = vis.append("defs");
 
 function functionImage(data, image) {
     //GRAZIE DAVIDE PER QUESTO MIRACOLO DELL'INFORMATICA
-   // console.log("DATA: " + data.group_data.nodes)
+    //console.log("DATA: " + image)
     var img = image ? image : data.nodes[0].img
     defs.append('pattern')
     .attr("id", img)
@@ -261,11 +276,61 @@ function functionImage(data, image) {
     .attr("height", 1)
     .append("svg:image")
     .attr("id","image")//se vuoi riprendere le img d3.selectAll("image")
-    .attr("xlink:href", function() { return img })
+    .attr("xlink:href", function() { return img.slice(1) })
     .attr("width", function() {return image ? rPirates * 2 : rCrew * 2;})
     .attr("height", function() {return image ? rPirates * 2 : rCrew * 2;})
     
     return "url(#" + img + ")"
+}
+
+// selezione nodi e link on mouseOver
+function getNeighbors(node) {
+  return link[0].reduce((neighbors, link) => {
+    var split = link.id.split("-")
+    if (split[1] === node.name) {           // if (link.target.id === node.id) {
+      neighbors.push(split[0])        // neighbors.push(link.source.id)
+    } else if (split[0] === node.name) {      // else if (link.source.id === node.id) {
+      neighbors.push(split[1])
+    }
+
+    return neighbors
+  }, [node.name])
+}
+
+function getNodeColor(node, neighbors) {
+  if (neighbors.indexOf(node.name)>=0) {
+    return node.img ? rPirates : rCrew
+  }
+  return 0
+}
+
+var hulls = []
+
+function getHullColor(hull) {
+  return hulls.includes(hull.group) ? hull.group : "white" 
+}
+
+function getLinkColor(node, link) {
+  hulls.push(link.source.group);
+  hulls.push(link.target.group);
+
+  return isNeighborLink(node, link) ? 4 : 0
+}
+
+function isNeighborLink(node, link) {
+  return link.target.name === node.name || link.source.name === node.name
+  //neighbors.includes()
+}
+
+function selectNode(selectedNode) {
+  const neighbors = getNeighbors(selectedNode, hulls)
+  node.attr('r', node => getNodeColor(node, neighbors))
+  link.style('stroke-width', link => getLinkColor(selectedNode,link))
+  console.log(hulls)
+  hull.style("fill", hull => getHullColor(hull))
+  hulls = []
+  //labels.attr('opacity', node => getLabels(node, neighbors))
+  
 }
 
 function init() {
@@ -321,20 +386,21 @@ function init() {
     .enter().append("path")
       .attr("class", "hull")
       .attr("d", drawCluster)
-      .style("fill", function(d) { return fill(d.group); })
+      .style("fill", function(d) {return fill(d.group); })
       .on("click", function(d) {
 //console.log("hull click", d, arguments, this, expand[d.group]);
       expand[d.group] = false; 
       init();
     });
 
-    /*hull.append("title")
-      .text(function(d) { console.log(d); return d.name || d.captain || d.member; })*/
+    hull.append("title")
+      .text(function(d) {return d.name})
 
   link = linkg.selectAll("line.link").data(net.links, linkid);
   link.exit().remove();
   link.enter().append("line")
       .attr("class", "link")
+      .attr("id", function(d) { return d.source.name + "-" + d.target.name})
       .attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
       .attr("x2", function(d) { return d.target.x; })
@@ -357,7 +423,7 @@ function init() {
   node.enter().append("circle")
       // if (d.size) -- d.size > 0 when d is a group node.
       .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
-      .attr("r", function(d) { return d.name ? rPirates : rCrew; }) 
+      .attr("r", function(d) {return d.img ? rPirates : rCrew; }) 
       .attr("id", function(d) { if(d.nodes != undefined && d.nodes[0].img.includes("flag")) 
                                return "crew" + d.group; else return d.name; })
       .attr("cx", function(d) { return d.x; })                            //{ return d.name ? rPirates : rCrew; }) 
@@ -365,6 +431,8 @@ function init() {
       .style("fill", function(d) {return functionImage(d, d.img); })
       .style("stroke", "black")
       .on("click", function(d) {
+        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        link.style("stroke-width", function(d) { return d.size || 1; })
         //console.log("node click", d, arguments, this, expand[d.group]);
         expand[d.group] = !expand[d.group];
         init();
@@ -372,8 +440,19 @@ function init() {
           d3.selectAll("#crew" + d.group).remove();   // DA SISTEMARE
       });
       
-     // console.log(net.nodes)
-      //  console.log(d3.selectAll("circle"))
+  node.append("title")
+    .text(function(d) {return d.name})
+  
+  node.on('mouseover',function() {
+        nodeSelected = d3.select(this)
+        selectNode(nodeSelected.data()[0])
+      })
+      .on('mouseout',function() {
+        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        link.style("stroke-width", function(d) { return d.size || 1; })
+        hull.style("fill", function(d) {return fill(d.group); })
+      })
+
 
   node.call(force.drag);
 
