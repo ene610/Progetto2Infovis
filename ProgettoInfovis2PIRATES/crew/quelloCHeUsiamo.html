@@ -490,7 +490,7 @@ function init() {
 
 function collide(node) {
   
-  var r = 100,
+  var r = 110,
       nx1 = node.x - r,
       nx2 = node.x + r,
       ny1 = node.y - r,
@@ -501,7 +501,7 @@ function collide(node) {
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
           l = Math.sqrt(x * x + y * y),
-          r = 100;
+          r = 110;
       if (l < r) {
         l = (l - r) / l * .5;
         node.x -= x *= l;
