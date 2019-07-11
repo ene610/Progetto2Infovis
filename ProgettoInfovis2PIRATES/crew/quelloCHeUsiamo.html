@@ -243,7 +243,7 @@ var vis = body.append("svg")
 d3.json("data/miserables.json", function(json) {
   data = json;
   //console.log(data)
-  saga = 1
+  saga = 11
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
@@ -363,8 +363,6 @@ function isNeighborLink(node, link) {
 }
 
 function getLabels(label, neighbors) {
-  console.log(label)
-  console.log(neighbors)
   if (neighbors.indexOf(node.name)>=0) {
     return 1
   }
@@ -379,8 +377,8 @@ function selectNode(selectedNode) {
   node.style('stroke-width', node => getNodeStroke(node, "stroke-width"))
   //console.log(hulls)
   hull.style("opacity", hull => getHullColor(hull))
-  labels.attr("y", label => label.y - 30 * getLabels(label, neighbors))
-  labels.attr("opacity", label => getLabels(label, neighbors))
+  //labels.attr("y", label => label.y - 30 * getLabels(label, neighbors))
+  //labels.attr("opacity", label => getLabels(label, neighbors))
   hulls = []
   linksColor = new Map()
   //labels.attr('opacity', node => getLabels(node, neighbors))
