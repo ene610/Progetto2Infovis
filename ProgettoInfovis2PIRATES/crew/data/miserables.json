@@ -25,8 +25,8 @@
     {"name": "CP9","group":23,"saga":3, "img": "../flags/flag-cp9.png"},
 
     {"name":"Monkey D. Luffy","group":1,"saga":1, "img": "../char-image/rufy.png"},
-    {"name":"Sanji","group":1,"saga":1, "img": "../char-image/zoro.png"},
-    {"name":"Roronoa Zoro","group":1,"saga":1,  "img": "../char-image/sanji.png"},
+    {"name":"Sanji","group":1,"saga":1, "img": "../char-image/sanji.png"},
+    {"name":"Roronoa Zoro","group":1,"saga":1,  "img": "../char-image/zoro.png"},
 
     {"name":"Shanks","group":2,"saga":1, "img": "../char-image/shanks.png"},
     {"name":"Benn Beckman", "group":2,"saga":1, "img": "../char-image/beckman.png"},

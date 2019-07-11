@@ -76,18 +76,32 @@ function nodesInSaga(nodes,saga){
   return nodesSaga;
 }
 
+function logMapElements(value, key, map) {
+    console.log("m[" + key + "] = ");
+    
+}
+
 function linkInSaga(links,saga){
   linksSaga = [];
+  linksSaga1 = [];
+  map = new Map()
   links.forEach(link => {
       if(link.saga <= saga){
         link.source = nameToIndex[link.source]
         link.target =  nameToIndex[link.target]
-       // console.log(link)
+        map.set( String(link.source) +","+String(link.target),link)
+        
         linksSaga.push(link)
         //console.log(nameToIndex[link.target])
       }
+      
   });
-  return linksSaga;
+  map.forEach(value=>{
+    linksSaga1.push(value)
+  })
+  console.log(linksSaga1)
+  console.log(linksSaga)
+  return linksSaga1;
 }
 
 // constructs the network to visualize
@@ -229,7 +243,7 @@ var vis = body.append("svg")
 d3.json("data/miserables.json", function(json) {
   data = json;
   //console.log(data)
-  saga = 11
+  saga = 1
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
