@@ -30,14 +30,14 @@ line.link {
   <body>
     <script type="text/javascript">
     
-var width = 1200,     // svg width
-    height = 600,     // svg height
+var width = 1300,     // svg width
+    height = 700,     // svg height
     dr = 20,         // default point radius
     rCrew = 25,
     rPirates = 20,    
     off = 15,    // cluster hull offset
     expand = {}, // expanded clusters
-    data, net, force, hullg, hull, linkg, link, nodeg, node;
+    data, net, force, hullg, hull, linkg, link, nodeg, node, labels;
 
 var nameToIndex ;
 
@@ -283,6 +283,9 @@ function functionImage(data, image) {
     return "url(#" + img + ")"
 }
 
+var hulls = []
+var linksColor = new Map()
+
 // selezione nodi e link on mouseOver
 function getNeighbors(node) {
   return link[0].reduce((neighbors, link) => {
@@ -304,7 +307,14 @@ function getNodeColor(node, neighbors) {
   return 0
 }
 
-var hulls = []
+function getNodeStroke(node, selectedNode, string) {
+  if(string == "stroke")
+    return linksColor.get(node.name) ? linksColor.get(node.name) : "black"
+  else if(linksColor.get(node.name) != undefined)
+    return 3.5;
+  else return 1;
+}
+
 
 function getHullColor(hull) {
   var i = 0;
@@ -312,13 +322,23 @@ function getHullColor(hull) {
     if(h == parseInt(hull.group))
       i = i+1;
   }
-  return i>1 ? hull.group : "white" 
+  return i>1 ? 1 : 0 
 }
 
 function getLinkColor(node, link) {
   if(isNeighborLink(node, link)){
     hulls.push(link.source.group);
     hulls.push(link.target.group);
+  }
+  if(isNeighborLink(node, link)){
+    var color = link.color;
+    if(link.color == "green")
+      color = "#03c03c";
+    else color = "#e30022"
+    if(node.name != link.source.name)
+      linksColor.set(link.source.name, color);
+    if(node.name != link.target.name)
+      linksColor.set(link.target.name, color);
   }
   return isNeighborLink(node, link) ? 4 : 0
 }
@@ -328,14 +348,27 @@ function isNeighborLink(node, link) {
   //neighbors.includes()
 }
 
+function getLabels(label, neighbors) {
+  console.log(label)
+  console.log(neighbors)
+  if (neighbors.indexOf(node.name)>=0) {
+    return 1
+  }
+  return 0
+}
+
 function selectNode(selectedNode) {
   const neighbors = getNeighbors(selectedNode, hulls)
   node.attr('r', node => getNodeColor(node, neighbors))
   link.style('stroke-width', link => getLinkColor(selectedNode,link))
+  node.style('stroke', node => getNodeStroke(node, selectedNode, "stroke"))
+  node.style('stroke-width', node => getNodeStroke(node, "stroke-width"))
   //console.log(hulls)
-  console.log(hulls)
-  hull.style("fill", hull => getHullColor(hull))
+  hull.style("opacity", hull => getHullColor(hull))
+  labels.attr("y", label => label.y - 30 * getLabels(label, neighbors))
+  labels.attr("opacity", label => getLabels(label, neighbors))
   hulls = []
+  linksColor = new Map()
   //labels.attr('opacity', node => getLabels(node, neighbors))
   
 }
@@ -444,22 +477,38 @@ function init() {
         expand[d.group] = !expand[d.group];
         init();
         if(expand[d.group] == true)
-          d3.selectAll("#crew" + d.group).remove();   // DA SISTEMARE
+          d3.selectAll("#crew" + d.group).remove(); 
       });
       
-  node.append("title")
+  var title = node.append("title")
     .text(function(d) {return d.name})
-  
+
   node.on('mouseover',function() {
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
+        //console.log(labels)
+        //labels.attr("y", label => label.y -30)
+        //labels.attr("opacity", 1)
       })
       .on('mouseout',function() {
         node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        node.style("stroke", "black")
+        node.style("stroke-width", 1)
         link.style("stroke-width", function(d) { return d.size || 1; })
-        hull.style("fill", function(d) {return fill(d.group); })
+        hull.style("opacity", 1)
       })
 
+  /*labels = vis.append("g").selectAll("circle")
+    .data(net.nodes)//cambiato da nodes a crews
+    .enter().append("svg:text")
+    .text(function(d) { return d.name})
+    .style("text-anchor", "middle")
+    .style("fill", "black")
+    .style("font-family", "Arial")
+    .style("font-size", 15)
+    .attr("opacity", 1)
+    */
+    
 
   node.call(force.drag);
 
@@ -484,6 +533,9 @@ function init() {
 
     node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
         .attr("cy", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });
+    
+    /*labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
+          .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });*/
   });
 }
 
