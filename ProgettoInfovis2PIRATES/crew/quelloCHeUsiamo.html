@@ -464,6 +464,14 @@ function init() {
   node.call(force.drag);
 
   force.on("tick", function() {
+
+      
+    var q = d3.geom.quadtree(net.nodes),
+      i = 0,
+      n = net.nodes.length;
+
+    while (++i < n) q.visit(collide(net.nodes[i]));
+
     if (!hull.empty()) {
       hull.data(convexHulls(net.nodes, getGroup, off))
           .attr("d", drawCluster);
