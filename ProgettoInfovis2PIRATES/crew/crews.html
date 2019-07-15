@@ -428,8 +428,12 @@ function init() {
       .size([width, height])
       .linkDistance(function(l, i) {
         var n1 = l.source, n2 = l.target;
-        if(n1.group == n2.group)
-          return 20 ;
+        if(n1.group == n2.group) {
+          //if(n1.nodes.length < 4)
+            //return 10;
+          //else
+            return 20 ;
+        }
         else
           return 300 ;
     })
@@ -490,12 +494,14 @@ function init() {
       .style("fill", function(d) {return functionImage(d, d.img); })
       .style("stroke", "black")
       .on("click", function(d) {
-        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
         link.style("stroke-width", function(d) { return d.size || 1; })
         //console.log("node click", d, arguments, this, expand[d.group]);
         expand[d.group] = !expand[d.group];
         d3.selectAll("#label").remove()
         init();
+        node.style('stroke', "black")
+        node.style('stroke-width', 1)
         node.attr('opacity', 1)
         if(expand[d.group] == true)
           d3.selectAll("#crew" + d.group).remove(); 
