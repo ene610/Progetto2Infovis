@@ -37,7 +37,7 @@ var width = 1200,     // svg width
     rPirates = 20,    
     off = 15,    // cluster hull offset
     expand = {}, // expanded clusters
-    data, net, force, hullg, hull, linkg, link, nodeg, node, labels;
+    data, net, force, hullg, hull, linkg, link, nodeg, node, labels,originalData;
 
 var nameToIndex ;
 
@@ -46,9 +46,6 @@ var curve = d3.svg.line()
     .tension(.85);
 
 var fill = d3.scale.category20();
-
-function noop() { return false; }
-
 
 function nodeid(n) {
   return n.size ? "_g_"+n.group : n.name + n.img;
@@ -99,6 +96,15 @@ function linkInSaga(links,saga){
   return linksSaga1;
 }
 
+function getCrews(data) {
+    var crews = []
+    for(x of data){
+      if(x.img.includes("flag"))
+        crews[x.group] = x.name;
+    }
+    return crews;
+  }
+
 // constructs the network to visualize
 function network(data, prev, index, expand) {
   expand = expand || {};
@@ -110,8 +116,10 @@ function network(data, prev, index, expand) {
       nodes = [], // output nodes
       links = [], // output links
       expandedCrew = [];
+      //console.log(nodes,"nodi")
   // process previous nodes for reuse or centroid calculation
   if (prev) {
+    
     prev.nodes.forEach(function(n) {
 
       var i = index(n), o;
@@ -131,6 +139,7 @@ function network(data, prev, index, expand) {
     var n = data.nodes[k],
         i = index(n)
     var l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[], name: n.name});
+    
     if (expand[i] && !n.img.includes("flag")) {
       // the node should be directly visible
       nm[n.name] = nodes.length;
@@ -174,15 +183,15 @@ function network(data, prev, index, expand) {
 
   // determine links
   for (k=0; k<data.links.length; ++k) {
-    //console.log(data.links.length,k)  
+    //console.log(data.links.length,k) 
+        
     var e = data.links[k]
-    var    u = index(e.source),
-        v = index(e.target);
-  if (u != v) {
-    
+    var u = index(e.source);
+    var v = index(e.target);
+    if (u != v) {
     gm[u].link_count++;
     gm[v].link_count++;
-  }
+    }
   
     u = expand[u] ? nm[e.source.name] : nm[u];
     v = expand[v] ? nm[e.target.name] : nm[v];
@@ -270,22 +279,14 @@ svg.append("text")
    .attr("font-size", "18px")
 
 d3.json("data/crews.json", function(json) {
-  data = json;
-  //console.log(data)
+  originalData = json;
+  data = JSON.parse(JSON.stringify(originalData))
   saga = 11
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
   data = {"links":linki,"nodes":nodi}
 
-  function getCrews(data) {
-    var crews = []
-    for(x of data){
-      if(x.img.includes("flag"))
-        crews[x.group] = x.name;
-    }
-    return crews;
-  }
   //console.log(data.links)
 
   for (var i=0; i<data.links.length; ++i) {
@@ -297,13 +298,14 @@ d3.json("data/crews.json", function(json) {
   hullg = vis.append("g");
   linkg = vis.append("g");
   nodeg = vis.append("g");
-
   init();
-
-  vis.attr("opacity", 1e-6)
+  //console.log(net)
+  
+  vis.attr("opacity", 0.2)
     .transition()
       .duration(1000)
       .attr("opacity", 1);
+
 });
 
 var defs = vis.append("defs");
@@ -426,19 +428,15 @@ function init() {
       .nodes(net.nodes)
       .links(net.links)
       .size([width, height])
-      .linkDistance(function(l, i) {
+      .linkDistance(function(l) {
         var n1 = l.source, n2 = l.target;
-        if(n1.group == n2.group) {
-          //if(n1.nodes.length < 4)
-            //return 10;
-          //else
-            return 20 ;
-        }
-        else
-          return 300 ;
-    })
-    .linkStrength(function(l, i) {return 0.7;})
-    .gravity(0.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
+        return n1.group == n2.group ? 30 : 300; 
+        })
+      .linkStrength(function(l) {
+        var n1 = l.source, n2 = l.target;
+        return n1.group == n2.group ? 1.5 : 0.2; 
+        })
+    .gravity(0.15)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
     .charge(-2000)    // ... charge is important to turn single-linked groups to the outside
     .friction(0.1)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
       .start();
@@ -451,6 +449,7 @@ function init() {
       .attr("d", drawCluster)
       .style("fill", function(d) {return fill(d.group); })
       .on("click", function(d) {
+      
 //console.log("hull click", d, arguments, this, expand[d.group]);
       expand[d.group] = false; 
       init();
@@ -511,6 +510,7 @@ function init() {
     .text(function(d) {return d.name})
 
   node.on('mouseover',function() {
+       
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
       })
@@ -600,6 +600,26 @@ function collide(node) {
   };
 }
 
+function updateAllGraph(saga){
+
+  data = JSON.parse(JSON.stringify(originalData))
+  nodesToUpdate = nodesInSaga(data.nodes,saga)
+  linksToUpdate = linkInSaga(data.links,saga)
+  crews = getCrews(data.nodes)
+
+  data = {"links":linksToUpdate,"nodes":nodesToUpdate}
+
+  //ricorda di renderlo una funzione
+
+  for (var i=0; i<data.links.length; ++i) {
+    o = data.links[i];
+    o.source = data.nodes[o.source];
+    o.target = data.nodes[o.target];
+  }
+
+  init();
+
+}
     </script>
   </body>
 </html>
