@@ -1,1017 +1,115 @@
 {
-  "crews": [
-    {
-      "name": "Straw Hat Pirates",
-      "img": "../flags/flag-straw-hat.png",
-      "members": [
-        {
-          "captain": "Monkey D. Luffy",
-          "img": "../char-image/rufy.png"
-        },
-        {
-          "member1": "Zoro",
-          "img": "../char-image/zoro.png"
-        },
-        {
-          "member2": "Sanji",
-          "img": "../char-image/sanji.png"
-        }
-      ]
-    },
-    {
-      "name": "Red Hair Pirates",
-      "img": "../flags/flag-shanks.png",
-      "members": [
-        {
-          "captain": "Shanks",
-          "img": "../char-image/shanks.png"
-        },
-        {
-          "member": "Benn Beckman",
-          "img": "../char-image/beckman.png"
-        },
-        {
-          "member": "Lucky Roux",
-          "img": "../char-image/lucky-roux.png"
-        }
-      ]
-    },
-    {
-      "name": "Buggy Pirates",
-      "img": "../flags/flag-buggy.png",
-      "members": [
-        {
-          "captain": "Buggy",
-          "img": "../char-image/buggy.png"
-        },
-        {
-          "member": "Cabaji",
-          "img": "../char-image/cabaji.png"
-        },
-        {
-          "member": "Mohji",
-          "img": "../char-image/moji.png"
-        }
-      ]
-    },
-    {
-      "name": "Baroque Works",
-      "img": "../flags/flag-baroque.png",
-      "members": [
-        {
-          "captain": "Crocodile",
-          "img": "../char-image/crocodile.png"
-        },
-        {
-          "member": "Mr. 1",
-          "img": "../char-image/mr1.png"
-        },
-        {
-          "member": "Mr. 2",
-          "img": "../char-image/mr2.png"
-        }
-      ]
-    },
-    {
-      "name": "Whitebeard Pirates",
-      "img": "../flags/flag-whitebeard.png",
-      "members": [
-        {
-          "captain": "Whitebeard",
-          "img": "../char-image/whitebeard.png"
-        },
-        {
-          "member": "Marco",
-          "img": "../char-image/marco.png"
-        },
-        {
-          "member": "Portgas D. Ace",
-          "img": "../char-image/ace.png"
-        }
-      ]
-    },
-    {
-      "name": "Blackbeard Pirates",
-      "img": "../flags/flag-blackbeard.png",
-      "members": [
-        {
-          "captain": "Blackbeard",
-          "img": "../char-image/blackbeard.png"
-        },
-        {
-          "member": "Jesus Burgess",
-          "img": "../char-image/burgess.png"
-        },
-        {
-          "member": "Shiryu",
-          "img": "../char-image/shiryu.png"
-        }
-      ]
-    },
-    {
-      "name": "Donquixote Pirates",
-      "img": "../flags/flag-donquixote.png",
-      "members": [
-        {
-          "captain": "Donquixote Doflamingo",
-          "img": "../char-image/doflamingo.png"
-        },
-        {
-          "member": "Pica",
-          "img": "../char-image/pica.png"
-        },
-        {
-          "member": "Diamante",
-          "img": "../char-image/diamante.png"
-        }
-      ]
-    },
-    {
-      "name": "Marine",
-      "img": "../flags/flag-marine.png",
-      "members": [
-        {
-          "captain": "Akainu",
-          "img": "../char-image/akainu.png"
-        },
-        {
-          "member": "Aokiji",
-          "img": "../char-image/aokiji.png"
-        },
-        {
-          "member": "Kizaru",
-          "img": "../char-image/kizaru.png"
-        }
-      ]
-    },
-    {
-      "name": "Thriller Bark Pirates",
-      "img": "../flags/flag-thriller-bark.png",
-      "members": [
-        {
-          "captain": "Gecko Moria",
-          "img": "../char-image/moria.png"
-        },
-        {
-          "member": "Absalom",
-          "img": "../char-image/absalom.png"
-        },
-        {
-          "member": "Perona",
-          "img": "../char-image/perona.png"
-        }
-      ]
-    },
-    {
-      "name": "Firetank Pirates",
-      "img": "../flags/flag-firetank.png",
-      "members": [
-        {
-          "captain": "Capone Bege",
-          "img": "../char-image/capone-bege.png"
-        },
-        {
-          "member": "Vito",
-          "img": "../char-image/vito.png"
-        },
-        {
-          "member": "Gotti",
-          "img": "../char-image/gotti.png"
-        }
-      ]
-    },
-    {
-      "name": "Hawkins Pirates",
-      "img": "../flags/flag-hawkins.png",
-      "members": [
-        {
-          "captain": "Basil Hawkins",
-          "img": "../char-image/basil-hawkins.png"
-        }
-      ]
-    },
-    {
-      "name": "Kid Pirates",
-      "img": "../flags/flag-kid.png",
-      "members": [
-        {
-          "captain": "Eustass Kid",
-          "img": "../char-image/kid.png"
-        },
-        {
-          "member": "Killer",
-          "img": "../char-image/killer.png"
-        },
-        {
-          "member": "Heat",
-          "img": "../char-image/heat.png"
-        }
-      ]
-    },
-    {
-      "name": "Drake Pirates",
-      "img": "../flags/flag-drake.png",
-      "members": [
-        {
-          "captain": "X Drake",
-          "img": "../char-image/drake.png"
-        }
-      ]
-    },
-    {
-      "name": "Heart Pirates",
-      "img": "../flags/flag-heart.png",
-      "members": [
-        {
-          "captain": "Trafalgar D. Law",
-          "img": "../char-image/trafalgar-law.png"
-        },
-        {
-          "member": "Bepo",
-          "img": "../char-image/bepo.png"
-        },
-        {
-          "member": "Jean Bart",
-          "img": "../char-image/jeanbart.png"
-        }
-      ]
-    },
-    {
-      "name": "Kuja Pirates",
-      "img": "../flags/flag-kuja.png",
-      "members": [
-        {
-          "captain": "Boa Hancock",
-          "img": "../char-image/boa-hancock.png"
-        },
-        {
-          "member": "Boa Sandersonia",
-          "img": "../char-image/boa-sandersonia.png"
-        },
-        {
-          "member": "Boa Marigold",
-          "img": "../char-image/boa-marigold.png"
-        }
-      ]
-    },
-    {
-      "name": "Impel Down",
-      "img": "../flags/flag-impel-down.png",
-      "members": [
-        {
-          "captain": "Magellan",
-          "img": "../char-image/magellan.png"
-        },
-        {
-          "member": "Hannyabal",
-          "img": "../char-image/hannyabal.png"
-        },
-        {
-          "member": "Sadie",
-          "img": "../char-image/sadie.png"
-        }
-      ]
-    },
-    {
-      "name": "Big Mom Pirates",
-      "img": "../flags/flag-big-mom.png",
-      "members": [
-        {
-          "captain": "Charlotte Linlin (Big Mom)",
-          "img": "../char-image/big-mom.png"
-        },
-        {
-          "member": "Charlotte Katakuri",
-          "img": "../char-image/katakuri.png"
-        },
-        {
-          "member": "Charlotte Cracker",
-          "img": "../char-image/cracker.png"
-        }
-      ]
-    },
-    {
-      "name": "Beasts Pirates",
-      "img": "../flags/flag-kaido.png",
-      "members": [
-        {
-          "captain": "Kaido",
-          "img": "../char-image/kaido.png"
-        },
-        {
-          "member": "King",
-          "img": "../char-image/king.png"
-        },
-        {
-          "member": "Queen",
-          "img": "../char-image/queen.png"
-        }
-      ]
-    },
-    {
-      "name": "Punk Hazard",
-      "img": "../flags/flag-punk-hazard.png",
-      "members": [
-        {
-          "captain": "Caesar Clown",
-          "img": "../char-image/caesar.png"
-        },
-        {
-          "member": "Monet",
-          "img": "../char-image/monet.png"
-        }
-      ]
-    },
-    {
-      "name": "Beautiful Pirates",
-      "img": "../flags/flag-beautiful.png",
-      "members": [
-        {
-          "captain": "Cavendish",
-          "img": "../char-image/cavendish.png"
-        },
-        {
-          "member": "Suleiman",
-          "img": "../char-image/suleiman.png"
-        }
-      ]
-    },
-    {
-      "name": "Barto Club Pirates",
-      "img": "../flags/flag-bartolomeo.png",
-      "members": [
-        {
-          "captain": "Bartolomeo",
-          "img": "../char-image/bartolomeo.png"
-        },
-        {
-          "member": "Gambia",
-          "img": "../char-image/gambia.png"
-        }
-      ]
-    },
-    {
-      "name": "Germa 66",
-      "img": "../flags/flag-germa66.png",
-      "members": [
-        {
-          "captain": "Vinsmoke Judge",
-          "img": "../char-image/vinsmoke-judge.png"
-        },
-        {
-          "member": "Vinsmoke Ichiji",
-          "img": "../char-image/vinsmoke-ichiji.png"
-        },
-        {
-          "member": "Vinsmoke Niji",
-          "img": "../char-image/vinsmoke-niji.png"
-        }
-      ]
-    },
-    {
-      "name": "CP9",
-      "img": "../flags/flag-cp9.png",
-      "members": [
-        {
-          "captain": "Spandam",
-          "img": "../char-image/spandam.png"
-        },
-        {
-          "member": "Lucci",
-          "img": "../char-image/lucci.png"
-        },
-        {
-          "member": "Kaku",
-          "img": "../char-image/kaku.png"
-        }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "name": "strawHat - redHair",
-      "source": 4,
-      "target": 8,
-      "value": 6,
-      "saga": 1,
-      "color": "green"
-    },
-    {
-      "name": "strawHat - buggy",
-      "source": 4,
-      "target": 12,
-      "value": 6,
-      "saga": 1,
-      "color": "red"
-    },
-    {
-      "name": "strawHat - buggy",
-      "source": 4,
-      "target": 12,
-      "value": 6,
-      "saga": 6,
-      "color": "green"
-    },
-    {
-      "name": "strawHat - baroque",
-      "source": 4,
-      "target": 16,
-      "value": 4,
-      "saga": 2,
-      "color": "red"
-    },
-    {
-      "name": "strawHat - whitebeard",
-      "source": 4,
-      "target": 20,
-      "value": 4,
-      "saga": 7,
-      "color": "green"
-    },
-    {
-      "name": "strawHat - blackbeard",
-      "source": 4,
-      "target": 24,
-      "value": 4,
-      "saga": 3,
-      "color": "red"
-    },
-    {
-      "name": "strawHat - doflamingo",
-      "source": 4,
-      "target": 28,
-      "value": 3,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - marine",
-      "source": 4,
-      "target": 32,
-      "value": 3,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - thrillerBark",
-      "source": 4,
-      "target": 36,
-      "value": 4,
-      "saga": 4,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - firetank",
-      "source": 4,
-      "target": 40,
-      "value": 4,
-      "saga": 10,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - hawkins",
-      "source": 4,
-      "target": 42,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - kid",
-      "source": 4,
-      "target": 46,
-      "value": 4,
-      "saga": 11,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - drake",
-      "source": 4,
-      "target": 48,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - heart",
-      "source": 4,
-      "target": 52,
-      "value": 4,
-      "saga": 8,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - kuja",
-      "source": 4,
-      "target": 56,
-      "value": 4,
-      "saga": 6,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - impelDown",
-      "source": 4,
-      "target": 60,
-      "value": 4,
-      "saga": 6,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - bigMom",
-      "source": 4,
-      "target": 64,
-      "value": 4,
-      "saga": 10,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - kaido",
-      "source": 4,
-      "target": 68,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - punkHazard",
-      "source": 4,
-      "target": 71,
-      "value": 4,
-      "saga": 8,
-      "color":"red"
-    },
-    {
-      "name": "strawHat - beautiful",
-      "source": 4,
-      "target": 74,
-      "value": 4,
-      "saga": 9,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - barto",
-      "source": 4,
-      "target": 77,
-      "value": 4,
-      "saga": 9,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - germa66",
-      "source": 4,
-      "target": 81,
-      "value": 4,
-      "saga": 10,
-      "color":"green"
-    },
-    {
-      "name": "strawHat - cp9",
-      "source": 4,
-      "target": 85,
-      "value": 4,
-      "saga": 3,
-      "color":"red"
-    },
-    {
-      "name": "redHair - whitebeard",
-      "source": 8,
-      "target": 20,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "redHair - whitebeard",
-      "source": 8,
-      "target": 20,
-      "value": 4,
-      "saga": 5,
-      "color":"green"
-    },
-    {
-      "name": "redHair - blackbeard",
-      "source": 8,
-      "target": 24,
-      "value": 4,
-      "saga": 7,
-      "color":"red"
-    },
-    {
-      "name": "redHair - marine",
-      "source": 8,
-      "target": 32,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "redHair - bigMom",
-      "source": 8,
-      "target": 64,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "redHair - kaido",
-      "source": 8,
-      "target": 68,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "buggy - whitebeard",
-      "source": 12,
-      "target": 20,
-      "value": 4,
-      "saga": 7,
-      "color":"green"
-    },
-    {
-      "name": "buggy - marine",
-      "source": 12,
-      "target": 32,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "buggy - impelDown",
-      "source": 12,
-      "target": 60,
-      "value": 4,
-      "saga": 6,
-      "color":"red"
-    },
-    {
-      "name": "baroque - marine",
-      "source": 16,
-      "target": 32,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "baroque - marine",
-      "source": 16,
-      "target": 32,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "whitebeard - blackbeard",
-      "source": 20,
-      "target": 24,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "whitebeard - blackbeard",
-      "source": 20,
-      "target": 24,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "whitebeard - marine",
-      "source": 20,
-      "target": 32,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "whitebeard - bigMom",
-      "source": 20,
-      "target": 64,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "whitebeard - kaido",
-      "source": 20,
-      "target": 68,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "blackbeard - marine",
-      "source": 24,
-      "target": 32,
-      "value": 4,
-      "saga": 3,
-      "color":"green"
-    },
-    {
-      "name": "blackbeard - marine",
-      "source": 24,
-      "target": 32,
-      "value": 4,
-      "saga": 7,
-      "color":"red"
-    },
-    {
-      "name": "blackbeard - thrillerBark",
-      "source": 24,
-      "target": 36,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "blackbeard - impelDown",
-      "source": 24,
-      "target": 60,
-      "value": 4,
-      "saga": 6,
-      "color":"red"
-    },
-    {
-      "name": "blackbeard - bigMom",
-      "source": 24,
-      "target": 64,
-      "value": 4,
-      "saga": 8,
-      "color":"red"
-    },
-    {
-      "name": "blackbeard - kaido",
-      "source": 24,
-      "target": 68,
-      "value": 4,
-      "saga": 8,
-      "color":"red"
-    },
-    {
-      "name": "doflamingo - marine",
-      "source": 28,
-      "target": 32,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "doflamingo - marine",
-      "source": 28,
-      "target": 32,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "doflamingo - heart",
-      "source": 28,
-      "target": 52,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "doflamingo - bigMom",
-      "source": 28,
-      "target": 64,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "doflamingo - kaido",
-      "source": 28,
-      "target": 68,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "doflamingo - punkHazard",
-      "source": 28,
-      "target": 71,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "doflamingo - beautiful",
-      "source": 28,
-      "target": 74,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "doflamingo - barto",
-      "source": 28,
-      "target": 77,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "marine - thrillerBark",
-      "source": 32,
-      "target": 36,
-      "value": 4,
-      "saga": 1,
-      "color":"green"
-    },
-    {
-      "name": "marine - firetank",
-      "source": 32,
-      "target": 40,
-      "value": 4,
-      "saga": 5,
-      "color":"red"
-    },
-    {
-      "name": "marine - hawkins",
-      "source": 32,
-      "target": 42,
-      "value": 4,
-      "saga": 5,
-      "color":"red"
-    },
-    {
-      "name": "marine - kid",
-      "source": 32,
-      "target": 46,
-      "value": 4,
-      "saga": 5,
-      "color":"red"
-    },
-    {
-      "name": "marine - drake",
-      "source": 32,
-      "target": 48,
-      "value": 4,
-      "saga": 5,
-      "color":"red"
-    },
-    {
-      "name": "marine - heart",
-      "source": 32,
-      "target": 52,
-      "value": 4,
-      "saga": 5,
-      "color":"red"
-    },
-    {
-      "name": "marine - kuja",
-      "source": 32,
-      "target": 56,
-      "value": 4,
-      "saga": 6,
-      "color":"green"
-    },
-    {
-      "name": "marine - impelDown",
-      "source": 32,
-      "target": 60,
-      "value": 4,
-      "saga": 6,
-      "color":"green"
-    },
-    {
-      "name": "marine - bigMom",
-      "source": 32,
-      "target": 64,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "marine - kaido",
-      "source": 32,
-      "target": 68,
-      "value": 4,
-      "saga": 1,
-      "color":"red"
-    },
-    {
-      "name": "marine - beautiful",
-      "source": 32,
-      "target": 74,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "marine - barto",
-      "source": 32,
-      "target": 77,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "marine - germa66",
-      "source": 32,
-      "target": 81,
-      "value": 4,
-      "saga": 10,
-      "color":"red"
-    },
-    {
-      "name": "marine - cp9",
-      "source": 32,
-      "target": 85,
-      "value": 4,
-      "saga": 3,
-      "color":"green"
-    },
-    {
-      "name": "firetank - bigMom",
-      "source": 40,
-      "target": 64,
-      "value": 4,
-      "saga": 8,
-      "color":"green"
-    },
-    {
-      "name": "firetank - bigMom",
-      "source": 40,
-      "target": 64,
-      "value": 4,
-      "saga": 10,
-      "color":"red"
-    },
-    {
-      "name": "hawkins - kaido",
-      "source": 42,
-      "target": 68,
-      "value": 4,
-      "saga": 9,
-      "color":"green"
-    },
-    {
-      "name": "hawkins - heart",
-      "source": 42,
-      "target": 52,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "kid - kaido",
-      "source": 46,
-      "target": 68,
-      "value": 4,
-      "saga": 9,
-      "color":"red"
-    },
-    {
-      "name": "drake - kaido",
-      "source": 48,
-      "target": 68,
-      "value": 4,
-      "saga": 11,
-      "color":"green"
-    },
-    {
-      "name": "heart - kaido",
-      "source": 52,
-      "target": 68,
-      "value": 4,
-      "saga": 11,
-      "color":"red"
-    },
-    {
-      "name": "heart - punkHazard",
-      "source": 52,
-      "target": 71,
-      "value": 4,
-      "saga": 8,
-      "color":"red"
-    },
-    {
-      "name": "bigMom - germa66",
-      "source": 64,
-      "target": 81,
-      "value": 4,
-      "saga": 10,
-      "color":"red"
-    },
-    {
-      "name": "bigMom - kaido",
-      "source": 64,
-      "target": 81,
-      "value": 4,
-      "saga": 2,
-      "color":"red"
-    },
-    {
-      "name": "beautiful - barto",
-      "source": 74,
-      "target": 77,
-      "value": 4,
-      "saga": 9,
-      "color":"green"
-    }
+  "nodes":[
+    {"name": "Straw Hat Pirates", "group":1,"saga":1, "img": "../flags/flag-straw-hat.png"},
+    {"name": "Red Hair Pirates","group":2,"saga":1, "img": "../flags/flag-shanks.png"},
+    {"name": "Buggy Pirates","group":3,"saga":1, "img": "../flags/flag-buggy.png"},
+    {"name": "Baroque Works", "group":4,"saga":2, "img": "../flags/flag-baroque.png"},
+    {"name": "Whitebeard Pirates","group":5,"saga":2,  "img": "../flags/flag-whitebeard.png"},
+    {"name": "Blackbeard Pirates","group":6,"saga":2, "img": "../flags/flag-blackbeard.png"},
+    {"name": "Donquixote Pirates", "group":7,"saga":7, "img": "../flags/flag-donquixote.png"},
+    {"name": "Marine","group":8,"saga":1, "img": "../flags/flag-marine.png"},
+    {"name": "Thriller Bark Pirates","group":9,"saga":4, "img": "../flags/flag-thriller-bark.png"},
+    {"name": "Firetank Pirates", "group":10,"saga":5, "img": "../flags/flag-firetank.png"},
+    {"name": "Hawkins Pirates","group":11,"saga":5, "img": "../flags/flag-hawkins.png"},
+    {"name": "Kid Pirates","group":12,"saga":5, "img": "../flags/flag-kid.png"},
+    {"name": "Drake Pirates", "group":13,"saga":5, "img": "../flags/flag-drake.png"},
+    {"name": "Heart Pirates","group":14,"saga":5, "img": "../flags/flag-heart.png"},
+    {"name": "Kuja Pirates","group":15,"saga":6, "img": "../flags/flag-kuja.png"},
+    {"name": "Impel Down", "group":16,"saga":6, "img": "../flags/flag-impel-down.png"},
+    {"name": "Big Mom Pirates","group":17,"saga":10, "img": "../flags/flag-big-mom.png"},
+    {"name": "Beasts Pirates","group":18,"saga":9, "img": "../flags/flag-kaido.png"},
+    {"name": "Punk Hazard", "group":19,"saga":8, "img": "../flags/flag-punk-hazard.png"},
+    {"name": "Beautiful Pirates","group":20,"saga":9, "img": "../flags/flag-beautiful.png"},
+    {"name": "Barto Club Pirates","group":21,"saga":9, "img": "../flags/flag-bartolomeo.png"},
+    {"name": "Germa 66", "group":22,"saga":10, "img": "../flags/flag-germa66.png"},
+    {"name": "CP9","group":23,"saga":3, "img": "../flags/flag-cp9.png"},
+
+    {"name":"Monkey D. Luffy","group":1,"saga":1, "img": "../char-image/rufy.png"},
+    {"name":"Sanji","group":1,"saga":1, "img": "../char-image/sanji.png"},
+    {"name":"Roronoa Zoro","group":1,"saga":1,  "img": "../char-image/zoro.png"},
+
+    {"name":"Shanks","group":2,"saga":1, "img": "../char-image/shanks.png"},
+    {"name":"Benn Beckman", "group":2,"saga":1, "img": "../char-image/beckman.png"},
+    {"name":"Lucky Roux", "group":2,"saga":1, "img": "../char-image/lucky-roux.png"},
+
+    {"name":"Buggy", "group":3,"saga":1, "img": "../char-image/buggy.png"},
+    {"name":"Cabaji", "group":3,"saga":1, "img": "../char-image/cabaji.png"},
+    {"name":"Mohji","group":3,"saga":1, "img": "../char-image/moji.png"},
+
+    {"name":"Crocodile", "group":4,"saga":2, "img": "../char-image/crocodile.png"},
+    {"name":"Mr. 1", "group":4,"saga":2, "img": "../char-image/mr1.png"},
+    {"name":"Mr. 2", "group":4,"saga":2, "img": "../char-image/mr2.png"},
+
+    {"name":"Whitebeard", "group":5,"saga":2, "img": "../char-image/whitebeard.png"},
+    {"name":"Marco", "group":5,"saga":2, "img": "../char-image/marco.png"},
+    {"name":"Portgas D. Ace", "group":5,"saga":2, "img": "../char-image/ace.png"},
+
+    {"name":"Blackbeard", "group":6,"saga":2, "img": "../char-image/blackbeard.png"},
+    {"name":"Jesus Burgess", "group":6,"saga":2, "img": "../char-image/burgess.png"},
+    {"name":"Shiryu", "group":6,"saga":2, "img": "../char-image/shiryu.png"},
+
+    {"name":"Donquixote Doflamingo", "group":7,"saga":7, "img": "../char-image/doflamingo.png"},
+    {"name":"Pica", "group":7,"saga":7, "img": "../char-image/pica.png"},
+    {"name":"Diamante", "group":7,"saga":7, "img": "../char-image/diamante.png"},
+
+    {"name":"Akainu", "group":8,"saga":1, "img": "../char-image/akainu.png"},
+    {"name":"Aokiji", "group":8,"saga":1, "img": "../char-image/aokiji.png"},
+    {"name":"Kizaru", "group":8,"saga":1, "img": "../char-image/kizaru.png"},
+
+    {"name":"Gecko Moria", "group":9,"saga":4, "img": "../char-image/moria.png"},
+    {"name":"Absalom", "group":9,"saga":4, "img": "../char-image/absalom.png"},
+    {"name":"Perona", "group":9,"saga":4, "img": "../char-image/perona.png"},
+
+    {"name":"Capone Bege", "group":10,"saga":5, "img": "../char-image/capone-bege.png"},
+    {"name":"Vito", "group":10,"saga":5, "img": "../char-image/vito.png"},
+    {"name":"Gotti", "group":10,"saga":5, "img": "../char-image/gotti.png"},
+
+    {"name":"Basil Hawkins", "group":11,"saga":5, "img": "../char-image/basil-hawkins.png"},
+    {"name":"Faust", "group":11,"saga":5, "img": "../char-image/faust.png"},
+
+    {"name":"Eustass Kid", "group":12,"saga":5, "img": "../char-image/kid.png"},
+    {"name":"Killer", "group":12,"saga":5, "img": "../char-image/killer.png"},
+    {"name":"Heat", "group":12,"saga":5, "img": "../char-image/heat.png"},
+
+    {"name":"X Drake", "group":13,"saga":5, "img": "../char-image/drake.png"},
+    {"name":"???", "group":13,"saga":5, "img": "../char-image/DrakeMember.png"},
+
+    {"name":"Trafalgar D. Law", "group":14,"saga":5, "img": "../char-image/trafalgar-law.png"},
+    {"name":"Bepo", "group":14,"saga":5, "img": "../char-image/bepo.png"},
+    {"name":"Jean Bart", "group":14,"saga":5, "img": "../char-image/jeanbart.png"},
+
+    {"name":"Boa Hancock", "group":15,"saga":6, "img": "../char-image/boa-hancock.png"},
+    {"name":"Boa Sandersonia", "group":15,"saga":6, "img": "../char-image/boa-sandersonia.png"},
+    {"name":"Boa Marigold", "group":15,"saga":6, "img": "../char-image/boa-marigold.png"},
+
+    {"name":"Magellan", "group":16,"saga":6, "img": "../char-image/magellan.png"},
+    {"name":"Hannyabal", "group":16,"saga":6, "img": "../char-image/hannyabal.png"},
+    {"name":"Sadie", "group":16,"saga":6, "img": "../char-image/sadie.png"},
+
+    {"name":"Charlotte Linlin (Big Mom)", "group":17,"saga":10, "img": "../char-image/big-mom.png"},
+    {"name":"Charlotte Katakuri", "group":17,"saga":10, "img": "../char-image/katakuri.png"},
+    {"name":"Charlotte Cracker", "group":17,"saga":10, "img": "../char-image/cracker.png"},
+
+    {"name":"Kaido", "group":18,"saga":9, "img": "../char-image/kaido.png"},
+    {"name":"King", "group":18,"saga":9, "img": "../char-image/king.png"},
+    {"name":"Queen", "group":18,"saga":9, "img": "../char-image/queen.png"},
+
+    {"name":"Caesar Clown", "group":19,"saga":8, "img": "../char-image/caesar.png"},
+    {"name":"Monet", "group":19,"saga":8, "img": "../char-image/monet.png"},
+
+    {"name":"Cavendish", "group":20,"saga":9, "img": "../char-image/cavendish.png"},
+    {"name":"Suleiman", "group":20,"saga":9, "img": "../char-image/suleiman.png"},
+
+    {"name":"Bartolomeo", "group":21,"saga":9, "img": "../char-image/bartolomeo.png"},
+    {"name":"Gambia", "group":21,"saga":9, "img": "../char-image/gambia.png"},
+
+    {"name":"Vinsmoke Judge", "group":22,"saga":10, "img": "../char-image/vinsmoke-judge.png"},
+    {"name":"Vinsmoke Ichiji", "group":22,"saga":10, "img": "../char-image/vinsmoke-ichiji.png"},
+    {"name":"Vinsmoke Niji", "group":22,"saga":10, "img": "../char-image/vinsmoke-niji.png"},
+
+    {"name":"Spandam", "group":23,"saga":3, "img": "../char-image/spandam.png"},
+    {"name":"Lucci", "group":23,"saga":3, "img": "../char-image/lucci.png"},
+    {"name":"Kaku", "group":23,"saga":3, "img": "../char-image/kaku.png"}  
   ],
   "saghe": [
     {"name":"Eastern sea", "num": 1},
@@ -1026,709 +124,249 @@
     {"name":"Whole Cake Island", "num": 10},
     {"name":"Wano", "num": 11}
   ],
-  "piratesRelation":[
-    {
-      "name": "Monkey D. Luffy - Zoro",
-      "source": 1,
-      "target": 2,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-
-    {
-      "name": "Monkey D. Luffy - Sanji",
-      "source": 1,
-      "target": 3,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Monkey D. Luffy - Akainu",
-      "source": 1,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-
-    {
-      "name": "Monkey D. Luffy - Shanks",
-      "source": 1,
-      "target": 5,
-      "value": 3,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Shanks - Benn Beckman",
-      "source": 5,
-      "target": 6,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Shanks - Lucky Roux",
-      "source": 5,
-      "target": 7,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Shanks - Akainu",
-      "source": 5,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-
-    {
-      "name": "Shanks - Buggy",
-      "source": 5,
-      "target": 9,
-      "value": 3,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Monkey D. Luffy - Buggy",
-      "source": 1,
-      "target": 9,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Buggy - Cabaji",
-      "source": 9,
-      "target": 10,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Buggy - Mohji",
-      "source": 9,
-      "target": 11,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Buggy - Akainu",
-      "source": 9,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Akainu - Aokiji",
-      "source": 29,
-      "target": 30,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Akainu - Kizaru",
-      "source": 29,
-      "target": 31,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Whitebeard - Marco",
-      "source": 17,
-      "target": 18,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Whitebeard - Portgas D. Ace",
-      "source": 17,
-      "target": 19,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
+  "links":[
+    {"source":"Monkey D. Luffy","target":"Sanji","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Roronoa Zoro","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Shanks","value":30,"saga":1, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Buggy","value":30,"saga":1, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Buggy","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Crocodile","value":30,"saga":2, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Mr. 2","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Whitebeard","value":30,"saga":7, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Blackbeard","value":30,"saga":6, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Donquixote Doflamingo","value":30,"saga":8, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Aokiji","value":30,"saga":3, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Kizaru","value":30,"saga":5, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Gecko Moria","value":30,"saga":4, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Capone Bege","value":30,"saga":10, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Basil Hawkins","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"X Drake","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Eustass Kid","value":30,"saga":11, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Boa Hancock","value":30,"saga":6, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Magellan","value":30,"saga":6, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Katakuri","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Charlotte Cracker","value":30,"saga":10, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Queen","value":30,"saga":11, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Cavendish","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Suleiman","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Bartolomeo","value":30,"saga":9, "color": "green"},
+    {"source":"Monkey D. Luffy","target":"Spandam","value":30,"saga":3, "color": "red"},
+    {"source":"Monkey D. Luffy","target":"Lucci","value":30,"saga":3, "color": "red"},
     
-    {
-      "name": "Whitebeard - Charlotte Linlin (Big Mom)",
-      "source": 17,
-      "target": 65,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Whitebeard - Kaido",
-      "source": 17,
-      "target": 65,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Whitebeard - Blackbeard",
-      "source": 17,
-      "target": 21,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Whitebeard - Akainu",
-      "source": 17,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Charlotte Linlin (Big Mom) - Charlotte Katakuri",
-      "source": 61,
-      "target": 62,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Charlotte Linlin (Big Mom) - Charlotte Cracker",
-      "source": 61,
-      "target": 63,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Charlotte Linlin (Big Mom) - Akainu",
-      "source": 61,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Charlotte Linlin (Big Mom) - Kaido",
-      "source": 61,
-      "target": 65,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Kaido - King",
-      "source": 65,
-      "target": 66,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Kaido - Queen",
-      "source": 65,
-      "target": 67,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Kaido - Akainu",
-      "source": 65,
-      "target": 29,
-      "value": 6,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Kaido - Donquixote Doflamingo",
-      "source": 65,
-      "target": 25,
-      "value": 3,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Donquixote Doflamingo - Pica",
-      "source": 25,
-      "target": 26,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Donquixote Doflamingo - Diamante",
-      "source": 25,
-      "target": 27,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Donquixote Doflamingo - Caesar Clown",
-      "source": 25,
-      "target": 69,
-      "value": 2,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Caesar Clown - Monet",
-      "source": 69,
-      "target": 70,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Donquixote Doflamingo - Akainu",
-      "source": 25,
-      "target": 29,
-      "value": 3,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Crocodile - Akainu",
-      "source": 13,
-      "target": 29,
-      "value": 3,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
+    {"source":"Sanji","target":"Roronoa Zoro","value":30,"saga":1, "color": "green"},
+    {"source":"Sanji","target":"Mr. 2","value":30,"saga":2, "color": "red"},
+    {"source":"Sanji","target":"Blackbeard","value":30,"saga":6, "color": "red"},
+    {"source":"Sanji","target":"Aokiji","value":30,"saga":3, "color": "red"},
+    {"source":"Sanji","target":"Kizaru","value":30,"saga":5, "color": "red"},
+    {"source":"Sanji","target":"Absalom","value":30,"saga":4, "color": "red"},
+    {"source":"Sanji","target":"X Drake","value":30,"saga":11, "color": "red"},
+    {"source":"Sanji","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Sanji","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Sanji","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
     
-    {
-      "name": "Crocodile - Mr. 1",
-      "source": 11,
-      "target": 12,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Crocodile - Mr. 2",
-      "source": 11,
-      "target": 13,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Blackbeard - Shiryu",
-      "source": 21,
-      "target": 22,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Blackbeard - Jesus Burgess",
-      "source": 21,
-      "target": 22,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Gecko Moria - Absalom",
-      "source": 33,
-      "target": 34,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Gecko Moria - Perona",
-      "source": 33,
-      "target": 35,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Capone Bege - Vito",
-      "source": 37,
-      "target": 38,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Capone Bege - Gotti",
-      "source": 37,
-      "target": 38,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Eustass Kid - Killer",
-      "source": 43,
-      "target": 44,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Eustass Kid - Heat",
-      "source": 43,
-      "target": 45,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Trafalgar D. Law - Bepo",
-      "source": 49,
-      "target": 50,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
+    {"source":"Roronoa Zoro","target":"Buggy","value":30,"saga":1, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Cabaji","value":30,"saga":1, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Mr. 1","value":30,"saga":2, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Blackbeard","value":30,"saga":6, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Pica","value":30,"saga":9, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Aokiji","value":30,"saga":3, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Kizaru","value":30,"saga":5, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Roronoa Zoro","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Monet","value":30,"saga":8, "color": "red"},
+    {"source":"Roronoa Zoro","target":"Kaku","value":30,"saga":3, "color": "red"},
     
-    {
-      "name": "Boa Hancock - Boa Sandersonia",
-      "source": 53,
-      "target": 54,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Boa Hancock - Boa Marigold",
-      "source": 53,
-      "target": 55,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Magellan - Hannybal",
-      "source": 57,
-      "target": 58,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Magellan - Sadie",
-      "source": 57,
-      "target": 59,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Cavendish - Suleiman",
-      "source": 72,
-      "target": 73,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Bartolomeo - Gambia",
-      "source": 75,
-      "target": 76,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Vinsmoke Judge - Vinsmoke Ichiji",
-      "source": 78,
-      "target": 79,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Vinsmoke Judge - Vinsmoke Niji",
-      "source": 78,
-      "target": 80,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Spandam - Lucci",
-      "source": 82,
-      "target": 83,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-    {
-      "name": "Spandam - Kaku",
-      "source": 82,
-      "target": 84,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
+    {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "green"},
+    {"source":"Shanks","target":"Lucky Roux","value":30,"saga":1, "color": "green"},
+    {"source":"Shanks","target":"Buggy","value":30,"saga":3, "color": "green"},
+    {"source":"Shanks","target":"Whitebeard","value":30,"saga":3, "color": "green"},
+    {"source":"Shanks","target":"Blackbeard","value":30,"saga":7, "color": "red"},
+    {"source":"Shanks","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Shanks","target":"Kizaru","value":30,"saga":7, "color": "red"},
+    {"source":"Shanks","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
     
-
-
-    {
-      "name": "Buggy - Mohji",
-      "source": 9,
-      "target": 11,
-      "value": 1,
-      "saga": 1,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "name": "Crocodile - Akainu",
-      "source": 13,
-      "target": 29,
-      "value": 6,
-      "saga": 2,
-      "capitain-relation":"True",
-      "color":"green"
-    },
-
-    {
-      "name": "Monkey D. Luffy - Crocodile",
-      "source": 1,
-      "target": 13,
-      "value": 6,
-      "saga": 2,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "name": "Monkey D. Luffy - Lucci",
-      "source": 1,
-      "target": 83,
-      "value": 6,
-      "saga": 3,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Monkey D. Luffy - Blackbeard",
-      "source": 1,
-      "target": 21,
-      "value": 6,
-      "saga": 3,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-    {
-      "name": "Blackbeard - Akainu",
-      "source": 21,
-      "target": 29,
-      "value": 3,
-      "saga": 3,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "name": "Monkey D. Luffy - Gecko Moria",
-      "source": 1,
-      "target": 33,
-      "value": 6,
-      "saga": 3,
-      "capitain-relation":"True",
-      "color":"red"
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "name": "Trafalgar D. Law - Jean Bart",
-      "source": 49,
-      "target": 51,
-      "value": 1,
-      "saga": 5,
-      "capitain-relation":"True",
-      "color":"green"
-    }
-
+    {"source":"Benn Beckman","target":"Lucky Roux","value":30,"saga":1, "color": "green"},
     
+    {"source":"Buggy","target":"Cabaji","value":30,"saga":1, "color": "green"},
+    {"source":"Buggy","target":"Mohji","value":30,"saga":1, "color": "green"},
+    {"source":"Buggy","target":"Crocodile","value":30,"saga":6, "color": "green"},
+    {"source":"Buggy","target":"Whitebeard","value":30,"saga":7, "color": "green"},
+    {"source":"Buggy","target":"Akainu","value":30,"saga":8, "color": "green"},
+    {"source":"Buggy","target":"Magellan","value":30,"saga":6, "color": "red"},
+    {"source":"Buggy","target":"Hannyabal","value":30,"saga":6, "color": "red"},
+    {"source":"Buggy","target":"Sadie","value":30,"saga":6, "color": "red"},
+    
+    {"source":"Cabaji","target":"Mohji","value":30,"saga":1, "color": "green"},
+
+    {"source":"Crocodile","target":"Mr. 1","value":30,"saga":2, "color": "green"},
+    {"source":"Crocodile","target":"Mr. 2","value":30,"saga":2, "color": "green"},
+    {"source":"Crocodile","target":"Whitebeard","value":30,"saga":7, "color": "red"},
+    {"source":"Crocodile","target":"Akainu","value":30,"saga":2, "color": "green"},
+    {"source":"Crocodile","target":"Akainu","value":30,"saga":3, "color": "red"},
+    {"source":"Crocodile","target":"Magellan","value":30,"saga":6, "color": "red"},
+    
+    {"source":"Mr. 1","target":"Mr. 2","value":30,"saga":2, "color": "green"},
+    {"source":"Mr. 1","target":"Magellan","value":30,"saga":6, "color": "red"},
+    
+    {"source":"Whitebeard","target":"Marco","value":30,"saga":2, "color": "green"},
+    {"source":"Whitebeard","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
+    {"source":"Whitebeard","target":"Blackbeard","value":30,"saga":2, "color": "red"},
+    {"source":"Whitebeard","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Aokiji","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Kizaru","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Gecko Moria","value":30,"saga":7, "color": "red"},
+    {"source":"Whitebeard","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    {"source":"Whitebeard","target":"Kaido","value":30,"saga":9, "color": "red"},
+
+    {"source":"Marco","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
+    {"source":"Marco","target":"Blackbeard","value":30,"saga":2, "color": "red"},
+
+    {"source":"Portgas D. Ace","target":"Blackbeard","value":30,"saga":2, "color": "red"},
+
+    {"source":"Blackbeard","target":"Jesus Burgess","value":30,"saga":2, "color": "green"},
+    {"source":"Blackbeard","target":"Shiryu","value":30,"saga":6, "color": "green"},
+    {"source":"Blackbeard","target":"Akainu","value":30,"saga":2, "color": "green"},
+    {"source":"Blackbeard","target":"Akainu","value":30,"saga":7, "color": "red"},
+    {"source":"Blackbeard","target":"Aokiji","value":30,"saga":9, "color": "green"},
+    {"source":"Blackbeard","target":"Gecko Moria","value":30,"saga":10, "color": "red"},
+    {"source":"Blackbeard","target":"Absalom","value":30,"saga":10, "color": "red"},
+    {"source":"Blackbeard","target":"Magellan","value":30,"saga":6, "color": "red"},
+    {"source":"Blackbeard","target":"Charlotte Linlin (Big Mom)","value":30,"saga":7, "color": "red"},
+    
+    {"source":"Jesus Burgess","target":"Shiryu","value":30,"saga":6, "color": "green"},
+
+    {"source":"Shiryu","target":"Magellan","value":30,"saga":2, "color": "red"},
+    {"source":"Shiryu","target":"Hannyabal","value":30,"saga":2, "color": "red"},
+    {"source":"Shiryu","target":"Sadie","value":30,"saga":2, "color": "red"},
+
+    {"source":"Donquixote Doflamingo","target":"Pica","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Diamante","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Akainu","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Akainu","value":30,"saga":10, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Aokiji","value":30,"saga":8, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":8, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Kaido","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Caesar Clown","value":30,"saga":2, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Cavendish","value":30,"saga":9, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Suleiman","value":30,"saga":9, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Bartolomeo","value":30,"saga":9, "color": "red"},
+
+    {"source":"Pica","target":"Diamante","value":30,"saga":2, "color": "green"},
 
 
-  ]
+    {"source":"Akainu","target":"Aokiji","value":30,"saga":2, "color": "green"},
+    {"source":"Akainu","target":"Kizaru","value":30,"saga":2, "color": "green"},
+    {"source":"Akainu","target":"Gecko Moria","value":30,"saga":2, "color": "green"},
+    {"source":"Akainu","target":"Capone Bege","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Basil Hawkins","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Eustass Kid","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"X Drake","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Trafalgar D. Law","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Akainu","target":"Trafalgar D. Law","value":30,"saga":9, "color": "red"},
+    {"source":"Akainu","target":"Boa Hancock","value":30,"saga":2, "color": "green"},
+    {"source":"Akainu","target":"Magellan","value":30,"saga":2, "color": "green"},
+    {"source":"Akainu","target":"Charlotte Linlin (Big Mom)","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Kaido","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Cavendish","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Bartolomeo","value":30,"saga":2, "color": "red"},
+    {"source":"Akainu","target":"Spandam","value":30,"saga":2, "color": "red"},
 
+    {"source":"Aokiji","target":"Kizaru","value":30,"saga":2, "color": "green"},
+
+    {"source":"Kizaru","target":"Capone Bege","value":30,"saga":5, "color": "red"},
+    {"source":"Kizaru","target":"Basil Hawkins","value":30,"saga":5, "color": "red"},
+    {"source":"Kizaru","target":"Eustass Kid","value":30,"saga":5, "color": "red"},
+    {"source":"Kizaru","target":"X Drake","value":30,"saga":5, "color": "red"},
+    {"source":"Kizaru","target":"Trafalgar D. Law","value":30,"saga":5, "color": "red"},
+
+    {"source":"Gecko Moria","target":"Absalom","value":30,"saga":2, "color": "green"},
+    {"source":"Gecko Moria","target":"Perona","value":30,"saga":2, "color": "green"},
+
+    {"source":"Absalom","target":"Perona","value":30,"saga":2, "color": "green"},
+    
+    {"source":"Capone Bege","target":"Vito","value":30,"saga":2, "color": "green"},
+    {"source":"Capone Bege","target":"Gotti","value":30,"saga":2, "color": "green"},
+    {"source":"Capone Bege","target":"Charlotte Linlin (Big Mom)","value":30,"saga":8, "color": "green"},
+    {"source":"Capone Bege","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
+    
+    {"source":"Vito","target":"Gotti","value":30,"saga":2, "color": "green"},
+
+    {"source":"Basil Hawkins","target":"Faust","value":30,"saga":2, "color": "red"},
+    {"source":"Basil Hawkins","target":"Kaido","value":30,"saga":11, "color": "green"},
+
+
+    {"source":"Eustass Kid","target":"Killer","value":30,"saga":2, "color": "green"},
+    {"source":"Eustass Kid","target":"Heat","value":30,"saga":2, "color": "green"},
+    {"source":"Eustass Kid","target":"Kaido","value":30,"saga":11, "color": "red"},
+
+    {"source":"Killer","target":"Heat","value":30,"saga":2, "color": "green"},
+
+    {"source":"X Drake","target":"???","value":30,"saga":2, "color": "green"},
+    {"source":"X Drake","target":"Kaido","value":30,"saga":11, "color": "green"},
+
+    {"source":"Trafalgar D. Law","target":"Bepo","value":30,"saga":2, "color": "green"},
+    {"source":"Trafalgar D. Law","target":"Jean Bart","value":30,"saga":5, "color": "green"},
+    {"source":"Trafalgar D. Law","target":"Kaido","value":30,"saga":11, "color": "red"},
+    {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+
+    {"source":"Bepo","target":"Jean Bart","value":30,"saga":2, "color": "green"},
+
+
+    {"source":"Boa Hancock","target":"Boa Sandersonia","value":30,"saga":2, "color": "green"},
+    {"source":"Boa Hancock","target":"Boa Marigold","value":30,"saga":2, "color": "green"},
+    {"source":"Boa Sandersonia","target":"Boa Marigold","value":30,"saga":2, "color": "green"},
+
+    {"source":"Magellan","target":"Hannyabal","value":30,"saga":2, "color": "green"},
+    {"source":"Magellan","target":"Sadie","value":30,"saga":2, "color": "green"},
+    {"source":"Hannyabal","target":"Sadie","value":30,"saga":2, "color": "green"},
+
+    {"source":"Charlotte Linlin (Big Mom)","target":"Charlotte Katakuri","value":30,"saga":2, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Charlotte Cracker","value":30,"saga":2, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Caesar Clown","value":30,"saga":10, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Caesar Clown","value":30,"saga":11, "color": "red"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Judge","value":30,"saga":9, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Ichiji","value":30,"saga":9, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Niji","value":30,"saga":9, "color": "green"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
+
+    {"source":"Charlotte Katakuri","target":"Charlotte Cracker","value":30,"saga":2, "color": "green"},
+
+    {"source":"Kaido","target":"King","value":30,"saga":2, "color": "green"},
+    {"source":"Kaido","target":"Queen","value":30,"saga":2, "color": "green"},
+    {"source":"Kaido","target":"Caesar Clown","value":30,"saga":8, "color": "green"},
+    {"source":"Kaido","target":"Caesar Clown","value":30,"saga":9, "color": "red"},
+
+    {"source":"King","target":"Queen","value":30,"saga":2, "color": "green"},
+
+    {"source":"Caesar Clown","target":"Monet","value":30,"saga":2, "color": "green"},
+
+    {"source":"Cavendish","target":"Suleiman","value":30,"saga":2, "color": "green"},
+
+    {"source":"Bartolomeo","target":"Gambia","value":30,"saga":2, "color": "green"},
+
+    {"source":"Vinsmoke Judge","target":"Vinsmoke Ichiji","value":30,"saga":2, "color": "green"},
+    {"source":"Vinsmoke Judge","target":"Vinsmoke Niji","value":30,"saga":2, "color": "green"},
+    {"source":"Vinsmoke Ichiji","target":"Vinsmoke Niji","value":30,"saga":2, "color": "green"},
+
+    {"source":"Spandam","target":"Lucci","value":30,"saga":2, "color": "green"},
+    {"source":"Spandam","target":"Kaku","value":30,"saga":2, "color": "green"},
+    {"source":"Lucci","target":"Kaku","value":30,"saga":2, "color": "green"},
+    
+    {"source":"Whitebeard","target":"Kaido","value":30,"saga":9, "color": "red"}
+
+      ]
 }

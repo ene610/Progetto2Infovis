@@ -1,315 +1,599 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<html>
+  <head>
+    <title>Clustered Network</title>
+    <script src="http://d3js.org/d3.v3.js"></script>
 
-.links line {
-  stroke-opacity: 0.6;
+    <style type="text/css">
+svg {
+  border: 1px solid #ccc;
+}
+body {
+  font: 10px sans-serif;
 }
 
-.nodes circle {
-  stroke: rgb(0, 0, 0);
+circle.leaf {
+  stroke: #fff;
   stroke-width: 1.5px;
 }
-
-</style>
-<svg width="1200" height="800"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="d3-force-reuse.js"></script>
-<script>
-
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height")
-    svg.style("position", "absolute")
-    svg.style("left", "150px")
-    svg.style("top", "50px");;
-
-var crewRadius = 25
-var charRadius = 15
-var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-/*var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
-    .force("charge", d3.forceManyBody().strength(-50).distanceMax(800))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(crewRadius +20))
-    .force("radial",d3.forceRadial(100, width / 2, height / 2))*/
-
-//cambiate un paio di forze , messa una forza radiale
-var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
-    .force("charge", d3.forceManyBody().strength(-200).distanceMax(100))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(crewRadius+20))
-    //.force("radial",d3.forceRadial(10, width / 2, height / 2))
+path.hull {
+  fill: lightsteelblue;
+  fill-opacity: 0.3;
+}
+line.link {
+  stroke: #333;
+  stroke-opacity: 0.5;
+  pointer-events: none;
+}
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
     
-    ;
-    var nodi
-    var legami
-    var labels
+var width = 1200,     // svg width
+    height = 700,     // svg height
+    dr = 20,         // default point radius
+    rCrew = 25,
+    rPirates = 20,    
+    off = 15,    // cluster hull offset
+    expand = {}, // expanded clusters
+    data, net, force, hullg, hull, linkg, link, nodeg, node, labels;
 
-d3.json("data/crews.json", function(error, graph) {
-  if (error) throw error;
+var nameToIndex ;
 
+var curve = d3.svg.line()
+    .interpolate("cardinal-closed")
+    .tension(.85);
+
+var fill = d3.scale.category20();
+
+function noop() { return false; }
+
+
+function nodeid(n) {
+  return n.size ? "_g_"+n.group : n.name + n.img;
+}
+
+function linkid(l) {
+  var u = nodeid(l.source),
+      v = nodeid(l.target);
+  return u<v ? u+"|"+v : v+"|"+u;
+}
+
+function getGroup(n) {return n.group; }
+
+function nodesInSaga(nodes,saga){
+  i=0
+  nameToIndex = {}
+  nodesSaga = [];
+  nodes.forEach(node => {
+      if(node.saga <= saga){
+        nodesSaga.push(node)
+        nameToIndex[node.name] = i
+        i++
+      }
+  });
+  return nodesSaga;
+}
+
+function linkInSaga(links,saga){
+  linksSaga = [];
+  linksSaga1 = [];
+  map = new Map()
+  links.forEach(link => {
+      if(link.saga <= saga){
+        link.source = nameToIndex[link.source]
+        link.target =  nameToIndex[link.target]
+        map.set( String(link.source) +","+String(link.target),link)
+        
+        linksSaga.push(link)
+        //console.log(nameToIndex[link.target])
+      }
+      
+  });
+  map.forEach(value=>{
+    linksSaga1.push(value)
+  })
+  //console.log(linksSaga1)
+  //console.log(linksSaga)
+  return linksSaga1;
+}
+
+// constructs the network to visualize
+function network(data, prev, index, expand) {
+  expand = expand || {};
+  var gm = {},    // group map
+      nm = {},    // node map
+      lm = {},    // link map
+      gn = {},    // previous group nodes
+      gc = {},    // previous group centroids
+      nodes = [], // output nodes
+      links = [], // output links
+      expandedCrew = [];
+  // process previous nodes for reuse or centroid calculation
+  if (prev) {
+    prev.nodes.forEach(function(n) {
+
+      var i = index(n), o;
+      if (n.size > 0) {
+        gn[i] = n;
+        n.size = 0;
+      } else {
+        o = gc[i] || (gc[i] = {x:0,y:0,count:0});
+        o.x += n.x;
+        o.y += n.y;
+        o.count += 1;
+      }
+    });
+  }
+  var crew;
+  for (var k=0; k<data.nodes.length; ++k) {
+    var n = data.nodes[k],
+        i = index(n)
+    var l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[], name: n.name});
+    if (expand[i] && !n.img.includes("flag")) {
+      // the node should be directly visible
+      nm[n.name] = nodes.length;
+      nodes.push(n);
+      if (gn[i]) {
+        // place new nodes at cluster location (plus jitter)
+        n.x = gn[i].x + Math.random();
+        n.y = gn[i].y + Math.random();
+      }
+    } else {
+      // the node is part of a collapsed cluster
+      if (l.size == 0) {
+        // if new cluster, add to set and position at centroid of leaf nodes
+        nm[i] = nodes.length;
+      // the node is an expanse crew node => don't push it to nodes
+      if(expand[i] && n.img.includes("flag"))
+          expandedCrew.push(n);
+      else if(expandedCrew.includes(n) && ! expand[i]) {
+          var index = expandedCrew.indexOf(n); 
+          if(index > -1) 
+            expandedCrew.splice(index,1);
+      }
+      if(!expandedCrew.includes(n)){
+        nodes.push(l);
+      }
+      }
+        if (gc[i]) {
+          l.x = gc[i].x / gc[i].count;
+          l.y = gc[i].y / gc[i].count;
+        }
+      } 
+      l.nodes.push(n);
+
+
+  // always count group size as we also use it to tweak the force graph strengths/distances
+    l.size += 1;
+    n.group_data = l;
+  }
+
+  for (i in gm) { gm[i].link_count = 0; }
+
+  // determine links
+  for (k=0; k<data.links.length; ++k) {
+    //console.log(data.links.length,k)  
+    var e = data.links[k]
+    var    u = index(e.source),
+        v = index(e.target);
+  if (u != v) {
+    
+    gm[u].link_count++;
+    gm[v].link_count++;
+  }
   
-  var nodes = flatten(graph)
-  
-  var linkNodes = [];
- var j = 0
-  graph.links.forEach(function(link) {
-    console.log(nodes[link.source-1])
-    //if(j % 2 == 0) {
-      linkNodes.push({
-        source: nodes[link.source-1],
-        target: nodes[link.target-1]
-    }); 
-  //}; j = j+1;
+    u = expand[u] ? nm[e.source.name] : nm[u];
+    v = expand[v] ? nm[e.target.name] : nm[v];
+    var i = (u<v ? u+"|"+v : v+"|"+u),
+        l = lm[i] || (lm[i] = {source:u, target:v, size:0, color:e.color});
+    l.size += 1;
+  }
+  for (i in lm) { links.push(lm[i]); }
+
+  return {nodes: nodes, links: links};
+}
+
+function convexHulls(nodes, index, offset) {
+  var hulls = {};
+  var names = {}
+  //console.log(nodes)
+  // create point sets
+  for (var k=0; k<nodes.length; ++k) {
+    var n = nodes[k];
+    if (n.size) continue;
+    var i = index(n),
+        l = hulls[i] || (hulls[i] = []);
+    //console.log(n)
+    names[i] = crews[n.group]
+    l.push([n.x-offset, n.y-offset]);
+    l.push([n.x-offset, n.y+offset]);
+    l.push([n.x+offset, n.y-offset]);
+    l.push([n.x+offset, n.y+offset]);
+  }
+
+  // create convex hulls
+  var hullset = [];
+  for (i in hulls) {
+    //console.log(names)
+    hullset.push({group: i, path: d3.geom.hull(hulls[i]), name: names[i]});
+  }
+
+  return hullset;
+}
+
+function drawCluster(d) {
+  return curve(d.path); // 0.8
+}
+
+// --------------------------------------------------------
+
+var body = d3.select("body");
+var crews = []
+var vis = body.append("svg")
+   .attr("width", width)
+   .attr("height", height);
+
+var svg = body.append("svg")
+   .attr("width", 330)
+   .attr("height", height)
+   .style("position", "absolute")
+   .style("left", "1210px")
+
+var greenLine = svg.append("line")
+  .attr("x1", 5)
+  .attr("y1", 30)
+  .attr("x2", 70)
+  .attr("y2", 30)
+  .attr("stroke-width", 5)
+  .attr("stroke", "green");
+
+var redLine = svg.append("line")
+  .attr("x1", 5)
+  .attr("y1", 70)
+  .attr("x2", 70)
+  .attr("y2", 70)
+  .attr("stroke-width", 5)
+  .attr("stroke", "red");
+
+svg.append("text")
+   .attr("y", 33)//magic number here
+   .attr("x", 80)
+   .text("Allies")
+   .attr("font-size", "18px")
+
+svg.append("text")
+   .attr("y", 73)//magic number here
+   .attr("x", 80)
+   .text("Enemies")
+   .attr("font-size", "18px")
+
+d3.json("data/crews.json", function(json) {
+  data = json;
+  //console.log(data)
+  saga = 11
+  nodi = nodesInSaga(data.nodes,saga)
+  linki = linkInSaga(data.links,saga) 
+  crews = getCrews(data.nodes)
+  data = {"links":linki,"nodes":nodi}
+
+  function getCrews(data) {
+    var crews = []
+    for(x of data){
+      if(x.img.includes("flag"))
+        crews[x.group] = x.name;
+    }
+    return crews;
+  }
+  //console.log(data.links)
+
+  for (var i=0; i<data.links.length; ++i) {
+    o = data.links[i];
+    o.source = data.nodes[o.source];
+    o.target = data.nodes[o.target];
+  }
+
+  hullg = vis.append("g");
+  linkg = vis.append("g");
+  nodeg = vis.append("g");
+
+  init();
+
+  vis.attr("opacity", 1e-6)
+    .transition()
+      .duration(1000)
+      .attr("opacity", 1);
 });
 
-  //AGGIUNTO divide ciurme e pirati almeno cosi le forze dei nodi pirata non concorrono alla visualizzazione
-  arrayPiratesCrews = piratesNodes(nodes)
-  //console.log(arrayPiratesCrews[0])
-  //console.log(arrayPiratesCrews[1])
-  pirates = arrayPiratesCrews[0]
-  crews = arrayPiratesCrews[1]
-  relazioni = graph.links
-  console.log(pirates)
-  var defs = svg.append("defs");
-  
-//console.log(nodes)
+var defs = vis.append("defs");
+//console.log("defs",defs)
 
-function functionImage(data) {
-    
-    console.log("DATA: " + data.img)
+function functionImage(data, image) {
+    //GRAZIE DAVIDE PER QUESTO MIRACOLO DELL'INFORMATICA
+    //console.log("DATA: " + image)
+    var img = image ? image : data.nodes[0].img
     defs.append('pattern')
-    .attr("id", data.id)
+    .attr("id", img)
     .attr("width", 1)
     .attr("height", 1)
     .append("svg:image")
     .attr("id","image")//se vuoi riprendere le img d3.selectAll("image")
-    .attr("xlink:href", function() { return data.img.slice(1) })//cosi mi funziona tutto 
-    .attr("width", function() {if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
-    .attr("height", function() { if(data.name == undefined) return  charRadius * 2; else return crewRadius * 2;})
-
-    return "url(#"+ data.id+")"
-}
-
-  var i = 0;
-
-  var link = svg.append("g")
-    .attr("class", "links") 
-    .selectAll("line")
-    .data(graph.piratesRelation)
-    .enter().append("line")
-    .attr("stroke-width", 4)
-    .attr("stroke", function(d) {return d.color});
-
-  legami = link
-
-  var node = svg.append("g")
-      .attr("class", "nodes")
-    .selectAll("circle")
-    .data(pirates)//cambiato da nodes a crews
-    .enter().append("circle")
-      .attr("r",  function(d) { if(d.name == undefined)  return charRadius; else return crewRadius; })
-      // .style("fill", function(d) {console.log(d.flag); if(d.flag != undefined) return "url(#img.png)"; else return d.img })
-      .attr("id", "node")
-      .attr("fill", function(d) {return functionImage(d);})
-      //.style("fill", function(data) { return data.img.slice(1) })
-      .attr("stroke", "black")
-      //funzioni per migliorare visualizzazione con zoom
-      .on('mouseover',function() {
-        nodeSelected = d3.select(this)
-        //console.log(nodeSelected.data()[0])
-        selectNode(nodeSelected.data()[0])
-      })
-      .on('mouseout',function() {
-        node.attr("r",crewRadius)
-        link.attr("stroke-width",4)
-        label.attr("opacity", 0)
-      })
-          
-  var linkNode = svg.selectAll(".link-node")
-      .data(linkNodes)
-    .enter().append("circle")
-      .attr("class", "link-node")
-      .attr("r", crewRadius - 20)
-      .style("fill", "#ccc");
-
-  nodi=node
-
-  var label = svg.append("g").attr("class", "nodes").selectAll("circle")
-    .data(pirates)//cambiato da nodes a crews
-    .enter().append("svg:text")
-    .text(function(d) { return d.name})
-    .style("text-anchor", "middle")
-    .style("fill", "black")
-    .style("font-family", "Arial")
-    .style("font-size", 20)
-    .attr("opacity", 0);
-
-  labels = label
-
-  var buttonMenu = d3.select("body").data(graph.saghe);
-
-  for(var j = 0; j < graph.saghe.length; j++) {
-    var buttons = buttonMenu.append("button")
-    .text(graph.saghe[j].name)
-    .attr("id", graph.saghe[j].num)
-    .style("height", "40px")
-    .style("width", "100px")
-    .style("position", "absolute")
-    .style("left", (j + 1) * 120 + "px")
-    .style("top", "20px")
-    .on("click", function() {
-      selectedSaga = this.id
-      selectLinks(selectedSaga)
-  })
-
-}
-
-  node.append("title")
-      .text(function(d) { return d.name || d.captain || d.member; })
-
-  link.append("title")
-      .text(function(d) { return d.name; })
-
-  simulation
-      .nodes(pirates.concat(linkNodes))
-      .on("tick", ticked);
-
-  simulation.force("link")
-      .links(graph.links);
-
-  function ticked() {
-    link
-        .attr("x1", function(d) { return d.source.x ; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+    .attr("xlink:href", function() { return img.slice(1) })
+    .attr("width", function() {return image ? rPirates * 2 : rCrew * 2;})
+    .attr("height", function() {return image ? rPirates * 2 : rCrew * 2;})
     
-    //cambiato return d.x in quello che cì+ scritto (permette di fissare i nodi all'interno del svg (si dice cosi???))
-    node
-        .attr("cx", function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius , d.x)); })
-        .attr("cy", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius , d.y)); });
-    
-    linkNode.attr("cx", function(d) { return d.x = (d.source.x + d.target.x) * 0.5; })
-        .attr("cy", function(d) { return d.y = (d.source.y + d.target.y) * 0.5; });
-
-    label
-        .attr("x",  function(d) { return d.x = Math.max(crewRadius, Math.min(width - crewRadius, d.x)); })
-        .attr("y", function(d) { return d.y = Math.max(crewRadius, Math.min(height - crewRadius, d.y -35)); });
-  }
-
-  function selectNodesSaga(saga){
-    var linksVisited = new Map()
-    for(var j = 0; j<relazioni.length; j++){
-      if(relazioni[j].saga <= saga) {
-        linksVisited.set(relazioni[j].name, relazioni[j].saga)
-    }}
-    return linksVisited;
-  }
-
-  function getLinks(link, linksVisited){
-    var stroke = 0;
-    for (var key of linksVisited.keys()) {
-      if(key == link.name && link.saga == linksVisited.get(key)) 
-        stroke = 3;
-      }
-    return stroke;
-  }
-
-  function selectLinks(selectedSaga) {
-    var linksVisited = selectNodesSaga(selectedSaga)
-    legami.attr('stroke-width', link => getLinks(link, linksVisited))
-  }
-});
-
-
-function flatten(root) {
-  var nodes = [], i = 0;
-  var length = root.crews.length
-
-  function recurse(node) {
-    //console.log(node)
-    if (node.members) node.members.forEach(recurse);
-    if (!node.id) node.id = ++i;
-    if(node.name!= undefined) console.log(node.name + " " + node.id);
-    nodes.push(node);
-  }
-    for(var j = 0; j<length;j++) {
-        //console.log(root.crews)
-        recurse(root.crews[j]);
-}
-  return nodes;
+    return "url(#" + img + ")"
 }
 
-//funzione che dato un insieme di nodi restituisce i nodi che sono membri della ciurma
-function piratesNodes(nodes){
-  crews = []
-  pirates =[]
-  for(i=0;i<nodes.length;i++){
-    if(nodes[i].name===undefined)
-      pirates.push(nodes[i])
-    else
-      crews.push(nodes[i])
-  }
-  return [pirates , crews]  
-}
-//funzione che prende i vicini di un nodo
+var hulls = []
+var linksColor = new Map()
+var nodeCoordinates = new Map()
+
+// selezione nodi e link on mouseOver
 function getNeighbors(node) {
-  return relazioni.reduce((neighbors, link) => {
-    console.log(link)
-    if (link.target.id === node.id) {
-      neighbors.push(link.source.id)
-    } else if (link.source.id === node.id) {
-      neighbors.push(link.target.id)
+  return link[0].reduce((neighbors, link) => {
+    var split = link.id.split("-")
+    if (split[1] === node.name) {           // if (link.target.id === node.id) {
+      neighbors.push(split[0])        // neighbors.push(link.source.id)
+    } else if (split[0] === node.name) {      // else if (link.source.id === node.id) {
+      neighbors.push(split[1])
     }
 
     return neighbors
-  }, [node.id])
+  }, [node.name])
+}
+
+function getNodeColor(node, neighbors) {
+  if (neighbors.indexOf(node.name)>=0) {
+    return 1
+  }
+  return 0.2
+}
+
+function getNodeStroke(node, selectedNode, string) {
+  if(string == "stroke")
+    return linksColor.get(node.name) ? linksColor.get(node.name) : "black"
+  else if(linksColor.get(node.name) != undefined)
+    return 4;
+  else return 1;
+}
+
+
+function getHullColor(hull) {
+  var i = 0;
+  for (var h of hulls){
+    if(h == parseInt(hull.group))
+      i = i+1;
+  }
+  return i>1 ? 1 : 0 
+}
+
+function getLinkColor(node, link) {
+  if(isNeighborLink(node, link)){
+    hulls.push(link.source.group);
+    hulls.push(link.target.group);
+  }
+  if(isNeighborLink(node, link)){
+    var color = link.color;
+    if(link.color == "green")
+      color = "#03c03c";
+    else color = "#e30022"
+    if(node.name != link.source.name)
+      linksColor.set(link.source.name, color);
+    if(node.name != link.target.name)
+      linksColor.set(link.target.name, color);
+  }
+  return isNeighborLink(node, link) ? 4 : 0
 }
 
 function isNeighborLink(node, link) {
-  return link.target.id === node.id || link.source.id === node.id
+  return link.target.name === node.name || link.source.name === node.name
+  //neighbors.includes()
 }
 
-
-//funzioni che forse saranno utili
-
-function getNodeColor(node, neighbors) {
-  if (neighbors.indexOf(node.id)>=0) {
-    return crewRadius
-  }
-  return 0
-}
-
-function getLabels(node, neighbors) {
-  if (neighbors.indexOf(node.id)>=0) {
+function getLabels(label, neighbors) {
+  if (neighbors.indexOf(label.name)>=0) {
     return 1
   }
   return 0
 }
-/*
-function getTextColor(node, neighbors) {
-  return neighbors.indexOf(node.id) ? 'green' : 'black'
-}
-*/
-function getLinkColor(node, link) {
-  return isNeighborLink(node, link) ? 3 : 0
-}
-
-
 
 function selectNode(selectedNode) {
   const neighbors = getNeighbors(selectedNode)
-  
-  //console.log(legami)
-  nodi.attr('r', node => getNodeColor(node, neighbors))
-  legami.attr('stroke-width',link => getLinkColor(selectedNode,link))
-  labels.attr('opacity', node => getLabels(node, neighbors))
+  node.attr('opacity', node => getNodeColor(node, neighbors))
+  //node.attr('r', node => getNodeColor(node, neighbors))
+  link.style('stroke-width', link => getLinkColor(selectedNode,link))
+  node.style('stroke', node => getNodeStroke(node, selectedNode, "stroke"))
+  node.style('stroke-width', node => getNodeStroke(node, "stroke-width"))
+  //console.log(hulls)
+  hull.style("opacity", hull => getHullColor(hull))
+  labels.style("opacity", label => getLabels(label, neighbors))
+  //labels.attr("y", label => )
+  //labels.attr("opacity", label => getLabels(label, neighbors))
+  hulls = []
+  linksColor = new Map()
+  //labels.attr('opacity', node => getLabels(node, neighbors))
   
 }
 
+function init() {
+  if (force) force.stop();
+  //console.log(nameToIndex)
+  net = network(data, net, getGroup, expand);
 
-</script>
+  force = d3.layout.force()
+      .nodes(net.nodes)
+      .links(net.links)
+      .size([width, height])
+      .linkDistance(function(l, i) {
+        var n1 = l.source, n2 = l.target;
+        if(n1.group == n2.group)
+          return 20 ;
+        else
+          return 300 ;
+    })
+    .linkStrength(function(l, i) {return 0.7;})
+    .gravity(0.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
+    .charge(-2000)    // ... charge is important to turn single-linked groups to the outside
+    .friction(0.1)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
+      .start();
+
+  hullg.selectAll("path.hull").remove();
+  hull = hullg.selectAll("path.hull")
+      .data(convexHulls(net.nodes, getGroup, off))
+    .enter().append("path")
+      .attr("class", "hull")
+      .attr("d", drawCluster)
+      .style("fill", function(d) {return fill(d.group); })
+      .on("click", function(d) {
+//console.log("hull click", d, arguments, this, expand[d.group]);
+      expand[d.group] = false; 
+      init();
+    });
+
+    hull.append("title")
+      .text(function(d) {return d.name})
+
+  link = linkg.selectAll("line.link").data(net.links, linkid);
+  link.exit().remove();
+  link.enter().append("line")
+      .attr("class", "link")
+      .attr("id", function(d) { return d.source.name + "-" + d.target.name})
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; })
+      .style("stroke-width", function(d) { return d.size || 1; })
+      .style("stroke", function(d) {return d.color;});
+
+
+      
+    /*  var images = nodeg.append("image")
+        .attr("id","image")
+        .attr("xlink:href",  function(d) { return "./img.png";})
+        .attr("x", function(d) { return -25;})
+        .attr("y", function(d) { return -25;})
+        .attr("height", 50)
+        .attr("width", 50);*/
+
+  node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
+  node.exit().remove();
+  node.enter().append("circle")
+      // if (d.size) -- d.size > 0 when d is a group node.
+      .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
+      .attr("r", function(d) {return d.img ? rPirates : rCrew; }) 
+      .attr("id", function(d) { if(d.nodes != undefined && d.nodes[0].img.includes("flag")) 
+                               return "crew" + d.group; else return d.name; })
+      .attr("cx", function(d) { return d.x; })                            //{ return d.name ? rPirates : rCrew; }) 
+      .attr("cy", function(d) { return d.y; })
+      .style("fill", function(d) {return functionImage(d, d.img); })
+      .style("stroke", "black")
+      .on("click", function(d) {
+        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        link.style("stroke-width", function(d) { return d.size || 1; })
+        //console.log("node click", d, arguments, this, expand[d.group]);
+        expand[d.group] = !expand[d.group];
+        d3.selectAll("#label").remove()
+        init();
+        node.attr('opacity', 1)
+        if(expand[d.group] == true)
+          d3.selectAll("#crew" + d.group).remove(); 
+      });
+      
+  var title = node.append("title")
+    .text(function(d) {return d.name})
+
+  node.on('mouseover',function() {
+        nodeSelected = d3.select(this)
+        selectNode(nodeSelected.data()[0])
+      })
+      .on('mouseout',function() {
+        node.attr('opacity', 1)
+        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        node.style("stroke", "black")
+        node.style("stroke-width", 1)
+        link.style("stroke-width", function(d) { return d.size || 1; })
+        hull.style("opacity", 1)
+        labels.style("opacity", 0)
+      })
+
+  labels = vis.append("g").selectAll("circle")
+    .data(net.nodes)//cambiato da nodes a crews
+    .enter().append("svg:text")
+    .text(function(d) { return d.name})
+    .attr("id", "label")
+    .style("text-anchor", "middle")
+    .style("fill", "black")
+    .style("font-family", "Arial")
+    .style("font-size", 15)
+    .attr("opacity", 0) 
+    .attr("transform", "translate(0,-35)");
+    
+
+  node.call(force.drag);
+
+  force.on("tick", function() {
+
+
+    var q = d3.geom.quadtree(net.nodes),
+      i = 0,
+      n = net.nodes.length;
+
+    while (++i < n) q.visit(collide(net.nodes[i]));
+
+    if (!hull.empty()) {
+      hull.data(convexHulls(net.nodes, getGroup, off))
+          .attr("d", drawCluster);
+    }
+
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+        labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
+          .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
+
+    node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });
+    
+    
+  })
+
+  //labels.data(node).enter().attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
+          //.attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y - 30)); });*/
+}
+
+
+function collide(node) {
+  var r = node.img ? rPirates * 2 + 30 : rCrew * 2 + 60,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    //console.log(quad.point)
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.img ? rPirates * 2 + 30 : rCrew * 2 + 60;
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2
+        || x2 < nx1
+        || y1 > ny2
+        || y2 < ny1;
+  };
+}
+
+    </script>
+  </body>
+</html>
