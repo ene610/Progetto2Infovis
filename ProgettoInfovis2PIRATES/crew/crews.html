@@ -146,8 +146,8 @@ function network(data, prev, index, expand) {
       nodes.push(n);
       if (gn[i]) {
         // place new nodes at cluster location (plus jitter)
-        n.x = gn[i].x + Math.random();
-        n.y = gn[i].y + Math.random();
+        n.x = gn[i].x //+ Math.random();
+        n.y = gn[i].y //+ Math.random();
       }
     } else {
       // the node is part of a collapsed cluster
@@ -285,7 +285,43 @@ d3.json("data/crews.json", function(json) {
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
-  data = {"links":linki,"nodes":nodi}
+  data = {"links":linki,"nodes":nodi, "saghe": data.saghe}
+
+  var buttonMenu = d3.select("body").data(data.saghe);
+
+var i = 0
+var top = "150px"
+var buttonWidth = 150
+var buttonHeight = 30
+for(var j = 0; j < data.saghe.length; j++) {
+  //if(i == 2) top = "250px";
+  //if(i != 0 && i % 2 == 0 ) top = parseInt(top) + 80 + "px";
+  var buttons = buttonMenu.append("button")
+  .text(data.saghe[j].name)
+  .attr("id", data.saghe[j].num)
+  .style("height", buttonHeight + "px")
+  .style("width", buttonWidth + "px")
+  .style("position", "absolute")
+  .style("left", "1300px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
+  .style("top", 120 + j * 50 + "px")
+  .on("click", function(){updateAllGraph(this.id)})
+  /*button.onclick = function() {
+              updateAllGraph(data.saghe[j].num)};
+  /*.on("click", function() {
+    selectedSaga = this.id
+    selectLinks(selectedSaga)
+})*/
+  //i = i + 1
+  //if(i == 4) i = 0;
+}
+var timeLine = svg.append("line")
+  .attr("x1", 90 + buttonWidth / 2)
+  .attr("y1", 120)
+  .attr("x2", 90 + buttonWidth / 2)
+  .attr("y2", 630)
+  .attr("stroke-width", 5)
+  .attr("stroke", "black");
+
 
   //console.log(data.links)
 
@@ -419,11 +455,13 @@ function selectNode(selectedNode) {
   
 }
 
-function init() {
+
+function init(string) {
   if (force) force.stop();
   //console.log(nameToIndex)
   net = network(data, net, getGroup, expand);
-
+  var strenght = 2;
+  if(string == "saga") strenght = 5;
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
@@ -434,7 +472,8 @@ function init() {
         })
       .linkStrength(function(l) {
         var n1 = l.source, n2 = l.target;
-        return n1.group == n2.group ? 1.5 : 0.2; 
+        //console.log(l.source.name + " - " + l.target.name + " group: " + n1.group + "-" +n2.group)
+        return n1.group == n2.group ? strenght : 0.2; 
         })
     .gravity(0.15)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
     .charge(-2000)    // ... charge is important to turn single-linked groups to the outside
@@ -532,9 +571,9 @@ function init() {
     .style("text-anchor", "middle")
     .style("fill", "black")
     .style("font-family", "Arial")
-    .style("font-size", 15)
+    .style("font-size", 13)
     .attr("opacity", 0) 
-    .attr("transform", "translate(0,-35)");
+    .attr("transform", "translate(0,-30)");
     
 
   node.call(force.drag);
@@ -558,7 +597,7 @@ function init() {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-        labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
+    labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
 
     node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
@@ -573,7 +612,7 @@ function init() {
 
 
 function collide(node) {
-  var r = node.img ? rPirates * 2 + 30 : rCrew * 2 + 60,
+  var r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60,
       nx1 = node.x - r,
       nx2 = node.x + r,
       ny1 = node.y - r,
@@ -584,7 +623,7 @@ function collide(node) {
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
           l = Math.sqrt(x * x + y * y),
-          r = node.img ? rPirates * 2 + 30 : rCrew * 2 + 60;
+          r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60;
       if (l < r) {
         l = (l - r) / l * .5;
         node.x -= x *= l;
@@ -606,8 +645,9 @@ function updateAllGraph(saga){
   nodesToUpdate = nodesInSaga(data.nodes,saga)
   linksToUpdate = linkInSaga(data.links,saga)
   crews = getCrews(data.nodes)
+  labels.remove()
 
-  data = {"links":linksToUpdate,"nodes":nodesToUpdate}
+  data = {"links":linksToUpdate,"nodes":nodesToUpdate, "saghe": originalData.saghe}
 
   //ricorda di renderlo una funzione
 
@@ -617,8 +657,7 @@ function updateAllGraph(saga){
     o.target = data.nodes[o.target];
   }
 
-  init();
-
+  init("saga");
 }
     </script>
   </body>
