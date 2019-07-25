@@ -173,6 +173,9 @@
     {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":11, "color": "green"},
+    {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":11, "color": "green"},
+    {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":11, "color": "green"},
     
     {"source":"Roronoa Zoro","target":"Buggy","value":30,"saga":1, "color": "red"},
     {"source":"Roronoa Zoro","target":"Cabaji","value":30,"saga":1, "color": "red"},
@@ -202,6 +205,7 @@
     {"source":"Buggy","target":"Crocodile","value":30,"saga":6, "color": "green"},
     {"source":"Buggy","target":"Whitebeard","value":30,"saga":7, "color": "green"},
     {"source":"Buggy","target":"Akainu","value":30,"saga":8, "color": "green"},
+    {"source":"Buggy","target":"Akainu","value":30,"saga":1, "color": "red"},
     {"source":"Buggy","target":"Magellan","value":30,"saga":6, "color": "red"},
     {"source":"Buggy","target":"Hannyabal","value":30,"saga":6, "color": "red"},
     {"source":"Buggy","target":"Sadie","value":30,"saga":6, "color": "red"},
@@ -227,6 +231,7 @@
     {"source":"Whitebeard","target":"Gecko Moria","value":30,"saga":7, "color": "red"},
     {"source":"Whitebeard","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
     {"source":"Whitebeard","target":"Kaido","value":30,"saga":9, "color": "red"},
+    {"source":"Whitebeard","target":"Donquixote Doflamingo","value":30,"saga":7, "color": "red"},
 
     {"source":"Marco","target":"Portgas D. Ace","value":30,"saga":2, "color": "green"},
     {"source":"Marco","target":"Blackbeard","value":30,"saga":2, "color": "red"},
@@ -254,8 +259,8 @@
     {"source":"Donquixote Doflamingo","target":"Akainu","value":30,"saga":7, "color": "green"},
     {"source":"Donquixote Doflamingo","target":"Akainu","value":30,"saga":10, "color": "red"},
     {"source":"Donquixote Doflamingo","target":"Aokiji","value":30,"saga":8, "color": "red"},
-    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":7, "color": "green"},
-    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":8, "color": "red"},
+    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":8, "color": "green"},
+    {"source":"Donquixote Doflamingo","target":"Trafalgar D. Law","value":30,"saga":9, "color": "red"},
     {"source":"Donquixote Doflamingo","target":"Kaido","value":30,"saga":9, "color": "green"},
     {"source":"Donquixote Doflamingo","target":"Caesar Clown","value":30,"saga":8, "color": "green"},
     {"source":"Donquixote Doflamingo","target":"Cavendish","value":30,"saga":9, "color": "red"},
@@ -281,7 +286,9 @@
     {"source":"Akainu","target":"Kaido","value":30,"saga":9, "color": "red"},
     {"source":"Akainu","target":"Cavendish","value":30,"saga":9, "color": "red"},
     {"source":"Akainu","target":"Bartolomeo","value":30,"saga":9, "color": "red"},
-    {"source":"Akainu","target":"Spandam","value":30,"saga":3, "color": "red"},
+    {"source":"Akainu","target":"Spandam","value":30,"saga":3, "color": "green"},
+    {"source":"Akainu","target":"Shanks","value":30,"saga":1, "color": "red"},
+    {"source":"Akainu","target":"Whitebeard","value":30,"saga":3, "color": "red"},
 
     {"source":"Aokiji","target":"Kizaru","value":30,"saga":1, "color": "green"},
 
@@ -319,7 +326,8 @@
     {"source":"Trafalgar D. Law","target":"Bepo","value":30,"saga":5, "color": "green"},
     {"source":"Trafalgar D. Law","target":"Jean Bart","value":30,"saga":5, "color": "green"},
     {"source":"Trafalgar D. Law","target":"Kaido","value":30,"saga":11, "color": "red"},
-    {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":8, "color": "red"},
+    {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":8, "color": "green"},
+    {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":9, "color": "red"},
 
     {"source":"Bepo","target":"Jean Bart","value":30,"saga":5, "color": "green"},
 
