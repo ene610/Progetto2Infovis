@@ -337,6 +337,8 @@ for(var j = 0; j < data.saghe.length; j++) {
     opacity = data.saghe[this.id-1].opacity
     updateBackground(path,opacity)
     })
+    .append("image")
+    .attr("fill",String(data.saghe[j].path))
   /*button.onclick = function() {
               updateAllGraph(data.saghe[j].num)};
   /*.on("click", function() {
@@ -479,6 +481,7 @@ function selectNode(selectedNode) {
   //console.log(hulls)
   hull.style("opacity", hull => getHullColor(hull))
   labels.style("opacity", label => getLabels(label, neighbors))
+  
   //labels.attr("y", label => )
   //labels.attr("opacity", label => getLabels(label, neighbors))
   hulls = []
@@ -600,12 +603,14 @@ function init(string) {
   labels = vis.append("g").selectAll("circle")
     .data(net.nodes)//cambiato da nodes a crews
     .enter().append("svg:text")
+    .style("fill","black")
     .text(function(d) { return d.name})
     .attr("id", "label")
     .style("text-anchor", "middle")
-    .style("fill", "black")
+    .style("fill", "white")
+    .style("stroke","black")
     .style("font-family", "Arial")
-    .style("font-size", 13)
+    .style("font-size", "18px")
     .style("font-weight", "bold")
     .attr("opacity", 0) 
     .attr("transform", "translate(0,-30)");
