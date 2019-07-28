@@ -112,17 +112,17 @@
     {"name":"Kaku", "group":23,"saga":3, "img": "../char-image/kaku.png"}  
   ],
   "saghe": [
-    {"name":"Eastern sea", "num": 1},
-    {"name":"Alabasta", "num": 2},
-    {"name":"Enies Lobby", "num": 3},
-    {"name":"Thriller Bark", "num": 4},
-    {"name":"Sabaody", "num": 5},
-    {"name":"Impel Down", "num": 6},
-    {"name":"Marineford", "num": 7},
-    {"name":"Punk Hazard", "num": 8},
-    {"name":"Dressrosa", "num": 9},
-    {"name":"Whole Cake Island", "num": 10},
-    {"name":"Wano", "num": 11}
+    {"name":"Eastern sea", "num": 1 ,"opacity" : 1 ,"path" : "./background_saga/whole_cake_background.jpeg"},
+    {"name":"Alabasta", "num": 2 ,"opacity" : 1 ,"path" : "./background_saga/Alubarna_Palace_background.png"},
+    {"name":"Enies Lobby", "num": 3 ,"opacity" : 1 ,"path" : "./background_saga/Enies_lobby_background.jpg"},
+    {"name":"Thriller Bark", "num": 4,"opacity" : 1 ,"path" : "./background_saga/whole_cake_background.jpeg"},
+    {"name":"Sabaody", "num": 5,"opacity" : 1 ,"path" : "./background_saga/Sabaondy_background.webp"},
+    {"name":"Impel Down", "num": 6,"opacity" : 1 ,"path" : "./background_saga/ImpelDown_background.jpg"},
+    {"name":"Marineford", "num": 7,"opacity" : 1 ,"path" : "./background_saga/Marineford_background.png"},
+    {"name":"Punk Hazard", "num": 8,"opacity" : 1 ,"path" : "./background_saga/punk_hazard_background.png"},
+    {"name":"Dressrosa", "num": 9,"opacity" : 1 ,"path" : "./background_saga/Dressrosa_background.jpg"},
+    {"name":"Whole Cake Island", "num": 10,"opacity" : 1 ,"path" : "./background_saga/whole_cake_background.jpeg"},
+    {"name":"Wano", "num": 11,"opacity" : 1 ,"path" : "./background_saga/Wano_Background.png"}
   ],
   "links":[
     {"source":"Monkey D. Luffy","target":"Sanji","value":30,"saga":1, "color": "green"},
