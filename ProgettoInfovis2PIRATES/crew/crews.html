@@ -283,7 +283,7 @@ var greenLine = svg.append("line")
   .attr("x2", 70)
   .attr("y2", 30)
   .attr("stroke-width", 5)
-  .attr("stroke", "green");
+  .attr("stroke", "#00FF00");
 
 var redLine = svg.append("line")
   .attr("x1", 5)
@@ -446,8 +446,8 @@ function getLinkColor(node, link) {
   }
   if(isNeighborLink(node, link)){
     var color = link.color;
-    if(link.color == "green")
-      color = "#03c03c";
+    if(link.color == "#00FF00")
+      color = "#00FF00";
     else color = "#e30022"
     if(node.name != link.source.name)
       linksColor.set(link.source.name, color);
@@ -519,6 +519,7 @@ function init(string) {
       .attr("class", "hull")
       .attr("d", drawCluster)
       .style("fill", function(d) {return fill(d.group); })
+      .style("fill-opacity", 1.5)
       .on("click", function(d) {
       
 //console.log("hull click", d, arguments, this, expand[d.group]);
@@ -539,7 +540,8 @@ function init(string) {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; })
       .style("stroke-width", function(d) { return d.size || 1; })
-      .style("stroke", function(d) {return d.color;});
+      .style("stroke", function(d) {return d.color;})
+      .style("stroke-opacity", 3);
 
 
       
@@ -604,6 +606,7 @@ function init(string) {
     .style("fill", "black")
     .style("font-family", "Arial")
     .style("font-size", 13)
+    .style("font-weight", "bold")
     .attr("opacity", 0) 
     .attr("transform", "translate(0,-30)");
     
