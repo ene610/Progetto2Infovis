@@ -283,7 +283,7 @@ var greenLine = svg.append("line")
   .attr("x2", 70)
   .attr("y2", 30)
   .attr("stroke-width", 5)
-  .attr("stroke", "#00FF00");
+  .attr("stroke", "#00c400");
 
 var redLine = svg.append("line")
   .attr("x1", 5)
@@ -446,8 +446,8 @@ function getLinkColor(node, link) {
   }
   if(isNeighborLink(node, link)){
     var color = link.color;
-    if(link.color == "#00FF00")
-      color = "#00FF00";
+    if(link.color == "#00c400")
+      color = "#00c400";
     else color = "#e30022"
     if(node.name != link.source.name)
       linksColor.set(link.source.name, color);
@@ -698,7 +698,7 @@ function updateAllGraph(saga){
 function updateBackground(url,opacity){
   
   console.log(url)
-  opacity = 0.8
+  opacity = 0.5
   d3.select("#background").attr("xlink:href", url)
   d3.select("#background_rect").attr("opacity",opacity)
   
