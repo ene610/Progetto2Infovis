@@ -318,19 +318,22 @@ d3.json("data/crews.json", function(json) {
 
 var i = 0
 var top = "150px"
-var buttonWidth = 150
-var buttonHeight = 30
+var buttonWidth = 290
+var buttonHeight = 50
 for(var j = 0; j < data.saghe.length; j++) {
   //if(i == 2) top = "250px";
   //if(i != 0 && i % 2 == 0 ) top = parseInt(top) + 80 + "px";
   var buttons = buttonMenu.append("button")
   .text(data.saghe[j].name)
   .attr("id", data.saghe[j].num)
+  .style("background","url("+data.saghe[j].path+")")
+  .style("background-size","cover")
+  .style("background-position","center")
   .style("height", buttonHeight + "px")
   .style("width", buttonWidth + "px")
   .style("position", "absolute")
-  .style("left", "1300px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
-  .style("top", 120 + j * 50 + "px")
+  .style("left", "1217px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
+  .style("top", 120 + j * 52 + "px")
   .on("click", function(){
     updateAllGraph(this.id)
     path = data.saghe[this.id-1].path
@@ -703,7 +706,7 @@ function updateAllGraph(saga){
 function updateBackground(url,opacity){
   
   console.log(url)
-  opacity = 0.5
+  
   d3.select("#background").attr("xlink:href", url)
   d3.select("#background_rect").attr("opacity",opacity)
   
