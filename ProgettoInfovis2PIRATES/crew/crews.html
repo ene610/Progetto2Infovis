@@ -330,7 +330,7 @@ svg.append("text")
 d3.json("data/crews.json", function(json) {
   originalData = json;
   data = JSON.parse(JSON.stringify(originalData))
-  saga = 11
+  saga = 1
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
@@ -367,16 +367,6 @@ for(var j = 0; j < data.saghe.length; j++) {
     .attr("fill",String(data.saghe[j].path))
 
 }
-var timeLine = svg.append("line")
-  .attr("x1", 90 + buttonWidth / 2)
-  .attr("y1", 120)
-  .attr("x2", 90 + buttonWidth / 2)
-  .attr("y2", 630)
-  .attr("stroke-width", 5)
-  .attr("stroke", "black");
-
-
-  //console.log(data.links)
 
   for (var i=0; i<data.links.length; ++i) {
     o = data.links[i];
@@ -388,12 +378,11 @@ var timeLine = svg.append("line")
   linkg = vis.append("g");
   nodeg = vis.append("g");
   init();
-  //console.log(net)
   
   vis.attr("opacity", 0.2)
     .transition()
-      .duration(1000)
-      .attr("opacity", 1);
+    .duration(1000)
+    .attr("opacity", 1);
 
 });
 
@@ -493,29 +482,22 @@ function getLabels(label, neighbors) {
 function selectNode(selectedNode) {
   const neighbors = getNeighbors(selectedNode)
   node.attr('opacity', node => getNodeColor(node, neighbors))
-  //node.attr('r', node => getNodeColor(node, neighbors))
   link.style('stroke-width', link => getLinkColor(selectedNode,link))
   node.style('stroke', node => getNodeStroke(node, selectedNode, "stroke"))
   node.style('stroke-width', node => getNodeStroke(node, "stroke-width"))
-  //console.log(hulls)
   hull.style("opacity", hull => getHullColor(hull))
   labels.style("opacity", label => getLabels(label, neighbors))
-  
-  //labels.attr("y", label => )
-  //labels.attr("opacity", label => getLabels(label, neighbors))
   hulls = []
-  linksColor = new Map()
-  //labels.attr('opacity', node => getLabels(node, neighbors))
-  
+  linksColor = new Map()  
 }
 
 
 function init(string) {
   if (force) force.stop();
-  //console.log(nameToIndex)
+  console.log(string)
   net = network(data, net, getGroup, expand);
   var strenght = 2;
-  if(string == "saga") strenght = 5;
+  if(string == "saga") strenght = 6;
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
@@ -534,14 +516,18 @@ function init(string) {
     .friction(0.1)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
       .start();
 
+ var colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
+              '#bcf60c', '#fabebe', '#008080', '#1f77b4', '#9a6324', '#bcf60c', '#800000', '#aaffc3', '#808000', 
+              '#ff7f0e', '#000075', '#808080', '#000000', '#e6194b', '#3cb44b', '#ffe119'];
+
   hullg.selectAll("path.hull").remove();
   hull = hullg.selectAll("path.hull")
       .data(convexHulls(net.nodes, getGroup, off))
     .enter().append("path")
       .attr("class", "hull")
       .attr("d", drawCluster)
-      .style("fill", function(d) {return fill(d.group); })
-      .style("fill-opacity", 1.5)
+      .style("fill", function(d) {return colors[d.group]; })
+      .style("fill-opacity", 10)
       .on("click", function(d) {
       
 //console.log("hull click", d, arguments, this, expand[d.group]);
