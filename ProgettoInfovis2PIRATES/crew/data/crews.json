@@ -349,7 +349,8 @@
     {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "#00c400"},
     {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Ichiji","value":30,"saga":11, "color": "red"},
     {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Niji","value":30,"saga":10, "color": "#00c400"},
-    {"source":"Charlotte Linlin (Big Mom)","target":"Vinsmoke Niji","value":30,"saga":11, "color": "red"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Kaido","value":30,"saga":10, "color": "red"},
+    {"source":"Charlotte Linlin (Big Mom)","target":"Kaido","value":30,"saga":11, "color": "#00c400"},
 
     {"source":"Charlotte Katakuri","target":"Charlotte Cracker","value":30,"saga":10, "color": "#00c400"},
 

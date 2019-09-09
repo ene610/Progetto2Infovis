@@ -1,0 +1,39 @@
+svg {
+  border: 1px solid #ccc;
+}
+body {
+  font: 10px sans-serif;
+}
+
+circle.leaf {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+path.hull {
+  fill: lightsteelblue;
+  fill-opacity: 0.3;
+}
+line.link {
+  stroke: #333;
+  stroke-opacity: 0.5;
+  pointer-events: none;
+}
+button {
+	font-size:22px;
+	line-height:25px;
+	text-transform:uppercase;
+	color:#fff;
+	text-shadow: -1px 0 #000,
+                0 1px #000,
+                1px 0 #000,
+                0 -1px #000;
+  font-weight:700;
+  letter-spacing:1px;
+}
+button:hover {
+	background-color:transparent;
+}
+button:active {
+	position:relative;
+	top:1px;
+}

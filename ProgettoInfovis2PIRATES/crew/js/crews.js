@@ -1,43 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Clustered Network</title>
-    <script src="http://d3js.org/d3.v3.js"></script>
-
-    <style type="text/css">
-svg {
-  border: 1px solid #ccc;
-}
-body {
-  font: 10px sans-serif;
-}
-
-circle.leaf {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-path.hull {
-  fill: lightsteelblue;
-  fill-opacity: 0.3;
-}
-line.link {
-  stroke: #333;
-  stroke-opacity: 0.5;
-  pointer-events: none;
-}
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
-    
 var width = 1200,     // svg width
-    height = 700,     // svg height
+    height = 675,     // svg height
     dr = 20,         // default point radius
     rCrew = 25,
     rPirates = 20,    
     off = 15,    // cluster hull offset
     expand = {}, // expanded clusters
-    data, net, force, hullg, hull, linkg, link, nodeg, node, labels;
+    data, net, force, hullg, hull, linkg, link, nodeg, node, labels,originalData;
 
 var nameToIndex ;
 
@@ -46,9 +14,6 @@ var curve = d3.svg.line()
     .tension(.85);
 
 var fill = d3.scale.category20();
-
-function noop() { return false; }
-
 
 function nodeid(n) {
   return n.size ? "_g_"+n.group : n.name + n.img;
@@ -99,6 +64,15 @@ function linkInSaga(links,saga){
   return linksSaga1;
 }
 
+function getCrews(data) {
+    var crews = []
+    for(x of data){
+      if(x.img.includes("flag"))
+        crews[x.group] = x.name;
+    }
+    return crews;
+  }
+
 // constructs the network to visualize
 function network(data, prev, index, expand) {
   expand = expand || {};
@@ -110,8 +84,10 @@ function network(data, prev, index, expand) {
       nodes = [], // output nodes
       links = [], // output links
       expandedCrew = [];
+      //console.log(nodes,"nodi")
   // process previous nodes for reuse or centroid calculation
   if (prev) {
+    
     prev.nodes.forEach(function(n) {
 
       var i = index(n), o;
@@ -131,14 +107,15 @@ function network(data, prev, index, expand) {
     var n = data.nodes[k],
         i = index(n)
     var l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[], name: n.name});
+    
     if (expand[i] && !n.img.includes("flag")) {
       // the node should be directly visible
       nm[n.name] = nodes.length;
       nodes.push(n);
       if (gn[i]) {
         // place new nodes at cluster location (plus jitter)
-        n.x = gn[i].x + Math.random();
-        n.y = gn[i].y + Math.random();
+        n.x = gn[i].x //+ Math.random();
+        n.y = gn[i].y //+ Math.random();
       }
     } else {
       // the node is part of a collapsed cluster
@@ -174,15 +151,15 @@ function network(data, prev, index, expand) {
 
   // determine links
   for (k=0; k<data.links.length; ++k) {
-    //console.log(data.links.length,k)  
+    //console.log(data.links.length,k) 
+        
     var e = data.links[k]
-    var    u = index(e.source),
-        v = index(e.target);
-  if (u != v) {
-    
+    var u = index(e.source);
+    var v = index(e.target);
+    if (u != v) {
     gm[u].link_count++;
     gm[v].link_count++;
-  }
+    }
   
     u = expand[u] ? nm[e.source.name] : nm[u];
     v = expand[v] ? nm[e.target.name] : nm[v];
@@ -233,7 +210,8 @@ var body = d3.select("body");
 var crews = []
 var vis = body.append("svg")
    .attr("width", width)
-   .attr("height", height);
+   .attr("height", height)
+   ;
 
 var svg = body.append("svg")
    .attr("width", 330)
@@ -241,13 +219,39 @@ var svg = body.append("svg")
    .style("position", "absolute")
    .style("left", "1210px")
 
+
+    max = { x: 230, y: 152},
+    imgUrl = "./background_saga/MerryGo_background.png";
+
+
+   vis.append("defs")
+    .append("pattern")
+    .attr("id", "venus")
+    .attr('patternUnits', 'userSpaceOnUse')
+    .attr("width", width)
+    .attr("height", height)
+    .append("image")
+    .attr("id","background")
+    .attr("xlink:href", imgUrl)
+    .attr("width", width)
+    .attr("height", height);
+
+    vis.append("rect")
+    .attr("x", "0")
+    .attr("y", "0")
+    .attr("id","background_rect")
+    .attr("opacity",0.3)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "url(#venus)");
+
 var greenLine = svg.append("line")
   .attr("x1", 5)
   .attr("y1", 30)
   .attr("x2", 70)
   .attr("y2", 30)
   .attr("stroke-width", 5)
-  .attr("stroke", "green");
+  .attr("stroke", "#00c400");
 
 var redLine = svg.append("line")
   .attr("x1", 5)
@@ -269,24 +273,47 @@ svg.append("text")
    .text("Enemies")
    .attr("font-size", "18px")
 
-d3.json("data/miserables.json", function(json) {
-  data = json;
-  //console.log(data)
-  saga = 11
+d3.json("data/crews.json", function(json) {
+  originalData = json;
+  data = JSON.parse(JSON.stringify(originalData))
+  saga = 1
   nodi = nodesInSaga(data.nodes,saga)
   linki = linkInSaga(data.links,saga) 
   crews = getCrews(data.nodes)
-  data = {"links":linki,"nodes":nodi}
+  data = {"links":linki,"nodes":nodi, "saghe": data.saghe}
 
-  function getCrews(data) {
-    var crews = []
-    for(x of data){
-      if(x.img.includes("flag"))
-        crews[x.group] = x.name;
-    }
-    return crews;
-  }
-  //console.log(data.links)
+var buttonMenu = d3.select("body").data(data.saghe);
+
+var i = 0
+var top = "150px"
+var buttonWidth = 290
+var buttonHeight = 48
+for(var j = 0; j < data.saghe.length; j++) {
+  //if(i == 2) top = "250px";
+  //if(i != 0 && i % 2 == 0 ) top = parseInt(top) + 80 + "px";
+  var buttons = buttonMenu.append("button")
+  .text(data.saghe[j].name)
+  .attr("text-color","#fff")
+  .attr("id", data.saghe[j].num)
+  .style("background","url("+data.saghe[j].path+")")
+  .style("background-size","cover")
+  .style("background-position","center")
+  .style("height", buttonHeight + "px")
+  .style("width", buttonWidth + "px")
+  .style("position", "absolute")
+  .style("left", "1217px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
+  .style("top", 120 + j * 50 + "px")
+  .on("click", function(){
+    expand = []
+    updateAllGraph(this.id)
+    path = data.saghe[this.id-1].path
+    opacity = data.saghe[this.id-1].opacity
+    updateBackground(path,opacity)
+    })
+    .append("image")
+    .attr("fill",String(data.saghe[j].path))
+
+}
 
   for (var i=0; i<data.links.length; ++i) {
     o = data.links[i];
@@ -297,13 +324,13 @@ d3.json("data/miserables.json", function(json) {
   hullg = vis.append("g");
   linkg = vis.append("g");
   nodeg = vis.append("g");
-
   init();
-
-  vis.attr("opacity", 1e-6)
+  
+  vis.attr("opacity", 0.2)
     .transition()
-      .duration(1000)
-      .attr("opacity", 1);
+    .duration(1000)
+    .attr("opacity", 1);
+
 });
 
 var defs = vis.append("defs");
@@ -346,9 +373,9 @@ function getNeighbors(node) {
 
 function getNodeColor(node, neighbors) {
   if (neighbors.indexOf(node.name)>=0) {
-    return node.img ? rPirates : rCrew
+    return 1
   }
-  return 0
+  return 0.2
 }
 
 function getNodeStroke(node, selectedNode, string) {
@@ -376,8 +403,8 @@ function getLinkColor(node, link) {
   }
   if(isNeighborLink(node, link)){
     var color = link.color;
-    if(link.color == "green")
-      color = "#03c03c";
+    if(link.color == "#00c400")
+      color = "#00c400";
     else color = "#e30022"
     if(node.name != link.source.name)
       linksColor.set(link.source.name, color);
@@ -401,67 +428,44 @@ function getLabels(label, neighbors) {
 
 function selectNode(selectedNode) {
   const neighbors = getNeighbors(selectedNode)
-  node.attr('r', node => getNodeColor(node, neighbors))
+  node.attr('opacity', node => getNodeColor(node, neighbors))
   link.style('stroke-width', link => getLinkColor(selectedNode,link))
   node.style('stroke', node => getNodeStroke(node, selectedNode, "stroke"))
   node.style('stroke-width', node => getNodeStroke(node, "stroke-width"))
-  //console.log(hulls)
   hull.style("opacity", hull => getHullColor(hull))
   labels.style("opacity", label => getLabels(label, neighbors))
-  //labels.attr("y", label => )
-  //labels.attr("opacity", label => getLabels(label, neighbors))
   hulls = []
-  linksColor = new Map()
-  //labels.attr('opacity', node => getLabels(node, neighbors))
-  
+  linksColor = new Map()  
 }
 
-function init() {
-  if (force) force.stop();
-  //console.log(nameToIndex)
-  net = network(data, net, getGroup, expand);
 
+function init(string) {
+  if (force) force.stop();
+  console.log(string)
+  net = network(data, net, getGroup, expand);
+  var strenght = 2;
+  if(string == "saga") strenght = 6;
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
       .size([width, height])
-      .linkDistance(function(l, i) {
-      var n1 = l.source, n2 = l.target;
-    // larger distance for bigger groups:
-    // both between single nodes and _other_ groups (where size of own node group still counts),
-    // and between two group nodes.
-    //
-    // reduce distance for groups with very few outer links,
-    // again both in expanded and grouped form, i.e. between individual nodes of a group and
-    // nodes of another group or other group node or between two group nodes.
-    //
-    // The latter was done to keep the single-link groups ('blue', rose, ...) close.
-   
-    /*return 30 +
-      Math.min(20 * Math.min((n1.size || (n1.group != n2.group ? n1.group_data.size : 0)),
-                             (n2.size || (n1.group != n2.group ? n2.group_data.size : 0))),
-           -30 +
-           30 * Math.min((n1.link_count || (n1.group != n2.group ? n1.group_data.link_count : 0)),
-                         (n2.link_count || (n1.group != n2.group ? n2.group_data.link_count : 0))),
-           100);
-      //return 150;*/
-
-    return 100 +
-      Math.min(20 * Math.min((n1.size || (n1.group != n2.group ? n1.group_data.size : 0)),
-                             (n2.size || (n1.group != n2.group ? n2.group_data.size : 0))),
-           -30 +
-           100 * Math.min((n1.link_count || (n1.group != n2.group ? n1.group_data.link_count : 0)),
-                         (n2.link_count || (n1.group != n2.group ? n2.group_data.link_count : 0))),
-           100);
-      //return 150;
-    })
-    .linkStrength(function(l, i) {
-    return 1;
-    })
-    .gravity(.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
+      .linkDistance(function(l) {
+        var n1 = l.source, n2 = l.target;
+        return n1.group == n2.group ? 30 : 300; 
+        })
+      .linkStrength(function(l) {
+        var n1 = l.source, n2 = l.target;
+        //console.log(l.source.name + " - " + l.target.name + " group: " + n1.group + "-" +n2.group)
+        return n1.group == n2.group ? strenght : 0.2; 
+        })
+    .gravity(0.15)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
     .charge(-2000)    // ... charge is important to turn single-linked groups to the outside
     .friction(0.1)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
       .start();
+
+ var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
+              '#bcf60c', '#7f7f7f', '#008080', '#1f77b4', '#9a6324', '#bcf60c', '#800000', '#228B22', '#808000', 
+              '#ff7f0e', '#000075', '#808080', '#000000', '#e6194b', '#17becf', '#ffe119'];
 
   hullg.selectAll("path.hull").remove();
   hull = hullg.selectAll("path.hull")
@@ -469,8 +473,10 @@ function init() {
     .enter().append("path")
       .attr("class", "hull")
       .attr("d", drawCluster)
-      .style("fill", function(d) {return fill(d.group); })
+      .style("fill", function(d) {return colors[d.group]; })
+      .style("fill-opacity", 10)
       .on("click", function(d) {
+      
 //console.log("hull click", d, arguments, this, expand[d.group]);
       expand[d.group] = false; 
       init();
@@ -489,7 +495,8 @@ function init() {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; })
       .style("stroke-width", function(d) { return d.size || 1; })
-      .style("stroke", function(d) {return d.color;});
+      .style("stroke", function(d) {return d.color;})
+      .style("stroke-opacity", 3);
 
 
       
@@ -514,12 +521,15 @@ function init() {
       .style("fill", function(d) {return functionImage(d, d.img); })
       .style("stroke", "black")
       .on("click", function(d) {
-        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
         link.style("stroke-width", function(d) { return d.size || 1; })
         //console.log("node click", d, arguments, this, expand[d.group]);
         expand[d.group] = !expand[d.group];
         d3.selectAll("#label").remove()
         init();
+        node.style('stroke', "black")
+        node.style('stroke-width', 1)
+        node.attr('opacity', 1)
         if(expand[d.group] == true)
           d3.selectAll("#crew" + d.group).remove(); 
       });
@@ -528,11 +538,13 @@ function init() {
     .text(function(d) {return d.name})
 
   node.on('mouseover',function() {
+       
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
       })
       .on('mouseout',function() {
-        node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
+        node.attr('opacity', 1)
+        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
         node.style("stroke", "black")
         node.style("stroke-width", 1)
         link.style("stroke-width", function(d) { return d.size || 1; })
@@ -543,14 +555,17 @@ function init() {
   labels = vis.append("g").selectAll("circle")
     .data(net.nodes)//cambiato da nodes a crews
     .enter().append("svg:text")
+    .style("fill","black")
     .text(function(d) { return d.name})
     .attr("id", "label")
     .style("text-anchor", "middle")
-    .style("fill", "black")
+    .style("fill", "white")
+    .style("stroke","black")
     .style("font-family", "Arial")
-    .style("font-size", 15)
+    .style("font-size", "18px")
+    .style("font-weight", "bold")
     .attr("opacity", 0) 
-    .attr("transform", "translate(0,-35)");
+    .attr("transform", "translate(0,-30)");
     
 
   node.call(force.drag);
@@ -574,7 +589,7 @@ function init() {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-        labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
+    labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
 
     node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
@@ -589,8 +604,7 @@ function init() {
 
 
 function collide(node) {
-  
-  var r = node.img ? rPirates : rCrew,
+  var r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60,
       nx1 = node.x - r,
       nx2 = node.x + r,
       ny1 = node.y - r,
@@ -601,7 +615,7 @@ function collide(node) {
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
           l = Math.sqrt(x * x + y * y),
-          r = 110;
+          r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60;
       if (l < r) {
         l = (l - r) / l * .5;
         node.x -= x *= l;
@@ -617,6 +631,32 @@ function collide(node) {
   };
 }
 
-    </script>
-  </body>
-</html>
+function updateAllGraph(saga){
+
+  data = JSON.parse(JSON.stringify(originalData))
+  nodesToUpdate = nodesInSaga(data.nodes,saga)
+  linksToUpdate = linkInSaga(data.links,saga)
+  crews = getCrews(data.nodes)
+  labels.remove()
+
+  data = {"links":linksToUpdate,"nodes":nodesToUpdate, "saghe": originalData.saghe}
+
+  //ricorda di renderlo una funzione
+
+  for (var i=0; i<data.links.length; ++i) {
+    o = data.links[i];
+    o.source = data.nodes[o.source];
+    o.target = data.nodes[o.target];
+  }
+
+  init("saga");
+}
+
+function updateBackground(url,opacity){
+  
+  console.log(url)
+  
+  d3.select("#background").attr("xlink:href", url)
+  d3.select("#background_rect").attr("opacity",opacity)
+  
+}
