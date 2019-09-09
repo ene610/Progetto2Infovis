@@ -52,15 +52,12 @@ function linkInSaga(links,saga){
         map.set( String(link.source) +","+String(link.target),link)
         
         linksSaga.push(link)
-        //console.log(nameToIndex[link.target])
       }
       
   });
   map.forEach(value=>{
     linksSaga1.push(value)
   })
-  //console.log(linksSaga1)
-  //console.log(linksSaga)
   return linksSaga1;
 }
 
@@ -84,7 +81,6 @@ function network(data, prev, index, expand) {
       nodes = [], // output nodes
       links = [], // output links
       expandedCrew = [];
-      //console.log(nodes,"nodi")
   // process previous nodes for reuse or centroid calculation
   if (prev) {
     
@@ -114,8 +110,8 @@ function network(data, prev, index, expand) {
       nodes.push(n);
       if (gn[i]) {
         // place new nodes at cluster location (plus jitter)
-        n.x = gn[i].x //+ Math.random();
-        n.y = gn[i].y //+ Math.random();
+        n.x = gn[i].x 
+        n.y = gn[i].y 
       }
     } else {
       // the node is part of a collapsed cluster
@@ -151,7 +147,6 @@ function network(data, prev, index, expand) {
 
   // determine links
   for (k=0; k<data.links.length; ++k) {
-    //console.log(data.links.length,k) 
         
     var e = data.links[k]
     var u = index(e.source);
@@ -175,14 +170,12 @@ function network(data, prev, index, expand) {
 function convexHulls(nodes, index, offset) {
   var hulls = {};
   var names = {}
-  //console.log(nodes)
   // create point sets
   for (var k=0; k<nodes.length; ++k) {
     var n = nodes[k];
     if (n.size) continue;
     var i = index(n),
         l = hulls[i] || (hulls[i] = []);
-    //console.log(n)
     names[i] = crews[n.group]
     l.push([n.x-offset, n.y-offset]);
     l.push([n.x-offset, n.y+offset]);
@@ -193,7 +186,6 @@ function convexHulls(nodes, index, offset) {
   // create convex hulls
   var hullset = [];
   for (i in hulls) {
-    //console.log(names)
     hullset.push({group: i, path: d3.geom.hull(hulls[i]), name: names[i]});
   }
 
@@ -201,7 +193,7 @@ function convexHulls(nodes, index, offset) {
 }
 
 function drawCluster(d) {
-  return curve(d.path); // 0.8
+  return curve(d.path); 
 }
 
 // --------------------------------------------------------
@@ -262,13 +254,13 @@ var redLine = svg.append("line")
   .attr("stroke", "red");
 
 svg.append("text")
-   .attr("y", 33)//magic number here
+   .attr("y", 33)
    .attr("x", 80)
    .text("Allies")
    .attr("font-size", "18px")
 
 svg.append("text")
-   .attr("y", 73)//magic number here
+   .attr("y", 73)
    .attr("x", 80)
    .text("Enemies")
    .attr("font-size", "18px")
@@ -289,8 +281,6 @@ var top = "150px"
 var buttonWidth = 290
 var buttonHeight = 48
 for(var j = 0; j < data.saghe.length; j++) {
-  //if(i == 2) top = "250px";
-  //if(i != 0 && i % 2 == 0 ) top = parseInt(top) + 80 + "px";
   var buttons = buttonMenu.append("button")
   .text(data.saghe[j].name)
   .attr("text-color","#fff")
@@ -301,7 +291,7 @@ for(var j = 0; j < data.saghe.length; j++) {
   .style("height", buttonHeight + "px")
   .style("width", buttonWidth + "px")
   .style("position", "absolute")
-  .style("left", "1217px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
+  .style("left", "1217px")           
   .style("top", 120 + j * 50 + "px")
   .on("click", function(){
     expand = []
@@ -334,18 +324,15 @@ for(var j = 0; j < data.saghe.length; j++) {
 });
 
 var defs = vis.append("defs");
-//console.log("defs",defs)
 
 function functionImage(data, image) {
-    //GRAZIE DAVIDE PER QUESTO MIRACOLO DELL'INFORMATICA
-    //console.log("DATA: " + image)
     var img = image ? image : data.nodes[0].img
     defs.append('pattern')
     .attr("id", img)
     .attr("width", 1)
     .attr("height", 1)
     .append("svg:image")
-    .attr("id","image")//se vuoi riprendere le img d3.selectAll("image")
+    .attr("id","image")
     .attr("xlink:href", function() { return img.slice(1) })
     .attr("width", function() {return image ? rPirates * 2 : rCrew * 2;})
     .attr("height", function() {return image ? rPirates * 2 : rCrew * 2;})
@@ -361,9 +348,9 @@ var nodeCoordinates = new Map()
 function getNeighbors(node) {
   return link[0].reduce((neighbors, link) => {
     var split = link.id.split("-")
-    if (split[1] === node.name) {           // if (link.target.id === node.id) {
-      neighbors.push(split[0])        // neighbors.push(link.source.id)
-    } else if (split[0] === node.name) {      // else if (link.source.id === node.id) {
+    if (split[1] === node.name) {           
+      neighbors.push(split[0])       
+    } else if (split[0] === node.name) {      
       neighbors.push(split[1])
     }
 
@@ -416,7 +403,6 @@ function getLinkColor(node, link) {
 
 function isNeighborLink(node, link) {
   return link.target.name === node.name || link.source.name === node.name
-  //neighbors.includes()
 }
 
 function getLabels(label, neighbors) {
@@ -455,7 +441,6 @@ function init(string) {
         })
       .linkStrength(function(l) {
         var n1 = l.source, n2 = l.target;
-        //console.log(l.source.name + " - " + l.target.name + " group: " + n1.group + "-" +n2.group)
         return n1.group == n2.group ? strenght : 0.2; 
         })
     .gravity(0.15)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
@@ -477,7 +462,6 @@ function init(string) {
       .style("fill-opacity", 10)
       .on("click", function(d) {
       
-//console.log("hull click", d, arguments, this, expand[d.group]);
       expand[d.group] = false; 
       init();
     });
@@ -499,15 +483,6 @@ function init(string) {
       .style("stroke-opacity", 3);
 
 
-      
-    /*  var images = nodeg.append("image")
-        .attr("id","image")
-        .attr("xlink:href",  function(d) { return "./img.png";})
-        .attr("x", function(d) { return -25;})
-        .attr("y", function(d) { return -25;})
-        .attr("height", 50)
-        .attr("width", 50);*/
-
   node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
   node.exit().remove();
   node.enter().append("circle")
@@ -516,14 +491,12 @@ function init(string) {
       .attr("r", function(d) {return d.img ? rPirates : rCrew; }) 
       .attr("id", function(d) { if(d.nodes != undefined && d.nodes[0].img.includes("flag")) 
                                return "crew" + d.group; else return d.name; })
-      .attr("cx", function(d) { return d.x; })                            //{ return d.name ? rPirates : rCrew; }) 
+      .attr("cx", function(d) { return d.x; })                            
       .attr("cy", function(d) { return d.y; })
       .style("fill", function(d) {return functionImage(d, d.img); })
       .style("stroke", "black")
       .on("click", function(d) {
-        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
         link.style("stroke-width", function(d) { return d.size || 1; })
-        //console.log("node click", d, arguments, this, expand[d.group]);
         expand[d.group] = !expand[d.group];
         d3.selectAll("#label").remove()
         init();
@@ -544,7 +517,6 @@ function init(string) {
       })
       .on('mouseout',function() {
         node.attr('opacity', 1)
-        //node.attr("r",function(d) {return d.img ? rPirates : rCrew; })
         node.style("stroke", "black")
         node.style("stroke-width", 1)
         link.style("stroke-width", function(d) { return d.size || 1; })
@@ -553,7 +525,7 @@ function init(string) {
       })
 
   labels = vis.append("g").selectAll("circle")
-    .data(net.nodes)//cambiato da nodes a crews
+    .data(net.nodes)
     .enter().append("svg:text")
     .style("fill","black")
     .text(function(d) { return d.name})
@@ -597,9 +569,6 @@ function init(string) {
     
     
   })
-
-  //labels.data(node).enter().attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
-          //.attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y - 30)); });*/
 }
 
 
@@ -610,7 +579,6 @@ function collide(node) {
       ny1 = node.y - r,
       ny2 = node.y + r;
   return function(quad, x1, y1, x2, y2) {
-    //console.log(quad.point)
     if (quad.point && (quad.point !== node)) {
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
@@ -653,9 +621,7 @@ function updateAllGraph(saga){
 }
 
 function updateBackground(url,opacity){
-  
-  console.log(url)
-  
+    
   d3.select("#background").attr("xlink:href", url)
   d3.select("#background_rect").attr("opacity",opacity)
   
