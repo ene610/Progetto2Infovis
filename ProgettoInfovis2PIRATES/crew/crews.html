@@ -358,6 +358,7 @@ for(var j = 0; j < data.saghe.length; j++) {
   .style("left", "1217px")           //function(){  return j % 2 == 0 ? "1230px" :  "1400px"})
   .style("top", 120 + j * 52 + "px")
   .on("click", function(){
+    expand = []
     updateAllGraph(this.id)
     path = data.saghe[this.id-1].path
     opacity = data.saghe[this.id-1].opacity
