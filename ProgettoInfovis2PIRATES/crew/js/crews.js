@@ -429,7 +429,7 @@ function init(string) {
   if (force) force.stop();
   console.log(string)
   net = network(data, net, getGroup, expand);
-  var strenght = 2;
+  var strenght = 3;
   if(string == "saga") strenght = 6;
   force = d3.layout.force()
       .nodes(net.nodes)
