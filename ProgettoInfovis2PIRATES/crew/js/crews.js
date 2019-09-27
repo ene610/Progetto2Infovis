@@ -27,6 +27,7 @@ function linkid(l) {
 
 function getGroup(n) {return n.group; }
 
+// functions that return nodes and links until selected saga 
 function nodesInSaga(nodes,saga){
   i=0
   nameToIndex = {}
@@ -70,7 +71,7 @@ function getCrews(data) {
     return crews;
   }
 
-// constructs the network to visualize
+// function that computes graph to display
 function network(data, prev, index, expand) {
   expand = expand || {};
   var gm = {},    // group map
@@ -137,8 +138,6 @@ function network(data, prev, index, expand) {
       } 
       l.nodes.push(n);
 
-
-  // always count group size as we also use it to tweak the force graph strengths/distances
     l.size += 1;
     n.group_data = l;
   }
@@ -167,6 +166,7 @@ function network(data, prev, index, expand) {
   return {nodes: nodes, links: links};
 }
 
+// function that computes cluster
 function convexHulls(nodes, index, offset) {
   var hulls = {};
   var names = {}
@@ -237,6 +237,7 @@ var svg = body.append("svg")
     .attr("height", height)
     .attr("fill", "url(#venus)");
 
+// legend
 var greenLine = svg.append("line")
   .attr("x1", 5)
   .attr("y1", 30)
@@ -265,6 +266,8 @@ svg.append("text")
    .text("Enemies")
    .attr("font-size", "18px")
 
+// ---------------------------------------------------------------------
+
 d3.json("data/crews.json", function(json) {
   originalData = json;
   data = JSON.parse(JSON.stringify(originalData))
@@ -274,6 +277,7 @@ d3.json("data/crews.json", function(json) {
   crews = getCrews(data.nodes)
   data = {"links":linki,"nodes":nodi, "saghe": data.saghe}
 
+// creation of time line with group of buttons   
 var buttonMenu = d3.select("body").data(data.saghe);
 
 var i = 0
@@ -325,6 +329,7 @@ for(var j = 0; j < data.saghe.length; j++) {
 
 var defs = vis.append("defs");
 
+// function that add images to nodes
 function functionImage(data, image) {
     var img = image ? image : data.nodes[0].img
     defs.append('pattern')
@@ -344,7 +349,7 @@ var hulls = []
 var linksColor = new Map()
 var nodeCoordinates = new Map()
 
-// selezione nodi e link on mouseOver
+// functions that select nodes and links on mouseOver
 function getNeighbors(node) {
   return link[0].reduce((neighbors, link) => {
     var split = link.id.split("-")
@@ -424,7 +429,7 @@ function selectNode(selectedNode) {
   linksColor = new Map()  
 }
 
-
+// function that applies strenghts to nodes and links
 function init(string) {
   if (force) force.stop();
   console.log(string)
@@ -443,9 +448,9 @@ function init(string) {
         var n1 = l.source, n2 = l.target;
         return n1.group == n2.group ? strenght : 0.2; 
         })
-    .gravity(0.15)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
-    .charge(-2000)    // ... charge is important to turn single-linked groups to the outside
-    .friction(0.1)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
+    .gravity(0.15)   
+    .charge(-2000)   
+    .friction(0.1)   
       .start();
 
  var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
@@ -469,6 +474,7 @@ function init(string) {
     hull.append("title")
       .text(function(d) {return d.name})
 
+  // links' creation
   link = linkg.selectAll("line.link").data(net.links, linkid);
   link.exit().remove();
   link.enter().append("line")
@@ -483,6 +489,7 @@ function init(string) {
       .style("stroke-opacity", 3);
 
 
+  // nodes' creation
   node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
   node.exit().remove();
   node.enter().append("circle")
@@ -524,6 +531,7 @@ function init(string) {
         labels.style("opacity", 0)
       })
 
+  // nodes' label
   labels = vis.append("g").selectAll("circle")
     .data(net.nodes)
     .enter().append("svg:text")
@@ -571,7 +579,6 @@ function init(string) {
   })
 }
 
-
 function collide(node) {
   var r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60,
       nx1 = node.x - r,
@@ -599,6 +606,7 @@ function collide(node) {
   };
 }
 
+// update graph on selected saga
 function updateAllGraph(saga){
 
   data = JSON.parse(JSON.stringify(originalData))
@@ -608,8 +616,6 @@ function updateAllGraph(saga){
   labels.remove()
 
   data = {"links":linksToUpdate,"nodes":nodesToUpdate, "saghe": originalData.saghe}
-
-  //ricorda di renderlo una funzione
 
   for (var i=0; i<data.links.length; ++i) {
     o = data.links[i];
