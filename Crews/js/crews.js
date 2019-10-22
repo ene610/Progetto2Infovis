@@ -432,25 +432,33 @@ function selectNode(selectedNode) {
 // function that applies strenghts to nodes and links
 function init(string) {
   if (force) force.stop();
-  console.log(string)
   net = network(data, net, getGroup, expand);
   var strenght = 3;
-  if(string == "saga") strenght = 6;
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
       .size([width, height])
       .linkDistance(function(l) {
         var n1 = l.source, n2 = l.target;
-        return n1.group == n2.group ? 30 : 300; 
+        distance = 60
+        if(n1.name == "Monkey D. Luffy" || n2.name == "Monkey D. Luffy"){
+          distance = 50
+        }
+        return n1.group == n2.group ? distance : 200 
         })
       .linkStrength(function(l) {
+        str = 3
+        strfuori = 0.00000000001
         var n1 = l.source, n2 = l.target;
-        return n1.group == n2.group ? strenght : 0.2; 
+        if(n1.name == "Monkey D. Luffy" || n2.name == "Monkey D. Luffy"){
+          str = 6
+          strfuori = 0.00000000001
+        }
+        return n1.group == n2.group ? str : strfuori; 
         })
-    .gravity(0.15)   
+    .gravity(0.2)   
     .charge(-2000)   
-    .friction(0.1)   
+    .friction(0.6)   
       .start();
 
  var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
@@ -579,18 +587,24 @@ function init(string) {
   })
 }
 
-function collide(node) {
-  var r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60,
-      nx1 = node.x - r,
+function collide(node) {  
+  var r = node.img ? rPirates * 2 : rCrew * 2 ;
+  if(node.name && node.name == "Monkey D. Luffy"){
+    r = rPirates * 2  
+  }
+  var nx1 = node.x - r,
       nx2 = node.x + r,
       ny1 = node.y - r,
       ny2 = node.y + r;
+
+  
   return function(quad, x1, y1, x2, y2) {
     if (quad.point && (quad.point !== node)) {
+      if(quad.point.group != node.group){
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
-          l = Math.sqrt(x * x + y * y),
-          r = node.img ? rPirates * 2 + 20 : rCrew * 2 + 60;
+          l = Math.sqrt(x * x + y * y);
+       
       if (l < r) {
         l = (l - r) / l * .5;
         node.x -= x *= l;
@@ -603,6 +617,7 @@ function collide(node) {
         || x2 < nx1
         || y1 > ny2
         || y2 < ny1;
+  }
   };
 }
 

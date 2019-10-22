@@ -28,9 +28,9 @@
     {"name":"Sanji","group":1,"saga":1, "img": "../char-image/sanji.png"},
     {"name":"Roronoa Zoro","group":1,"saga":1,  "img": "../char-image/zoro.png"},
 
-    {"name":"Shanks","group":2,"saga":1, "img": "../char-image/shanks.png"},
-    {"name":"Benn Beckman", "group":2,"saga":1, "img": "../char-image/beckman.png"},
-    {"name":"Lucky Roux", "group":2,"saga":1, "img": "../char-image/lucky-roux.png"},
+    {"name":"Shanks","group":1,"saga":1, "img": "../char-image/shanks.png"},
+    {"name":"Benn Beckman", "group":1,"saga":1, "img": "../char-image/beckman.png"},
+    {"name":"Lucky Roux", "group":1,"saga":1, "img": "../char-image/lucky-roux.png"},
 
     {"name":"Buggy", "group":3,"saga":1, "img": "../char-image/buggy.png"},
     {"name":"Cabaji", "group":3,"saga":1, "img": "../char-image/cabaji.png"},
@@ -159,7 +159,6 @@
     {"source":"Monkey D. Luffy","target":"Spandam","value":30,"saga":3, "color": "red"},
     {"source":"Monkey D. Luffy","target":"Lucci","value":30,"saga":3, "color": "red"},
     
-    {"source":"Sanji","target":"Roronoa Zoro","value":30,"saga":1, "color": "#00c400"},
     {"source":"Sanji","target":"Mr. 2","value":30,"saga":2, "color": "red"},
     {"source":"Sanji","target":"Blackbeard","value":30,"saga":6, "color": "red"},
     {"source":"Sanji","target":"Aokiji","value":30,"saga":3, "color": "red"},
@@ -189,8 +188,8 @@
     {"source":"Roronoa Zoro","target":"Monet","value":30,"saga":8, "color": "red"},
     {"source":"Roronoa Zoro","target":"Kaku","value":30,"saga":3, "color": "red"},
     
-    {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
-    {"source":"Shanks","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Monkey D. Luffy","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Monkey D. Luffy","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
     {"source":"Shanks","target":"Buggy","value":30,"saga":3, "color": "#00c400"},
     {"source":"Shanks","target":"Whitebeard","value":30,"saga":3, "color": "#00c400"},
     {"source":"Shanks","target":"Blackbeard","value":30,"saga":7, "color": "red"},
@@ -198,7 +197,18 @@
     {"source":"Shanks","target":"Kizaru","value":30,"saga":7, "color": "red"},
     {"source":"Shanks","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "red"},
     
-    {"source":"Benn Beckman","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Sanji","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Sanji","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Roronoa Zoro","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Roronoa Zoro","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Shanks","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Shanks","target":"Roronoa Zoro","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Shanks","target":"Sanji","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Roronoa Zoro","target":"Sanji","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Lucky Roux","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
+
+
     
     {"source":"Buggy","target":"Cabaji","value":30,"saga":1, "color": "#00c400"},
     {"source":"Buggy","target":"Mohji","value":30,"saga":1, "color": "#00c400"},
