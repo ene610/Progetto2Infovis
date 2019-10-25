@@ -37,3 +37,6 @@ button:active {
 	position:relative;
 	top:1px;
 }
+#label:hover {
+  cursor:default;
+}

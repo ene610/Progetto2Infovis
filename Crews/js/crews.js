@@ -2,7 +2,8 @@ var width = 1200,     // svg width
     height = 675,     // svg height
     dr = 20,         // default point radius
     rCrew = 25,
-    rPirates = 20,    
+    rPirates = 16,
+    rCaptain = 20,    
     off = 15,    // cluster hull offset
     expand = {}, // expanded clusters
     data, net, force, hullg, hull, linkg, link, nodeg, node, labels,originalData;
@@ -10,7 +11,7 @@ var width = 1200,     // svg width
 var nameToIndex ;
 
 var curve = d3.svg.line()
-    .interpolate("cardinal-closed")
+    .interpolate("basis-closed")
     .tension(.85);
 
 var fill = d3.scale.category20();
@@ -25,7 +26,7 @@ function linkid(l) {
   return u<v ? u+"|"+v : v+"|"+u;
 }
 
-function getGroup(n) {return n.group; }
+function getGroup(n) { return n.group; }
 
 // functions that return nodes and links until selected saga 
 function nodesInSaga(nodes,saga){
@@ -330,7 +331,7 @@ for(var j = 0; j < data.saghe.length; j++) {
 var defs = vis.append("defs");
 
 // function that add images to nodes
-function functionImage(data, image) {
+function functionImage(data, image, flag) {
     var img = image ? image : data.nodes[0].img
     defs.append('pattern')
     .attr("id", img)
@@ -339,8 +340,8 @@ function functionImage(data, image) {
     .append("svg:image")
     .attr("id","image")
     .attr("xlink:href", function() { return img.slice(1) })
-    .attr("width", function() {return image ? rPirates * 2 : rCrew * 2;})
-    .attr("height", function() {return image ? rPirates * 2 : rCrew * 2;})
+    .attr("width", function() {if(flag) return rCaptain * 2; else return image ? rPirates * 2 : rCrew * 2;})
+    .attr("height", function() {if(flag) return rCaptain * 2; else return image ? rPirates * 2 : rCrew * 2;})
     
     return "url(#" + img + ")"
 }
@@ -434,6 +435,13 @@ function init(string) {
   if (force) force.stop();
   net = network(data, net, getGroup, expand);
   var strenght = 3;
+  var gravity = 0.1;
+  var expanded = 0;
+  for(key in expand) {
+    if(expand[key] == true)
+      expanded++; 
+  }
+  gravity = gravity + expanded * 0.005
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
@@ -441,7 +449,7 @@ function init(string) {
       .linkDistance(function(l) {
         var n1 = l.source, n2 = l.target;
         distance = 60
-        if(n1.name == "Monkey D. Luffy" || n2.name == "Monkey D. Luffy"){
+        if(n1.flag || n2.flag){
           distance = 50
         }
         return n1.group == n2.group ? distance : 200 
@@ -450,20 +458,20 @@ function init(string) {
         str = 3
         strfuori = 0.00000000001
         var n1 = l.source, n2 = l.target;
-        if(n1.name == "Monkey D. Luffy" || n2.name == "Monkey D. Luffy"){
+        if(n1.flag || n2.flag){
           str = 6
           strfuori = 0.00000000001
         }
         return n1.group == n2.group ? str : strfuori; 
         })
-    .gravity(0.2)   
-    .charge(-2000)   
+    .gravity(gravity)   
+    .charge(-500)   
     .friction(0.6)   
       .start();
 
  var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
               '#bcf60c', '#7f7f7f', '#008080', '#1f77b4', '#9a6324', '#bcf60c', '#800000', '#228B22', '#808000', 
-              '#ff7f0e', '#000075', '#808080', '#000000', '#e6194b', '#17becf', '#ffe119'];
+              '#ff7f0e', '#000075', '#808080', '#000000', '#e6194b', '#c40c46', '#ffe119'];
 
   hullg.selectAll("path.hull").remove();
   hull = hullg.selectAll("path.hull")
@@ -503,12 +511,12 @@ function init(string) {
   node.enter().append("circle")
       // if (d.size) -- d.size > 0 when d is a group node.
       .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
-      .attr("r", function(d) {return d.img ? rPirates : rCrew; }) 
+      .attr("r", function(d) {if(d.flag) return rCaptain; else return d.img ? rPirates : rCrew; }) 
       .attr("id", function(d) { if(d.nodes != undefined && d.nodes[0].img.includes("flag")) 
                                return "crew" + d.group; else return d.name; })
       .attr("cx", function(d) { return d.x; })                            
       .attr("cy", function(d) { return d.y; })
-      .style("fill", function(d) {return functionImage(d, d.img); })
+      .style("fill", function(d) {return functionImage(d, d.img, d.flag); })
       .style("stroke", "black")
       .on("click", function(d) {
         link.style("stroke-width", function(d) { return d.size || 1; })
@@ -549,8 +557,9 @@ function init(string) {
     .style("text-anchor", "middle")
     .style("fill", "white")
     .style("stroke","black")
+    .style("stroke-width", 0.8)
     .style("font-family", "Arial")
-    .style("font-size", "18px")
+    .style("font-size", "12px")
     .style("font-weight", "bold")
     .attr("opacity", 0) 
     .attr("transform", "translate(0,-30)");
@@ -589,7 +598,7 @@ function init(string) {
 
 function collide(node) {  
   var r = node.img ? rPirates * 2 : rCrew * 2 ;
-  if(node.name && node.name == "Monkey D. Luffy"){
+  if(node.name && node.flag){
     r = rPirates * 2  
   }
   var nx1 = node.x - r,
@@ -599,7 +608,7 @@ function collide(node) {
 
   
   return function(quad, x1, y1, x2, y2) {
-    if (quad.point && (quad.point !== node)) {
+    if (quad.point && (quad.point != node)) {
       if(quad.point.group != node.group){
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
@@ -613,6 +622,21 @@ function collide(node) {
         quad.point.y += y;
       }
     }
+    else {
+      //r = rPirates * 2
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y);
+       
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+    }
+  }
+
     return x1 > nx2
         || x2 < nx1
         || y1 > ny2
