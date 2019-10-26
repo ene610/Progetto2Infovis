@@ -534,21 +534,23 @@ function init(string) {
     .text(function(d) {return d.name})
 
   node.on('mouseover',function() {
-       
+        createLabels() 
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
       })
       .on('mouseout',function() {
+        d3.selectAll("#label").remove()
         node.attr('opacity', 1)
         node.style("stroke", "black")
         node.style("stroke-width", 1)
         link.style("stroke-width", function(d) { return d.size || 1; })
         hull.style("opacity", 1)
-        labels.style("opacity", 0)
+        //labels.style("opacity", 0)
       })
 
   // nodes' label
-  labels = vis.append("g").selectAll("circle")
+  function createLabels(){
+    labels = vis.append("g").selectAll("circle")
     .data(net.nodes)
     .enter().append("svg:text")
     .style("fill","black")
@@ -561,10 +563,14 @@ function init(string) {
     .style("font-family", "Arial")
     .style("font-size", "12px")
     .style("font-weight", "bold")
-    .attr("opacity", 0) 
+    .attr("opacity", 1) 
     .attr("transform", "translate(0,-30)");
-    
 
+    labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
+          .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
+  }
+  createLabels()
+  labels.remove()
   node.call(force.drag);
 
   force.on("tick", function() {
@@ -585,8 +591,8 @@ function init(string) {
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
-
-    labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
+    if(labels)
+      labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
 
     node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
@@ -652,7 +658,6 @@ function updateAllGraph(saga){
   nodesToUpdate = nodesInSaga(data.nodes,saga)
   linksToUpdate = linkInSaga(data.links,saga)
   crews = getCrews(data.nodes)
-  labels.remove()
 
   data = {"links":linksToUpdate,"nodes":nodesToUpdate, "saghe": originalData.saghe}
 
