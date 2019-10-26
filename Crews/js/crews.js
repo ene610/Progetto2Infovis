@@ -553,6 +553,7 @@ function init(string) {
     labels = vis.append("g").selectAll("circle")
     .data(net.nodes)
     .enter().append("svg:text")
+    .style("cursor", "default")
     .style("fill","black")
     .text(function(d) { return d.name})
     .attr("id", "label")

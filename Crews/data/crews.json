@@ -208,6 +208,10 @@
     {"source":"Monkey D. Luffy","target":"Bartolomeo","value":30,"saga":9, "color": "#00c400"},
     {"source":"Monkey D. Luffy","target":"Spandam","value":30,"saga":3, "color": "red"},
     {"source":"Monkey D. Luffy","target":"Lucci","value":30,"saga":3, "color": "red"},
+
+    {"source":"Monkey D. Luffy","target":"Monkey D. Garp","value":30,"saga":1, "color": "#00c400"},
+    {"source":"Monkey D. Luffy","target":"Blueno","value":30,"saga":3, "color": "red"},
+
     
     {"source":"Sanji","target":"Usopp","value":30,"saga":1, "color": "#00c400"},
     {"source":"Sanji","target":"Nami","value":30,"saga":1, "color": "#00c400"},
@@ -216,6 +220,7 @@
     {"source":"Sanji","target":"Franky","value":30,"saga":3, "color": "#00c400"},
     {"source":"Sanji","target":"Brook","value":30,"saga":4, "color": "#00c400"},
     {"source":"Sanji","target":"Mr. 2","value":30,"saga":2, "color": "red"},
+    {"source":"Sanji","target":"Jabura","value":30,"saga":3, "color": "red"},
     {"source":"Sanji","target":"Blackbeard","value":30,"saga":6, "color": "red"},
     {"source":"Sanji","target":"Aokiji","value":30,"saga":3, "color": "red"},
     {"source":"Sanji","target":"Kizaru","value":30,"saga":5, "color": "red"},
@@ -228,9 +233,14 @@
     {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":10, "color": "red"},
     {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Yonji","value":30,"saga":10, "color": "red"},
+    {"source":"Sanji","target":"Vinsmoke Reiju","value":30,"saga":10, "color": "00c400"},
     {"source":"Sanji","target":"Vinsmoke Judge","value":30,"saga":11, "color": "#00c400"},
     {"source":"Sanji","target":"Vinsmoke Niji","value":30,"saga":11, "color": "#00c400"},
     {"source":"Sanji","target":"Vinsmoke Ichiji","value":30,"saga":11, "color": "#00c400"},
+    {"source":"Sanji","target":"Vinsmoke Yonji","value":30,"saga":11, "color": "#00c400"},
+    {"source":"Sanji","target":"Vinsmoke Reiju","value":30,"saga":11, "color": "#00c400"},
+
     
     {"source":"Roronoa Zoro","target":"Sanji","value":30,"saga":1, "color": "#00c400"},
     {"source":"Roronoa Zoro","target":"Usopp","value":30,"saga":1, "color": "#00c400"},
@@ -255,25 +265,41 @@
     {"source":"Usopp","target":"Nico Robin","value":30,"saga":2, "color": "#00c400"},
     {"source":"Usopp","target":"Chopper","value":30,"saga":2, "color": "#00c400"},
     {"source":"Usopp","target":"Franky","value":30,"saga":3, "color": "#00c400"},
+    {"source":"Usopp","target":"Perona","value":30,"saga":3, "color": "red"},
+    {"source":"Usopp","target":"Sugar","value":30,"saga":9, "color": "red"},
+
+
     {"source":"Usopp","target":"Yasopp","value":30,"saga":1, "color": "#00c400"},
     {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
     {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
     {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
+    {"source":"Usopp","target":"Mr. 4","value":30,"saga":2, "color": "red"},
+
 
 
     {"source":"Nami","target":"Nico Robin","value":30,"saga":2, "color": "#00c400"},
     {"source":"Nami","target":"Chopper","value":30,"saga":2, "color": "#00c400"},
     {"source":"Nami","target":"Franky","value":30,"saga":3, "color": "#00c400"},
+    {"source":"Nami","target":"Kalifa","value":30,"saga":3, "color": "red"},
+
     {"source":"Nami","target":"Brook","value":30,"saga":4, "color": "#00c400"},
 
     {"source":"Nico Robin","target":"Chopper","value":30,"saga":2, "color": "#00c400"},
     {"source":"Nico Robin","target":"Franky","value":30,"saga":3, "color": "#00c400"},
     {"source":"Nico Robin","target":"Brook","value":30,"saga":4, "color": "#00c400"},
+    {"source":"Nico Robin","target":"Crocodile","value":30,"saga":2, "color": "red"},
+    {"source":"Nico Robin","target":"Spandam","value":30,"saga":3, "color": "red"},
+    {"source":"Nico Robin","target":"Lucci","value":30,"saga":3, "color": "red"},
+
 
     {"source":"Chopper","target":"Franky","value":30,"saga":3, "color": "#00c400"},
+    {"source":"Chopper","target":"Kumadori","value":30,"saga":3, "color": "red"},
+
     {"source":"Chopper","target":"Brook","value":30,"saga":4, "color": "#00c400"},
 
     {"source":"Franky","target":"Brook","value":30,"saga":4, "color": "#00c400"},
+    {"source":"Franky","target":"Senor Pink","value":30,"saga":9, "color": "#00c400"},
+
 
     {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
     {"source":"Shanks","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
@@ -289,6 +315,8 @@
     {"source":"Benn Beckman","target":"Yasopp","value":30,"saga":1, "color": "#00c400"},
 
     {"source":"Lucky Roux","target":"Yasopp","value":30,"saga":1, "color": "#00c400"},
+
+    {"source":"Yasopp","target":"Van Augur","value":30,"saga":7, "color": "red"},
 
     {"source":"Buggy","target":"Cabaji","value":30,"saga":1, "color": "#00c400"},
     {"source":"Buggy","target":"Mohji","value":30,"saga":1, "color": "#00c400"},
@@ -348,6 +376,7 @@
     {"source":"Marco","target":"Blackbeard","value":30,"saga":7, "color": "red"},
 
     {"source":"Portgas D. Ace","target":"Diamond Jozu","value":30,"saga":7, "color": "#00c400"},
+    {"source":"Portgas D. Ace","target":"Monkey D. Garp","value":30,"saga":2, "color": "#00c400"},
     {"source":"Portgas D. Ace","target":"Thatch","value":30,"saga":7, "color": "#00c400"},
     {"source":"Portgas D. Ace","target":"Vista","value":30,"saga":7, "color": "#00c400"},
     {"source":"Portgas D. Ace","target":"Blackbeard","value":30,"saga":2, "color": "red"},
@@ -532,6 +561,7 @@
 
     {"source":"Trafalgar D. Law","target":"Bepo","value":30,"saga":5, "color": "#00c400"},
     {"source":"Trafalgar D. Law","target":"Jean Bart","value":30,"saga":5, "color": "#00c400"},
+    {"source":"Trafalgar D. Law","target":"Vergo","value":30,"saga":5, "color": "red"},
     {"source":"Trafalgar D. Law","target":"Kaido","value":30,"saga":11, "color": "red"},
     {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":8, "color": "#00c400"},
     {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":9, "color": "red"},
