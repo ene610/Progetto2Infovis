@@ -533,7 +533,8 @@ function init(string) {
   var title = node.append("title")
     .text(function(d) {return d.name})
 
-  node.on('mouseover',function() {
+  node.on("mouseover",function() {
+        
         createLabels() 
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
@@ -550,10 +551,12 @@ function init(string) {
 
   // nodes' label
   function createLabels(){
+    console.log("aaa")
     labels = vis.append("g").selectAll("circle")
     .data(net.nodes)
     .enter().append("svg:text")
-    .style("cursor", "default")
+    .style("cursor", "none")
+    .style("pointer-events","none")
     .style("fill","black")
     .text(function(d) { return d.name})
     .attr("id", "label")
@@ -565,7 +568,8 @@ function init(string) {
     .style("font-size", "12px")
     .style("font-weight", "bold")
     .attr("opacity", 1) 
-    .attr("transform", "translate(0,-30)");
+    .attr("transform", "translate(0,-30)")
+    ;
 
     labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
