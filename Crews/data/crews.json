@@ -265,7 +265,7 @@
     {"source":"Usopp","target":"Nico Robin","value":30,"saga":2, "color": "#00c400"},
     {"source":"Usopp","target":"Chopper","value":30,"saga":2, "color": "#00c400"},
     {"source":"Usopp","target":"Franky","value":30,"saga":3, "color": "#00c400"},
-    {"source":"Usopp","target":"Perona","value":30,"saga":3, "color": "red"},
+    {"source":"Usopp","target":"Perona","value":30,"saga":4, "color": "red"},
     {"source":"Usopp","target":"Sugar","value":30,"saga":9, "color": "red"},
 
 
@@ -298,7 +298,7 @@
     {"source":"Chopper","target":"Brook","value":30,"saga":4, "color": "#00c400"},
 
     {"source":"Franky","target":"Brook","value":30,"saga":4, "color": "#00c400"},
-    {"source":"Franky","target":"Senor Pink","value":30,"saga":9, "color": "#00c400"},
+    {"source":"Franky","target":"Senor Pink","value":30,"saga":9, "color": "red"},
 
 
     {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
@@ -561,7 +561,7 @@
 
     {"source":"Trafalgar D. Law","target":"Bepo","value":30,"saga":5, "color": "#00c400"},
     {"source":"Trafalgar D. Law","target":"Jean Bart","value":30,"saga":5, "color": "#00c400"},
-    {"source":"Trafalgar D. Law","target":"Vergo","value":30,"saga":5, "color": "red"},
+    {"source":"Trafalgar D. Law","target":"Vergo","value":30,"saga":7, "color": "red"},
     {"source":"Trafalgar D. Law","target":"Kaido","value":30,"saga":11, "color": "red"},
     {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":8, "color": "#00c400"},
     {"source":"Trafalgar D. Law","target":"Caesar Clown","value":30,"saga":9, "color": "red"},
