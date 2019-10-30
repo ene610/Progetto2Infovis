@@ -434,7 +434,6 @@ function selectNode(selectedNode) {
 function init(string) {
   if (force) force.stop();
   net = network(data, net, getGroup, expand);
-  var strenght = 3;
   var gravity = 0.1;
   var expanded = 0;
   for(key in expand) {
@@ -455,7 +454,7 @@ function init(string) {
         return n1.group == n2.group ? distance : 200 
         })
       .linkStrength(function(l) {
-        str = 6
+        str = 3.5
         strfuori = 0.00000000001
         var n1 = l.source, n2 = l.target;
         if(n1.flag || n2.flag){
