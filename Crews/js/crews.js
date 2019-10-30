@@ -441,26 +441,26 @@ function init(string) {
     if(expand[key] == true)
       expanded++; 
   }
-  gravity = gravity + expanded * 0.005
+  gravity = gravity + expanded * 0.01
   force = d3.layout.force()
       .nodes(net.nodes)
       .links(net.links)
       .size([width, height])
       .linkDistance(function(l) {
         var n1 = l.source, n2 = l.target;
-        distance = 60
+        distance = 70
         if(n1.flag || n2.flag){
           distance = 50
         }
         return n1.group == n2.group ? distance : 200 
         })
       .linkStrength(function(l) {
-        str = 3
+        str = 6
         strfuori = 0.00000000001
         var n1 = l.source, n2 = l.target;
         if(n1.flag || n2.flag){
-          str = 6
-          strfuori = 0.00000000001
+          str = 3
+          strfuori = 0.000000001
         }
         return n1.group == n2.group ? str : strfuori; 
         })
@@ -551,7 +551,6 @@ function init(string) {
 
   // nodes' label
   function createLabels(){
-    console.log("aaa")
     labels = vis.append("g").selectAll("circle")
     .data(net.nodes)
     .enter().append("svg:text")

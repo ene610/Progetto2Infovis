@@ -546,6 +546,9 @@
     {"source":"Capone Bege","target":"Charlotte Linlin (Big Mom)","value":30,"saga":11, "color": "red"},
     
     {"source":"Vito","target":"Gotti","value":30,"saga":5, "color": "#00c400"},
+    {"source":"Vito","target":"Charlotte Chiffon","value":30,"saga":10, "color": "#00c400"},
+    {"source":"Gotti","target":"Charlotte Chiffon","value":30,"saga":10, "color": "#00c400"},
+
 
     {"source":"Basil Hawkins","target":"Faust","value":30,"saga":5, "color": "red"},
     {"source":"Basil Hawkins","target":"Kaido","value":30,"saga":11, "color": "#00c400"},
