@@ -459,7 +459,7 @@ function init(string) {
         var n1 = l.source, n2 = l.target;
         if(n1.flag || n2.flag){
           str = 3
-          strfuori = 0.000000001
+          strfuori = 0.00000000001
         }
         return n1.group == n2.group ? str : strfuori; 
         })
@@ -561,12 +561,13 @@ function init(string) {
     .style("text-anchor", "middle")
     .style("fill", "white")
     .style("stroke","black")
-    .style("stroke-width", 0.8)
+    .style("stroke-width", 0.7)
     .style("font-family", "Arial")
-    .style("font-size", "12px")
+    .style("font-size", "13px")
     .style("font-weight", "bold")
     .attr("opacity", 1) 
-    .attr("transform", "translate(0,-30)")
+    .attr("transform", function(d) { console.log(d); if(d.flag) r = -rCaptain - 3; 
+      else d.img ?  r = -rPirates - 3 : r = -rCrew - 4; return "translate(0, "+ r+")" })
     ;
 
     labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
