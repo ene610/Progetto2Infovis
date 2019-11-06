@@ -313,7 +313,7 @@
     {"source":"Franky","target":"Fukurō","value":30,"saga":3, "color": "red"},
 
     {"source":"Brook","target":"Charlotte Perospero","value":30,"saga":10, "color": "red"},
-    {"source":"Brook","target":"Charlotte Linlin (Big Mom)","value":30,"saga":4, "color": "#00c400"},
+    {"source":"Brook","target":"Charlotte Linlin (Big Mom)","value":30,"saga":10, "color": "#00c400"},
 
     {"source":"Shanks","target":"Benn Beckman","value":30,"saga":1, "color": "#00c400"},
     {"source":"Shanks","target":"Lucky Roux","value":30,"saga":1, "color": "#00c400"},
