@@ -464,7 +464,7 @@ function init(string) {
         return n1.group == n2.group ? str : strfuori; 
         })
     .gravity(gravity)   
-    .charge(-500)   
+    .charge(-530)   
     .friction(0.6)   
       .start();
 
@@ -566,8 +566,8 @@ function init(string) {
     .style("font-size", "13px")
     .style("font-weight", "bold")
     .attr("opacity", 1) 
-    .attr("transform", function(d) { console.log(d); if(d.flag) r = -rCaptain - 3; 
-      else d.img ?  r = -rPirates - 3 : r = -rCrew - 4; return "translate(0, "+ r+")" })
+    .attr("transform", function(d) {if(d.flag) r = -rCaptain - 5; 
+      else d.img ?  r = -rPirates - 5 : r = -rCrew - 4; return "translate(0, "+ r+")" })
     ;
 
     labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })

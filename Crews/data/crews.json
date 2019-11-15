@@ -276,15 +276,10 @@
     {"source":"Usopp","target":"Perona","value":30,"saga":4, "color": "red"},
     {"source":"Usopp","target":"Sugar","value":30,"saga":9, "color": "red"},
     {"source":"Usopp","target":"Trebol","value":30,"saga":9, "color": "red"},
-
+    {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
 
     {"source":"Usopp","target":"Yasopp","value":30,"saga":1, "color": "#00c400"},
-    {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
-    {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
-    {"source":"Usopp","target":"Brook","value":30,"saga":4, "color": "#00c400"},
     {"source":"Usopp","target":"Mr. 4","value":30,"saga":2, "color": "red"},
-
-
 
     {"source":"Nami","target":"Nico Robin","value":30,"saga":2, "color": "#00c400"},
     {"source":"Nami","target":"Chopper","value":30,"saga":2, "color": "#00c400"},
@@ -571,7 +566,7 @@
     {"source":"Gotti","target":"Charlotte Chiffon","value":30,"saga":10, "color": "#00c400"},
 
 
-    {"source":"Basil Hawkins","target":"Faust","value":30,"saga":5, "color": "red"},
+    {"source":"Basil Hawkins","target":"Faust","value":30,"saga":5, "color": "#00c400"},
     {"source":"Basil Hawkins","target":"Kaido","value":30,"saga":11, "color": "#00c400"},
 
     {"source":"Eustass Kid","target":"Killer","value":30,"saga":5, "color": "#00c400"},
