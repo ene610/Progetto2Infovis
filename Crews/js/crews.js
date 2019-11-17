@@ -9,7 +9,7 @@ var width = 1200,     // svg width
     data, net, force, hullg, hull, linkg, link, nodeg, node, labels,originalData;
 
 var nameToIndex ;
-
+var nodeClickedX,nodeClickedY,isCluster,groupClicked;
 var curve = d3.svg.line()
     .interpolate("basis-closed")
     .tension(.85);
@@ -42,7 +42,12 @@ function nodesInSaga(nodes,saga){
   });
   return nodesSaga;
 }
-
+function resetClick(){
+  nodeClickedX = undefined
+  nodeClickedY = undefined
+  isCluster = undefined
+  groupClicked = undefined; 
+}
 function linkInSaga(links,saga){
   linksSaga = [];
   linksSaga1 = [];
@@ -299,7 +304,9 @@ for(var j = 0; j < data.saghe.length; j++) {
   .style("left", "1217px")           
   .style("top", 120 + j * 50 + "px")
   .on("click", function(){
+
     expand = []
+    resetClick()
     updateAllGraph(this.id)
     path = data.saghe[this.id-1].path
     opacity = data.saghe[this.id-1].opacity
@@ -440,6 +447,24 @@ function init(string) {
     if(expand[key] == true)
       expanded++; 
   }
+  net.nodes.map(function(d){
+    if(isCluster){
+      if(d.group == groupClicked && d.flag){
+        console.log(d.name)
+        d.x = nodeClickedX
+        d.y = nodeClickedY
+        d.fixed = true
+      }
+      if(d.group == groupClicked){
+        d.x = nodeClickedX + (Math.random() -0.5) * 40 
+        d.y = nodeClickedY + (Math.random()-0.5) * 40
+      }
+    }
+    if(!isCluster && groupClicked == d.group)
+      
+    return d;
+  })
+  
   gravity = gravity + expanded * 0.01
   force = d3.layout.force()
       .nodes(net.nodes)
@@ -455,11 +480,11 @@ function init(string) {
         })
       .linkStrength(function(l) {
         str = 3.5
-        strfuori = 0.00000000001
+        strfuori = 0
         var n1 = l.source, n2 = l.target;
         if(n1.flag || n2.flag){
           str = 3
-          strfuori = 0.00000000001
+          strfuori = 0
         }
         return n1.group == n2.group ? str : strfuori; 
         })
@@ -481,9 +506,12 @@ function init(string) {
       .style("fill", function(d) {return colors[d.group]; })
       .style("fill-opacity", 10)
       .on("click", function(d) {
-      
-      expand[d.group] = false; 
-      init();
+        isCluster = false
+        groupClicked = d.group
+        nodeClickedX=d3.mouse(this)[0];
+        nodeClickedY=d3.mouse(this)[1]
+        expand[d.group] = false; 
+        init();
     });
 
     hull.append("title")
@@ -518,6 +546,13 @@ function init(string) {
       .style("fill", function(d) {return functionImage(d, d.img, d.flag); })
       .style("stroke", "black")
       .on("click", function(d) {
+        nodeClickedX = d.x;
+        nodeClickedY = d.y;
+        groupClicked = d.group;
+        if(!d.img)
+          isCluster=true;
+        else
+          isCluster=false;
         link.style("stroke-width", function(d) { return d.size || 1; })
         expand[d.group] = !expand[d.group];
         d3.selectAll("#label").remove()
@@ -579,12 +614,12 @@ function init(string) {
 
   force.on("tick", function() {
 
-
+ 
     var q = d3.geom.quadtree(net.nodes),
-      i = 0,
-      n = net.nodes.length;
+    i = 0,
+    n = net.nodes.length;
 
-    while (++i < n) q.visit(collide(net.nodes[i]));
+  while (++i < n) q.visit(collide(net.nodes[i]));
 
     if (!hull.empty()) {
       hull.data(convexHulls(net.nodes, getGroup, off))
@@ -599,9 +634,8 @@ function init(string) {
       labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
 
-    node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
-        .attr("cy", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });
-    
+    node.attr("cx", function(d) { d.fixed = false;return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });  
     
   })
 }
