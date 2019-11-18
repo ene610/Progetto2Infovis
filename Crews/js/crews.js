@@ -452,9 +452,9 @@ function init(string) {
       if(d.group == groupClicked && d.flag){
         d.x = nodeClickedX
         d.y = nodeClickedY
-        d.fixed = true
+        //d.fixed = true
       }
-      if(d.group == groupClicked){
+      if(d.group == groupClicked && d.flag == undefined){
         d.x = nodeClickedX + (Math.random() -0.5) * 30 
         d.y = nodeClickedY + (Math.random()-0.5) * 30
       }
@@ -462,7 +462,7 @@ function init(string) {
     if(!isCluster && groupClicked == d.group){
       d.x = nodeClickedX
       d.y = nodeClickedY
-      d.fixed = true
+      //d.fixed = true
     }
       
     return d;
@@ -618,7 +618,7 @@ function init(string) {
   node.call(force.drag);
 
   force.on("tick", function() {
-
+    
     var q = d3.geom.quadtree(net.nodes),
     i = 0,
     n = net.nodes.length;
@@ -638,7 +638,7 @@ function init(string) {
       labels.attr("x", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew, d.x)); })
           .attr("y", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew, d.y)); });
 
-    node.attr("cx", function(d) { d.fixed = false;return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
+    node.attr("cx", function(d) { return d.x = Math.max(rCrew, Math.min(width - rCrew , d.x)); })
         .attr("cy", function(d) { return d.y = Math.max(rCrew, Math.min(height - rCrew , d.y)); });  
     
   })
