@@ -585,7 +585,6 @@ function init(string) {
         node.style("stroke-width", 1)
         link.style("stroke-width", function(d) { return d.size || 1; })
         hull.style("opacity", 1)
-        //labels.style("opacity", 0)
       })
 
   // nodes' label
