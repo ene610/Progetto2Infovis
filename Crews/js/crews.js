@@ -455,8 +455,8 @@ function init(string) {
         d.fixed = true
       }
       if(d.group == groupClicked){
-        d.x = nodeClickedX + (Math.random() -0.5) * 40 
-        d.y = nodeClickedY + (Math.random()-0.5) * 40
+        d.x = nodeClickedX + (Math.random() -0.5) * 30 
+        d.y = nodeClickedY + (Math.random()-0.5) * 30
       }
     }
     if(!isCluster && groupClicked == d.group){
@@ -493,7 +493,7 @@ function init(string) {
         })
     .gravity(gravity)   
     .charge(-550)   
-    .friction(0.5)   
+    .friction(0.6)   
       .start();
 
  var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
@@ -619,7 +619,6 @@ function init(string) {
 
   force.on("tick", function() {
 
-    
     var q = d3.geom.quadtree(net.nodes),
     i = 0,
     n = net.nodes.length;
