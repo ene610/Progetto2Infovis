@@ -450,7 +450,6 @@ function init(string) {
   net.nodes.map(function(d){
     if(isCluster){
       if(d.group == groupClicked && d.flag){
-        console.log(d.name)
         d.x = nodeClickedX
         d.y = nodeClickedY
         d.fixed = true
@@ -460,7 +459,11 @@ function init(string) {
         d.y = nodeClickedY + (Math.random()-0.5) * 40
       }
     }
-    if(!isCluster && groupClicked == d.group)
+    if(!isCluster && groupClicked == d.group){
+      d.x = nodeClickedX
+      d.y = nodeClickedY
+      d.fixed = true
+    }
       
     return d;
   })
@@ -489,8 +492,8 @@ function init(string) {
         return n1.group == n2.group ? str : strfuori; 
         })
     .gravity(gravity)   
-    .charge(-530)   
-    .friction(0.6)   
+    .charge(-550)   
+    .friction(0.5)   
       .start();
 
  var colors = ['#e6194b', '#bcbd22', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
@@ -569,6 +572,8 @@ function init(string) {
 
   node.on("mouseover",function() {
         
+        
+        
         createLabels() 
         nodeSelected = d3.select(this)
         selectNode(nodeSelected.data()[0])
@@ -614,7 +619,7 @@ function init(string) {
 
   force.on("tick", function() {
 
- 
+    
     var q = d3.geom.quadtree(net.nodes),
     i = 0,
     n = net.nodes.length;
