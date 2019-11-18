@@ -670,7 +670,6 @@ function collide(node) {
       }
     }
     else {
-      //r = rPirates * 2
       var x = node.x - quad.point.x,
           y = node.y - quad.point.y,
           l = Math.sqrt(x * x + y * y);
